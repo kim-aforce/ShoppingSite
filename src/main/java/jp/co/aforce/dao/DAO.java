@@ -7,11 +7,16 @@ import javax.sql.DataSource;
 
 public class DAO {
 	static DataSource ds;
-	
-	public Connection getConnection() throws Exception{
+
+	public Connection getConnection() throws Exception {
 		if (ds == null) {
-			InitialContext ic = new InitialContext();
-			ds=(DataSource)ic.lookup("java:/comp/env/jdbc/ShoppingSite");
+			try {
+				InitialContext ic = new InitialContext();
+				ds = (DataSource) ic.lookup("java:/comp/env/jdbc/ShoppingSite");
+			} catch (Exception e) {
+				throw new Exception("テータソース取得失敗");
+				
+			}
 		}
 		return ds.getConnection();
 	}

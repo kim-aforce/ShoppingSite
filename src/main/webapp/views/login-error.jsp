@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +8,11 @@
 </head>
 <body>
 
-	<div class = "error-msg">
-		<h3>ログインエラーです。</h3>
-		<p>ID又パスワードを再度確認してください。</p>
-		<a href = "login-in.jsp">ログイン画面に戻る</a>
-	</div>
-
+	<h3>ログインエラーです。</h3>
+	<p>ID又パスワードを再度確認してください。</p>
+	<form action="login-in.jsp" method="post">
+		<input type="submit" value="ログイン画面へ戻る">
+	</form>
+	
 </body>
 </html>

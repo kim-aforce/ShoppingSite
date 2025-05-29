@@ -1,36 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="jp.co.aforce.beans.userBean"%>
-<%@ page session="true" %>
+<%@ page session="true"%>
+
 <%
-    Object obj = session.getAttribute("user");
-    if (obj == null || !(obj instanceof UserBean)) {
-        response.sendRedirect("login-in.jsp");
-        return;
-    }
-    UserBean user = (UserBean) obj;
+userBean user = (userBean) session.getAttribute("user");
+String last_name = (user != null ) ? user.getLastname() : "Guest";	
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザーメニュー</title>
+<title>会員情報登録ホーム</title>
 </head>
 <body>
 
-	<h2>ようこそ、<%= userBean.getFirstname() %>さん！</h2>
-	
-	<form action="#" method="post">
-		<input type="submit" value="修正">
-	</form>
-	
-	<form action="#" method="post">
-		<input type="submit" value="削除">
-	</form>
-	
-	<form action="#" method="post">
-		<input type="submit" value="ログアウト">
+	<h2>
+		ようこそ、<%= last_name %>さん！
+	</h2>
+
+	<form>
+		<input type="button" value="修正">
+		 <input type="button"value="削除">
+		 <input type="button" value="ログアウト">
 	</form>
 
-</body></html>
+</body>
+</html>
