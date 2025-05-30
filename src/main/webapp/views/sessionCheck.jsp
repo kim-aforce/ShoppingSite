@@ -17,10 +17,12 @@
 	<h2 style = "color : blue">セッション有効状態</h2>
 	<p>ユーザー：<%= user.getLastname() %>さん</p>
 	<p>セッションID：<%= sid %></p>
+	<a href = "user-menu.jsp">user-menuに戻る</a>
 <% } else {%>
 	<h2 style = "color : red">セッション無効状態</h2><br>
+	<a href = "login-in.jsp">ログインページに戻る</a>
 <% } %>
 
-<a href = "user-menu.jsp">user-menuに戻る</a>
+
 </body>
 </html>

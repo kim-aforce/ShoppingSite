@@ -13,14 +13,17 @@ public class userDAO extends DAO {
 		userBean users = null;
 
 		Connection con = getConnection();
-
+		
+//		ユーザー入力値でSQL文準備
 		String sql = "SELECT * FROM users WHERE member_id=? AND password=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, id);
 		ps.setString(2, pw);
-
+		
+//		結果をrsに格納
 		ResultSet rs = ps.executeQuery();
 
+//		結果が存在すればuserBean obj生成　フィールド設定
 		if (rs.next()) {
 			users = new userBean();
 			users.setMemberId(rs.getString("member_id"));

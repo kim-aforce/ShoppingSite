@@ -11,10 +11,10 @@
 
 <form action="login" method="post">
 <label>ID :</label>
-<input type = "text" name = "id" >
+<input type = "text" name = "id">
 
 <label>PASSWORD : </label>
-<input type = "password" name = "pw" ><br>
+<input type = "password" name = "pw"><br>
 <input type = "submit" value = "ログイン">
 
 </form>

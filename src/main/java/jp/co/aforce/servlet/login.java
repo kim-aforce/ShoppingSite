@@ -13,44 +13,43 @@ import jakarta.servlet.http.HttpSession;
 import jp.co.aforce.beans.userBean;
 import jp.co.aforce.dao.userDAO;
 
-
 @WebServlet("/views/login")
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
-		
+
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		
+
 		userBean user = null;
-		
+
 		try {
 			userDAO dao = new userDAO();
 			user = dao.login(id, pw);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		//ログイン処理　ロジック
 		if (user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user); //ユーザーにセッション付与
-			
+
 			//成功
 			RequestDispatcher rdSucess = request.getRequestDispatcher("/views/user-menu.jsp");
 			rdSucess.forward(request, response);
+
 			//失敗
-		}else {
+		} else {
 			RequestDispatcher rdFailed = request.getRequestDispatcher("/views/login-error.jsp");
 			rdFailed.forward(request, response);
 		}

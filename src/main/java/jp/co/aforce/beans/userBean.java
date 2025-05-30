@@ -19,6 +19,7 @@ firstname, address, mailAddressは次回使用予定なのでコメント処理
 	/*================================================
 	 *----------------------------------- GET------------------------------------------
 	 *================================================*/
+	
 	public String getMemberId() 		{return member_Id;}
 	
 	public String getPassword() 		{return password;}
@@ -31,15 +32,17 @@ firstname, address, mailAddressは次回使用予定なのでコメント処理
 //	
 //	public String getMailAddress() 	{return mailAddress;}
 
+
 	/*================================================
 	 *----------------------------------- SET------------------------------------------
 	 *================================================*/
+	
 	public void setMemberId(String member_Id) 		{this.member_Id = member_Id;}
 	
 	public void setPassword(String password) 			{this.password = password;}
 	
 	public void setLastname(String last_name) 			{this.last_name = last_name;}
-	
+
 //	public void setFirstname(String firstname) 			{this.firstname = firstname;}
 //	
 //	public void setAddress(String address) 				{this.address = address;}
