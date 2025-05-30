@@ -39,6 +39,8 @@ public class login extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		
+		
 		//ログイン処理　ロジック
 		if (user != null) {
 			HttpSession session = request.getSession();
