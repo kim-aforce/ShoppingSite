@@ -20,11 +20,15 @@ String last_name = (user != null ) ? user.getLastname() : "Guest";
 		ようこそ、<%= last_name %>さん！
 	</h2>
 
-	<form>
-		<input type="button" value="修正">
-		 <input type="button"value="削除">
-		 <input type="button" value="ログアウト">
+	<form action="../logout" method="post">
+		<input type="submit" value="ログアウト">
 	</form>
-
+	
+	<input type="button" value="修正">
+	<input type="button" value="削除">
+	
+	<form action="../views/sessionCheck.jsp" method="get">
+		<input type = "submit" value = "セッション有効性検査">
+	</form>
 </body>
 </html>

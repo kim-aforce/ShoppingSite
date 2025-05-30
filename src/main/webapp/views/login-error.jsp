@@ -9,7 +9,7 @@
 <body>
 
 	<h3>ログインエラーです。</h3>
-	<p>ID又パスワードを再度確認してください。</p>
+	<p>ID又はパスワードを再度確認してください。</p>
 	<form action="login-in.jsp" method="post">
 		<input type="submit" value="ログイン画面へ戻る">
 	</form>

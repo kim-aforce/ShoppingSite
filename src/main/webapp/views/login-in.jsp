@@ -15,8 +15,8 @@
 
 <label>PASSWORD : </label>
 <input type = "password" name = "pw" ><br>
-
 <input type = "submit" value = "ログイン">
+
 </form>
 
 <!--register.jspは今後作る予定-->

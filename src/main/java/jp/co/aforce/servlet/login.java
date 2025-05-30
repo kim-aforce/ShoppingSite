@@ -41,20 +41,21 @@ public class login extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		//ログイン処理　ロジック
 		if (user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user); //ユーザーにセッション付与
 			
-			//forward -> user-menu.jsp
+			//成功
 			RequestDispatcher rdSucess = request.getRequestDispatcher("/views/user-menu.jsp");
 			rdSucess.forward(request, response);
-			
+			//失敗
 		}else {
 			RequestDispatcher rdFailed = request.getRequestDispatcher("/views/login-error.jsp");
 			rdFailed.forward(request, response);
 		}
+		//ID / PW 入力チェック　コンソール用
 		System.out.println(" ID: " + id);
 		System.out.println(" PW: " + pw);
 	}
-
 }
