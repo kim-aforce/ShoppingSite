@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<!-- 上記はEclipseの警告を消すための記述です。 -->
+
+<Context reloadable="true">
+<Resource name="jdbc/ShoppingSite"
+          auth="Container"
+          type="javax.sql.DataSource"
+          driverClassName="com.mysql.cj.jdbc.Driver"
+          url="jdbc:mysql://localhost:3306/shoppingsite_kim"
+          username="root"
+          password="j.kim"
+          maxTotal="20"
+          maxIdle="10"
+          maxWaitMillis="-1"/>
+          
+</Context>
