@@ -19,10 +19,7 @@
 
 </form>
 
-<!--register.jspは今後作る予定-->
-<form action="register.jsp" method="get">
-	<input type="submit" value="新規会員登録">
-</form>
+<a href = "user-add.jsp">新規会員登録</a>
 
 
 </body>
