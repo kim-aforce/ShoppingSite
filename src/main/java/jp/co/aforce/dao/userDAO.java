@@ -38,9 +38,9 @@ public class userDAO extends DAO {
 		return users;
 	}
 
-/*===================================================================
- --------------------------------------------新規会員登録----------------------------------- 
- *================================================================== */
+	/*===================================================================
+	 --------------------------------------------新規会員登録----------------------------------- 
+	 *================================================================== */
 	public boolean register(userBean user) throws Exception {
 
 		Connection con = getConnection();
@@ -54,10 +54,73 @@ public class userDAO extends DAO {
 		ps.setString(4, user.getFirstname());
 		ps.setString(5, user.getAddress());
 		ps.setString(6, user.getMailAddress());
-		
+
 		int result = ps.executeUpdate();
 		ps.close();
 		con.close();
-	    return result > 0;  // 1件以上登録成功したら trueにreturn、falseは登録失敗
+		return result > 0; // 1件以上登録成功したら trueにreturn、falseは登録失敗
 	}
+
+	//重複検査
+	public boolean exists(String memberId) throws Exception {
+		Connection con = getConnection();
+		String sql = "SELECT member_id FROM users WHERE member_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, memberId);
+		ResultSet rs = ps.executeQuery();
+		boolean exists = rs.next();
+		rs.close();
+		ps.close();
+		con.close();
+		return exists;
+	}
+
+	/*===================================================================
+	 --------------------------------------------会員情報削除-------------------------------------------------------- 
+	 *================================================================== */
+	public boolean delete(userBean user) throws Exception {
+		Connection con = getConnection();
+		
+	    String sql = "DELETE FROM users WHERE member_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setString(1, user.getMemberId());
+
+	    
+		int result = ps.executeUpdate();
+		ps.close();
+		con.close();
+		
+		return result > 0; //削除成功したらtrue
+	}
+
+	/*===================================================================
+	 --------------------------------------------会員情報修正-------------------------------------------------------- 
+	 *================================================================== */
+	public boolean update(userBean user) throws Exception {
+		Connection con = getConnection();
+	    
+	    String sql = "UPDATE users SET " 
+	               + "password = ?, "
+	               + "last_name = ?, " 
+	               + "first_name = ?, "
+	               + "address = ?, " 
+	               + "mail_address = ? " 
+	               + "WHERE member_id = ?";
+	               
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setString(1, user.getPassword());
+	    ps.setString(2, user.getLastname());
+	    ps.setString(3, user.getFirstname());
+	    ps.setString(4, user.getAddress());
+	    ps.setString(5, user.getMailAddress());
+	    ps.setString(6, user.getMemberId());
+	    
+	    int result = ps.executeUpdate();
+	    ps.close();
+	    con.close();
+	    
+	    return result > 0;
+
+	}
+
 }
