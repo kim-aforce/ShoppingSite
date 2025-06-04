@@ -19,11 +19,7 @@ public class UserEditExecuteServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         userBean editUser = (userBean) session.getAttribute("editUser");
-        
-        if (editUser == null) {
-            response.sendRedirect("user-edit.jsp?error=データなし");
-            return;
-        }
+       
         
         try {
             userDAO dao = new userDAO();

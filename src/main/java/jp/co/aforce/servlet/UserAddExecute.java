@@ -2,6 +2,7 @@ package jp.co.aforce.servlet;
 
 import java.io.IOException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,34 +31,73 @@ public class UserAddExecute extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		if (session == null) {
-			response.sendRedirect("user-add.jsp?error=セッション切れ");
-			return;
-		}
+            request.setAttribute("errorMessage", "セッションが切れました。再度ログインしてください。");
+            request.setAttribute("returnUrl", "login-in.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            rd.forward(request, response);
+            return;
+        }
 
 		userBean user = (userBean) session.getAttribute("user");
 		if (user == null) {
-			response.sendRedirect("user-add.jsp?error=情報未入力");
-			return;
-		}
+            request.setAttribute("errorMessage", "ユーザー情報が見つかりません。最初からやり直してください。");
+            request.setAttribute("returnUrl", "user-add.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            rd.forward(request, response);
+            return;
+        }
+		
+		// 入力検証
+        if (user.getMemberId() == null || user.getMemberId().trim().isEmpty() ||
+            user.getPassword() == null || user.getPassword().trim().isEmpty()) {
+            
+            request.setAttribute("errorMessage", "必須項目が入力されていません。");
+            request.setAttribute("returnUrl", "user-add.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            rd.forward(request, response);
+            return;
+        }
 
-		try {
-			userDAO dao = new userDAO();
-			if (dao.exists(user.getMemberId())) {
-				response.sendRedirect("user-add.jsp?error=既に存在するIDです");
-				return;
-			}
+        try {
+            userDAO dao = new userDAO();
+            
+            // BL1: ID 重複チェック
+            if (dao.exists(user.getMemberId())) {
+                // エラーメッセージ
+                request.setAttribute("errorMessage", "入力したユーザーIDとパスワードは、すでに登録済みです。");
+                request.setAttribute("returnUrl", "user-add.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                rd.forward(request, response);
+                return;
+            }
 
-			if (dao.register(user)) {
-				response.sendRedirect("userComplete.jsp");
-			} else {
-				response.sendRedirect("user-add.jsp?error=登録失敗");
-			}
+            // BL2: 
+            boolean registerResult = dao.register(user);
+            
+            if (!registerResult) {
+                request.setAttribute("errorMessage", "登録エラー");
+                request.setAttribute("returnUrl", "user-add.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                rd.forward(request, response);
+                return;
+            }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			response.sendRedirect("user-add.jsp?error=例外発生");
-		}
+            // セッション破棄
+            session.invalidate();
+            response.sendRedirect("userComplete.jsp");
+            
+            // 成功ログ
+            System.out.println("会員登録成功: " + user.getMemberId());
 
-	}
-
+        } catch (Exception e) {
+            // 例外
+            System.err.println("会員登録中例外発生: " + e.getMessage());
+            e.printStackTrace();
+            
+            request.setAttribute("errorMessage", "システムエラーが発生しました。しばらく後に再度お試しください。");
+            request.setAttribute("returnUrl", "user-add.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            rd.forward(request, response);
+        }
+    }
 }
