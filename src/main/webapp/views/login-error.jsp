@@ -1,18 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ログインエラー</title>
+<title>エラー</title>
 </head>
-<body>
+<div class="error-container">
+    <h3>エラーが発生しました</h3>
+    
+    <%
+        // エラーメッセージとリターンURL取得
+        String errorMessage = (String) request.getAttribute("errorMessage");
+        String returnUrl = (String) request.getAttribute("returnUrl");
+        
+        // デフォルト値設定（既存ログインエラー用）
+        if (errorMessage == null) {
+            errorMessage = "ID又はパスワードを再度確認してください。";
+        }
+        if (returnUrl == null) {
+            returnUrl = "login-in.jsp";
+        }
+    %>
+    
+    <!-- エラーメッセージ表示 -->
+    <div class="error-message">
+        <%= errorMessage %>
+    </div>
+    
+    <!-- 戻るボタン -->
+    <form action="<%= returnUrl %>" method="get">
+        <input type="submit" value="戻る" class="back-button">
+    </form>
+</div>
 
-	<h3>ログインエラーです。</h3>
-	<p>ID又はパスワードを再度確認してください。</p>
-	<form action="login-in.jsp" method="post">
-		<input type="submit" value="ログイン画面へ戻る">
-	</form>
-	
 </body>
 </html>

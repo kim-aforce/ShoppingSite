@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>会員登録</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h1>Comming Soon..</h1>
-<a href = "login-in.jsp">戻る</a>
+<h2>会員登録情報が完了しました。</h2>
+<a href="user-menu.jsp">メニューへ戻る</a>
+
 </body>
 </html>
