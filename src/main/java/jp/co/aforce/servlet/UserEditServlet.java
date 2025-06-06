@@ -14,15 +14,20 @@ import jp.co.aforce.beans.userBean;
 
 @WebServlet("/views/useredit")
 public class UserEditServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    // GET要求は拒否
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        response.sendRedirect("login-in.jsp?error=不正アクセス");
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+    // POST要求のみ処理
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+                
+        // セッション確認
+        HttpSession session = request.getSession();
         userBean user = (userBean) session.getAttribute("user");
         
         if (user == null) {
@@ -30,8 +35,13 @@ public class UserEditServlet extends HttpServlet {
             return;
         }
         
+        System.out.println("ユーザー情報確認: " + user.getMemberId());
+        
+        // 編集フォームに現在の情報を渡す
         request.setAttribute("user", user);
         RequestDispatcher rd = request.getRequestDispatcher("/views/user-edit.jsp");
         rd.forward(request, response);
+        
+        System.out.println("編集ページへ転送完了");
     }
 }

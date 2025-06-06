@@ -45,11 +45,9 @@ public class login extends HttpServlet {
 		if (user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user); //ユーザーにセッション付与
-
 			//成功
 			RequestDispatcher rdSucess = request.getRequestDispatcher("/views/user-menu.jsp");
 			rdSucess.forward(request, response);
-
 			//失敗
 		} else {
 			RequestDispatcher rdFailed = request.getRequestDispatcher("/views/login-error.jsp");
