@@ -32,6 +32,11 @@ public class userDAO extends DAO {
 			users.setMemberId(rs.getString("member_id"));
 			users.setPassword(rs.getString("password"));
 			users.setLastname(rs.getString("last_name"));
+			users.setFirstname(rs.getString("first_name"));
+			users.setAddress(rs.getString("address"));
+			users.setMailAddress(rs.getString("mail_address"));
+			
+			
 		}
 
 		rs.close();
