@@ -72,7 +72,8 @@ public class UserEditExecuteServlet extends HttpServlet {
                 
             } else {
                 System.out.println("更新失敗 - エラーページへリダイレクト");
-                request.setAttribute("errMessage", "データベース更新に失敗しました");
+                // エラーメッセージの属性名は JSP 側の期待に合わせる
+                request.setAttribute("errorMessage", "データベース更新に失敗しました");
                 RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
                 rd.forward(request, response);
             }
@@ -82,7 +83,8 @@ public class UserEditExecuteServlet extends HttpServlet {
             e.printStackTrace();
             
             // 例外発生時エラーページへフォワード
-            request.setAttribute("errMessage", "システムエラー発生: " + e.getMessage());
+            // 例外内容をユーザーに知らせる際も属性名を統一
+            request.setAttribute("errorMessage", "システムエラー発生: " + e.getMessage());
             RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
             rd.forward(request, response);
         }
