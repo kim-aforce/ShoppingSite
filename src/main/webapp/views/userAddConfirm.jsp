@@ -8,17 +8,23 @@
 <title>ユーザー登録確認ページ</title>
 </head>
 <body>
-<p>ユーザーID：</p>${user.memberId}<br>
-<p>パスワード：</p>${user.password}<br>
-<p>名前（姓）：</p>${user.lastname}<br>
-<p>名前（名）：</p>${user.firstname}<br>
-<p>メールアドレス：</p>${user.mailAddress}<br>
+<p>ユーザーID：</p>${user.memberId}
+<p>パスワード：</p>${user.password}
+<p>名前（姓）：</p>${user.lastname}
+<p>名前（名）：</p>${user.firstname}
+<p>メールアドレス：</p>${user.mailAddress}
 <p>住所：</p>${user.address}
 
 <form action="useradd-excute" method = "post">
 	<input type = "submit" value = "登録" >
 </form>
-<a href = "user-add.jsp">修正する</a>
+<a href = "user-add.jsp">登録画面に戻る</a>
 
+
+<%
+    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    String now = sdf.format(new java.util.Date());
+%>
+<p style="color:red;">エビデンス用リアルタイム<%= now %></p>
 </body>
 </html>

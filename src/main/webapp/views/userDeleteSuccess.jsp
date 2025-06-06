@@ -9,5 +9,10 @@
 <h2>削除完了</h2>
 
 <a href="login-in.jsp">ログイン画面へ戻る</a>
+<%
+    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    String now = sdf.format(new java.util.Date());
+%>
+<p style="color:red;">エビデンス用リアルタイム<%= now %></p>
 </body>
 </html>

@@ -17,7 +17,8 @@ public class logout extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {		
+			throws ServletException, IOException {
+		
 //		removuAttributeはuserだけ消すセッションIDは維持されている。
 //		session.removeAttribute("user");
 		try {
