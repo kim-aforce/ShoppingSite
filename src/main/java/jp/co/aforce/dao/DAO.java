@@ -14,7 +14,7 @@ public class DAO {
 				InitialContext ic = new InitialContext();
 				ds = (DataSource) ic.lookup("java:/comp/env/jdbc/ShoppingSite");
 			} catch (Exception e) {
-				throw new Exception("テータソース取得失敗");
+                                throw new Exception("データソース取得失敗");
 				
 			}
 		}

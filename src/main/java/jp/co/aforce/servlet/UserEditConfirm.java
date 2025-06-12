@@ -19,7 +19,10 @@ public class UserEditConfirm extends HttpServlet {
     // GET要求は拒否
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("login-in.jsp?error=不正アクセス");
+        request.setAttribute("errorMessage", "不正アクセス");
+        request.setAttribute("returnUrl", "login-in.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+        rd.forward(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +38,10 @@ public class UserEditConfirm extends HttpServlet {
 
         if (sessionUser == null) {
             System.out.println("セッション切れ - ログインページへ");
-            response.sendRedirect("login-in.jsp?error=セッション切れ");
+            request.setAttribute("errorMessage", "セッションが切れました。再度ログインしてください。");
+            request.setAttribute("returnUrl", "login-in.jsp");
+            RequestDispatcher rdErr = request.getRequestDispatcher("/views/login-error.jsp");
+            rdErr.forward(request, response);
             return;
         }
 

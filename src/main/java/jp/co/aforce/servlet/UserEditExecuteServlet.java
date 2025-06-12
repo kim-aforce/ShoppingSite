@@ -21,7 +21,10 @@ public class UserEditExecuteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("GET요求でアクセス試行 - 拒否");
-        response.sendRedirect("login-in.jsp?error=不正アクセス");
+        request.setAttribute("errorMessage", "不正アクセス");
+        request.setAttribute("returnUrl", "login-in.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+        rd.forward(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +40,10 @@ public class UserEditExecuteServlet extends HttpServlet {
         
         if (editUser == null) {
             System.out.println("editUserが null - セッション切れ");
-            response.sendRedirect("login-in.jsp?error=セッション切れ");
+            request.setAttribute("errorMessage", "セッションが切れました。再度ログインしてください。");
+            request.setAttribute("returnUrl", "login-in.jsp");
+            RequestDispatcher rdErr = request.getRequestDispatcher("/views/login-error.jsp");
+            rdErr.forward(request, response);
             return;
         }
         

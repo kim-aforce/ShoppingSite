@@ -28,10 +28,13 @@ public class UserDeleteServlet extends HttpServlet {
 		 HttpSession session = request.getSession();
 	        userBean user = (userBean) session.getAttribute("user");
 	        
-	        if (user == null) {
-	            response.sendRedirect("login-in.jsp?error=セッション切れ");
-	            return;
-	        }
+                if (user == null) {
+                    request.setAttribute("errorMessage", "セッションが切れました。再度ログインしてください。");
+                    request.setAttribute("returnUrl", "login-in.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                    rd.forward(request, response);
+                    return;
+                }
 	        
 	        
 	        //削除するユーザー情報をrequestに渡す
