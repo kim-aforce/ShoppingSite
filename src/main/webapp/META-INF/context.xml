@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
-<!-- 上記はEclipseの警告を消すための記述です。 -->
 
+
+<!--Local-->
 <Context reloadable="true">
 <Resource name="jdbc/ShoppingSite"
           auth="Container"
@@ -13,5 +14,4 @@
           maxTotal="20"
           maxIdle="10"
           maxWaitMillis="-1"/>
-          
 </Context>

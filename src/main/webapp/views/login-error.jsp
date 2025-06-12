@@ -40,10 +40,6 @@
         <input type="submit" value="戻る" class="back-button">
     </form>
 </div>
-<%
-    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    String now = sdf.format(new java.util.Date());
-%>
-<p style="color:red;">エビデンス用リアルタイム<%= now %></p>
+
 </body>
 </html>

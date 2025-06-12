@@ -21,11 +21,7 @@
 <input type = "reset" value = "リセット"/>
 </form>
 
-<%
-    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    String now = sdf.format(new java.util.Date());
-%>
-<p style="color:red;">エビデンス用リアルタイム<%= now %></p>
+
 <br><br><a href = "login-in.jsp">戻る</a>
 </body>
 </html>
