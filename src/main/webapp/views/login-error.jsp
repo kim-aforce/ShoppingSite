@@ -9,11 +9,19 @@
     <h3>エラーが発生しました</h3>
     
     <%
-        // エラーメッセージとリターンURL取得
+        // エラーメッセージと戻り先URL取得
         String errorMessage = (String) request.getAttribute("errorMessage");
         String returnUrl = (String) request.getAttribute("returnUrl");
-        
-        // デフォルト値設定（既存ログインエラー用）
+
+        // パラメータからの取得にも対応
+        if (errorMessage == null) {
+            errorMessage = request.getParameter("error");
+        }
+        if (returnUrl == null) {
+            returnUrl = request.getParameter("returnUrl");
+        }
+
+        // デフォルト値設定（旧ログインエラー用）
         if (errorMessage == null) {
             errorMessage = "ID又はパスワードを再度確認してください。";
         }
