@@ -1,4 +1,4 @@
-package jp.co.aforce.servlet;
+package jp.co.aforce.servlet.userServlet;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class UserAddExecute extends HttpServlet {
 		if (session == null) {
             request.setAttribute("errorMessage", "セッションが切れました。再度ログインしてください。");
             request.setAttribute("returnUrl", "login-in.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
             rd.forward(request, response);
             return;
         }
@@ -42,7 +42,7 @@ public class UserAddExecute extends HttpServlet {
 		if (user == null) {
             request.setAttribute("errorMessage", "ユーザー情報が見つかりません。最初からやり直してください。");
             request.setAttribute("returnUrl", "user-add.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
             rd.forward(request, response);
             return;
         }
@@ -53,7 +53,7 @@ public class UserAddExecute extends HttpServlet {
             
             request.setAttribute("errorMessage", "必須項目が入力されていません。");
             request.setAttribute("returnUrl", "user-add.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
             rd.forward(request, response);
             return;
         }
@@ -66,7 +66,7 @@ public class UserAddExecute extends HttpServlet {
                 // エラーメッセージ
                 request.setAttribute("errorMessage", "入力したユーザーIDとパスワードは、すでに登録済みです。");
                 request.setAttribute("returnUrl", "user-add.jsp");
-                RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
                 rd.forward(request, response);
                 return;
             }
@@ -77,7 +77,7 @@ public class UserAddExecute extends HttpServlet {
             if (!registerResult) {
                 request.setAttribute("errorMessage", "登録エラー");
                 request.setAttribute("returnUrl", "user-add.jsp");
-                RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
                 rd.forward(request, response);
                 return;
             }
@@ -96,7 +96,7 @@ public class UserAddExecute extends HttpServlet {
             
             request.setAttribute("errorMessage", "システムエラーが発生しました。しばらく後に再度お試しください。");
             request.setAttribute("returnUrl", "user-add.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
             rd.forward(request, response);
         }
     }

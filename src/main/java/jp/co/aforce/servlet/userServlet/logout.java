@@ -1,4 +1,4 @@
-package jp.co.aforce.servlet;
+package jp.co.aforce.servlet.userServlet;
 
 import java.io.IOException;
 

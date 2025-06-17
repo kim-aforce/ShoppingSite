@@ -1,4 +1,4 @@
-package jp.co.aforce.servlet;
+package jp.co.aforce.servlet.userServlet;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class UserEditExecuteServlet extends HttpServlet {
         System.out.println("GET요求でアクセス試行 - 拒否");
         request.setAttribute("errorMessage", "不正アクセス");
         request.setAttribute("returnUrl", "login-in.jsp");
-        RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
         rd.forward(request, response);
     }
     
@@ -42,7 +42,7 @@ public class UserEditExecuteServlet extends HttpServlet {
             System.out.println("editUserが null - セッション切れ");
             request.setAttribute("errorMessage", "セッションが切れました。再度ログインしてください。");
             request.setAttribute("returnUrl", "login-in.jsp");
-            RequestDispatcher rdErr = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rdErr = request.getRequestDispatcher("/views/Error.jsp");
             rdErr.forward(request, response);
             return;
         }
@@ -79,7 +79,7 @@ public class UserEditExecuteServlet extends HttpServlet {
             } else {
                 System.out.println("更新失敗 - エラーページへリダイレクト");
                 request.setAttribute("errorMessage", "データベース更新に失敗しました");
-                RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
                 rd.forward(request, response);
             }
             
@@ -89,7 +89,7 @@ public class UserEditExecuteServlet extends HttpServlet {
             
             // 例外発生時エラーページへフォワード
             request.setAttribute("errorMessage", "システムエラー発生: " + e.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
             rd.forward(request, response);
         }
         

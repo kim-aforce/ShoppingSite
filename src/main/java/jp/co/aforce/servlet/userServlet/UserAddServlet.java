@@ -1,4 +1,4 @@
-package jp.co.aforce.servlet;
+package jp.co.aforce.servlet.userServlet;
 
 import java.io.IOException;
 
@@ -37,7 +37,7 @@ public class UserAddServlet extends HttpServlet {
             // エラーメッセージ設定
             request.setAttribute("errorMessage", "必須項目が入力されていません。");
             request.setAttribute("returnUrl", "user-add.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
             rd.forward(request, response);
             return;
         }
@@ -65,7 +65,7 @@ public class UserAddServlet extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("errorMessage", "システムエラーが発生しました");
             request.setAttribute("returnUrl", "user-add.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
             rd.forward(request, response);
         }
     }

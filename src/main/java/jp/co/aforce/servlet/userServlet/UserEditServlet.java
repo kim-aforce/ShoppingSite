@@ -1,4 +1,4 @@
-package jp.co.aforce.servlet;
+package jp.co.aforce.servlet.userServlet;
 
 import java.io.IOException;
 
@@ -21,7 +21,7 @@ public class UserEditServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("errorMessage", "不正アクセス");
         request.setAttribute("returnUrl", "login-in.jsp");
-        RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
         rd.forward(request, response);
     }
 
@@ -36,7 +36,7 @@ public class UserEditServlet extends HttpServlet {
         if (user == null) {
             request.setAttribute("errorMessage", "セッションが切れました。再度ログインしてください。");
             request.setAttribute("returnUrl", "login-in.jsp");
-            RequestDispatcher rdErr = request.getRequestDispatcher("/views/login-error.jsp");
+            RequestDispatcher rdErr = request.getRequestDispatcher("/views/Error.jsp");
             rdErr.forward(request, response);
             return;
         }

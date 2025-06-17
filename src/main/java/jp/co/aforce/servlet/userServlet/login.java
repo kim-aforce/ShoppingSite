@@ -1,4 +1,4 @@
-package jp.co.aforce.servlet;
+package jp.co.aforce.servlet.userServlet;
 
 import java.io.IOException;
 
@@ -50,7 +50,7 @@ public class login extends HttpServlet {
 			rdSucess.forward(request, response);
 			//失敗
 		} else {
-			RequestDispatcher rdFailed = request.getRequestDispatcher("/views/login-error.jsp");
+			RequestDispatcher rdFailed = request.getRequestDispatcher("/views/Error.jsp");
 			rdFailed.forward(request, response);
 		}
 		//ID / PW 入力チェック　コンソール用

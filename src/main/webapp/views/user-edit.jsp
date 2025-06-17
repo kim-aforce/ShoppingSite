@@ -18,6 +18,6 @@
     住所：<input type="text" name="address" value="${user.address != null ? user.address : ''}" /><br>
     <input type="submit" value="確認" />
 </form>
-
+<a href = "user-menu.jsp">戻る</a>
 </body>
 </html>

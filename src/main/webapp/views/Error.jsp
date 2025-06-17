@@ -21,7 +21,7 @@
             returnUrl = request.getParameter("returnUrl");
         }
 
-        // デフォルト値設定（旧ログインエラー用）
+        // デフォルト値設定（ログインエラー用）
         if (errorMessage == null) {
             errorMessage = "ID又はパスワードを再度確認してください。";
         }

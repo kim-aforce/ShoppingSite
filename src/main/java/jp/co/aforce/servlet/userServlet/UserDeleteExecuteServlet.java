@@ -1,4 +1,4 @@
-package jp.co.aforce.servlet;
+package jp.co.aforce.servlet.userServlet;
 
 import java.io.IOException;
 
@@ -28,7 +28,7 @@ public class UserDeleteExecuteServlet extends HttpServlet {
                 if (user== null) {
                         request.setAttribute("errorMessage", "セッションが切れました。再度ログインしてください。");
                         request.setAttribute("returnUrl", "login-in.jsp");
-                        RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                        RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
                         rd.forward(request, response);
                         return;
                 }
@@ -44,14 +44,14 @@ public class UserDeleteExecuteServlet extends HttpServlet {
                         }else {
                                 request.setAttribute("errorMessage", "削除に失敗しました。");
                                 request.setAttribute("returnUrl", "user-menu.jsp");
-                                RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                                RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
                                 rd.forward(request, response);
                         }
                 } catch (Exception e) {
                         e.printStackTrace();
                         request.setAttribute("errorMessage", "例外発生: " + e.getMessage());
                         request.setAttribute("returnUrl", "user-menu.jsp");
-                        RequestDispatcher rd = request.getRequestDispatcher("/views/login-error.jsp");
+                        RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
                         rd.forward(request, response);
                 }
   		

@@ -31,8 +31,8 @@ String last_name = (user != null ) ? user.getLastname() : "Guest";
 <form action="userdelete-confirm" method="post">
     <input type="submit" value="削除" />
 </form>	
-	<form action="../views/sessionCheck.jsp" method="get">
-		<input type = "submit" value = "セッション有効性検査">
-	</form>
+<!--	<form action="../views/sessionCheck.jsp" method="get">-->
+<!--		<input type = "submit" value = "セッション有効性検査">-->
+<!--	</form>-->
 </body>
 </html>
