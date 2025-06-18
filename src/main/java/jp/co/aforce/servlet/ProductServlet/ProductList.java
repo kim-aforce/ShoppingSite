@@ -56,7 +56,7 @@ public class ProductList extends HttpServlet {
 		}
 		
 		request.setAttribute("products", productList);
-		RequestDispatcher rd = request.getRequestDispatcher("/views/ProductViews/ProductList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/views/product/ProductList.jsp");
 		rd.forward(request, response);
 		
 		
