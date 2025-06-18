@@ -29,7 +29,7 @@
 
 	<!-- フッター  -->
 	<footer>
-		<p>&copy; 2025 新人研修</p>
+		<p  style="color:#f5f2d0">&copy; 2025 新人研修</p>
 	</footer>
 </body>
 </html>
