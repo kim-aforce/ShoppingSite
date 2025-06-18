@@ -4,7 +4,9 @@
 <html>
 <head>
 <title>ECサイト</title>
-<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/Top.css"
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
 <!-- 必要に応じてCSS適用 -->
 </head>
 <body>
@@ -18,9 +20,9 @@
 
 	<!-- メインバナー -->
 	<section id="main-banner">
-		<h2 style = "color:f5f2d0">男の第一歩</h2>
-		<button onclick="location.href='ProductList'">Shop Now</button>
-		<img src="../img/main-banner.jpg" alt="background" class="banner-img">
+		<h2 style = "color:#212121">男になりたいあなたの為に</h2>
+		<button class = "glass" onclick="location.href='ProductList'">Shop Now</button>
+		<img src="../img/main-banner2.png" alt="background" class="banner-img">
 
 	</section>
 

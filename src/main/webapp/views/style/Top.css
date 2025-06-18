@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+/* style.css */
+/* 基本設定 */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Playfair Display', serif;
+}
+
+#main-banner {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	text-align: center;
+	padding: 2rem;
+	overflow: hidden;
+}
+
+#main-banner h2 {
+	position: relative;
+	z-index: 1;
+	font-size: clamp(1.5rem, 5vw, 3rem);
+	margin-bottom: 1rem;
+	 /* テキストアニメーション */
+}
+.glass {
+    background: rgba(255, 255, 255, 0.15); /* より透明感を増加 */
+    backdrop-filter: blur(15px); /* ブラー効果強化 */
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 25px; /* より丸みを帯びた角 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* ボーダー強化 */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2); /* 内側ハイライト追加 */
+    position: relative;
+    overflow: hidden;
+    /* ホバーアニメーション */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#main-banner button {
+	position: relative;
+	z-index: 1;
+	padding: 1rem 2rem;
+	font-size: clamp(1rem, 2.5vw, 1.5rem);
+	background-color: rgba(255, 255, 255, 0.8);
+	color: #000;
+	border: none;
+	cursor: pointer;
+}
+
+#main-banner .banner-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: 0;
+}
+#main-banner button:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+header {
+	display: flex;
+	position: absolute;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	top: 0;
+	width: 100%;
+	color: white;
+	z-index: 1;
+}
+
+header nav {
+	display: flex;
+	gap: 30px;
+	padding-right: 40px;
+}
+
+header a {
+	color: white;
+	text-decoration: none;
+	margin: 0 15px;
+	font-size: large;
+	font-weight: bold;
+}
+
+footer {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	z-index: 1;
+}
