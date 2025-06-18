@@ -80,9 +80,9 @@ header {
 	position: absolute;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px;
+	padding: 10px;
 	background: rgba(255, 255, 255, 0.1);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(5px);
 	-webkit-backdrop-filter: blur(10px);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	top: 0;
@@ -103,12 +103,4 @@ header a {
 	margin: 0 15px;
 	font-size: large;
 	font-weight: bold;
-}
-
-footer {
-	background: rgba(255, 255, 255, 0.1);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-	z-index: 1;
 }
