@@ -17,7 +17,7 @@ import jp.co.aforce.dao.ProductDAO;
 //このServletは、クエリパラメータsearchやcategoryに基づきProductDAOを使って商品リストを取得し、JSPへ転送するロジック。デフォルトは全件表示
 
 
-@WebServlet("/views/ProductViews/product-list")
+@WebServlet("/views/product/ProductList")
 public class ProductList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

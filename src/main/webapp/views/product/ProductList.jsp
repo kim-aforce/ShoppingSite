@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, model.ProductBean" %>
-
+<%@ page import="java.util.*, jp.co.aforce.beans.ProductBean" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <body>
 
     <!-- ヘッダー挿入 -->
-    <jsp:include page="Top.jsp" />
+	<jsp:include page="../common/header.jsp" />
 
     <main>
         <h2>商品一覧 </h2>
@@ -35,6 +35,7 @@
             </c:forEach>
         </div>
     </main>
+	<jsp:include page="../common/footer.jsp" />
 
 </body>
 </html>

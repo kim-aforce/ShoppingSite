@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +20,9 @@
 	<!-- メインバナー -->
 	<section id="main-banner">
 		<h2 style="color: #212121">男になりたいあなたの為に</h2>
-		<button class="glass" onclick="location.href='ProductList'">Shop
-			Now</button>
+		<!-- 商品一覧へ遷移 -->
+		<button class="glass"
+			onclick="location.href='../product/ProductList'">Shop Now</button>
 		<img src="../img/main-banner2.png" alt="background" class="banner-img">
 
 	</section>
