@@ -13,19 +13,20 @@
         <!-- ナビゲーションメニュー -->
         <nav>
             <!-- 商品一覧リンク -->
-            <a href="${pageContext.request.contextPath}/ProductList">Product List</a>
+            <a class="glass" href="
+            ${pageContext.request.contextPath}/views/product/ProductList.jsp">Product List</a>
 
             <!-- ログイン状態分岐 -->
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
                     <!--ログイン時表示 -->
-                    <a href="${pageContext.request.contextPath}/Cart">Cart</a>
-                    <a href="${pageContext.request.contextPath}/Logout">Logout</a>
+                    <a class="glass" href="${pageContext.request.contextPath}/Cart">Cart</a>
+                    <a class="glass" href="${pageContext.request.contextPath}/Logout">Logout</a>
                 </c:when>
                 <c:otherwise>
                     <!--  非ログイン時表示 -->
-                    <a href="${pageContext.request.contextPath}/login-in.jsp">Login</a>
-                    <a href="${pageContext.request.contextPath}/user-add.jsp">Register</a>
+                  <a class="glass" href="${pageContext.request.contextPath}/views/login-in.jsp">Login</a>
+                    <a class="glass" href="${pageContext.request.contextPath}/views/user-add.jsp">Register</a>
                 </c:otherwise>
             </c:choose>
         </nav>

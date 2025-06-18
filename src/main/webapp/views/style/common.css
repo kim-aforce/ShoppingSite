@@ -5,6 +5,7 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 1rem 2rem;
     position: fixed; top: 0; width: 100%; z-index: 1000;
+	padding: 1rem 1.5rem;
 }
 
 /* ロゴ */
@@ -13,7 +14,9 @@
     font-size: 1.5rem;
     text-decoration: none;
 }
-
+header nav {
+    margin-right: 4rem; /*  右マージン2rem */
+}
 /* ヘッダーナビゲーションリンク */
 header nav a {
     margin: 0 1rem;
@@ -37,4 +40,27 @@ footer nav a {
     margin: 0 0.5rem;
     color: #fff;
     text-decoration: none;
+}
+/* 共通グラススタイルボタン */
+.glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.25rem 0.75rem;
+}
+
+.glass:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
 }
