@@ -4,13 +4,13 @@
 <html>
 <head>
 <title>ECサイト</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../style/style.css">
 <!-- 必要に応じてCSS適用 -->
 </head>
 <body>
 	<!-- ヘッダー　-->
 	<header>
-		<h1>Boy To Man</h1>
+		<h1><p style="color:#f5f2d0">Boy To Man</p></h1> <!--  font color : off white -->
 		<nav>
 			<a href="../login-in.jsp">Login</a> <a href="../user-add.jsp">会員登録</a>
 		</nav>
@@ -18,9 +18,9 @@
 
 	<!-- メインバナー -->
 	<section id="main-banner">
-		<h2>男の第一歩</h2>
+		<h2 style = "color:f5f2d0">男の第一歩</h2>
 		<button onclick="location.href='ProductList'">Shop Now</button>
-		<img src="/views/img/main-banner.png" alt="background" class="banner-img">
+		<img src="../img/main-banner.jpg" alt="background" class="banner-img">
 
 	</section>
 
