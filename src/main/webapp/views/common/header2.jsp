@@ -62,5 +62,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const searchForm = document.querySelector('.search-form');
+    const productGrid = document.querySelector('.product-grid');
+    if (searchForm && productGrid) {
+        searchForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const params = new URLSearchParams(new FormData(searchForm));
+            params.append('ajax', 'true');
+            const res = await fetch(searchForm.action + '?' + params.toString(), {
+                method: 'GET',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            });
+            if (res.ok) {
+                const products = await res.json();
+                productGrid.innerHTML = '';
+                products.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card glass';
+                    card.innerHTML = `
+                        <img src="${p.image_url}" alt="${p.product_name}" class="product-img">
+                        <h3 style="color: #FAF9F6">${p.product_name}</h3>
+                        <p style="color: #FAF9F6">￥${p.price}</p>
+                        <a href="ProductDetail?id=${p.product_id}">詳細</a>
+                    `;
+                    productGrid.appendChild(card);
+                });
+            }
+        });
+    }
 });
 </script>
