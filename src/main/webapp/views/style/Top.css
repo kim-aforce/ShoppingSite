@@ -9,6 +9,7 @@ html, body {
     width: 100%;
     overflow-x: hidden;
     font-family: 'Playfair Display', serif;
+	background-color: #212121;
 }
 
 #main-banner {

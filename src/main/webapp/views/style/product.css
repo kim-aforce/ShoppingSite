@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* Product list page */
+ Product list page 
 body {
     padding-top: 5rem;
 	background-color: #212121;
@@ -23,3 +23,10 @@ body {
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
+
+/* sort drop-down */
+.sort-form {
+    text-align: right;
+    margin: 0 1rem 1rem 0;
+}
+
