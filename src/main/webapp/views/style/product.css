@@ -23,3 +23,9 @@ body {
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
+
+/* sort drop-down */
+.sort-form {
+    text-align: right;
+    margin: 0 1rem 1rem 0;
+}

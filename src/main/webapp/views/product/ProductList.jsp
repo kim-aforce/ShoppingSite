@@ -17,6 +17,21 @@
     <main>
         <h2>商品一覧 </h2>
 
+        <form method="get" action="ProductList" class="sort-form">
+            <select name="sort" onchange="this.form.submit()">
+                <option value="">デフォルト</option>
+                <option value="price" ${param.sort == 'price' ? 'selected' : ''}>価格順</option>
+                <option value="name" ${param.sort == 'name' ? 'selected' : ''}>商品名順</option>
+                <option value="category" ${param.sort == 'category' ? 'selected' : ''}>カテゴリ順</option>
+            </select>
+            <c:if test="${not empty param.category}">
+                <input type="hidden" name="category" value="${param.category}" />
+            </c:if>
+            <c:if test="${not empty param.search}">
+                <input type="hidden" name="search" value="${param.search}" />
+            </c:if>
+        </form>
+
         <!-- 商品グリッド表示 -->
         <div class="product-grid">
             <c:forEach var="product" items="${products}">
