@@ -11,7 +11,7 @@
 <body>
 
     <!-- ヘッダー挿入 -->
-	<jsp:include page="../common/header.jsp" />
+	<jsp:include page="../common/header2.jsp" />
 
     <main>
         <h2>商品一覧 </h2>
@@ -35,7 +35,7 @@
             </c:forEach>
         </div>
     </main>
-	<jsp:include page="../common/footer.jsp" />
+	<jsp:include page="../common/footer2.jsp" />
 
 </body>
 </html>
