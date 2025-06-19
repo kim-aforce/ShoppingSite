@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header class="glass header2">
 	<div class="header-inner">
 		<!-- ロゴとホーム移動リンク -->
@@ -23,7 +20,7 @@
 					</form>
 				</c:when>
 				<c:otherwise>
-					<form action="${pageContext.request.contextPath}/views/login"
+				<form action="${pageContext.request.contextPath}/views/login"
 						method="post" class="login-form">
 						<input type="text" name="id" placeholder="ID"> <input
 							type="password" name="pw" placeholder="PW">
