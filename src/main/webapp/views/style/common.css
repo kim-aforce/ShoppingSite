@@ -4,7 +4,7 @@
     backdrop-filter: blur(10px);             /* BLUR*/
     display: flex; justify-content: space-between; align-items: center;
     position: fixed; top: 0; width: 100%; z-index: 1000;
-	padding: 1rem 0rem;
+	padding: 1rem 3rem;	
 	gap: 30px;
 }
 
@@ -18,7 +18,9 @@ header nav {
 	display: flex;
 	    align-items: center;
 	    margin-left: auto;
-	    gap: 0.5rem;}
+		margin-right: 2rem;
+	    gap: 30px;
+	}
 /* ヘッダーナビゲーションリンク */
 header nav a {
     margin: 0 1rem;
