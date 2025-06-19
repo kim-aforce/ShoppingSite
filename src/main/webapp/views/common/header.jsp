@@ -7,7 +7,7 @@
     <div class="header-container">
         <!-- ロゴとホーム移動リンク -->
         <h1 class="logo">
-            <a style = "color:#FAF9F6"href="${pageContext.request.contextPath}/">Alpha Male</a>
+            <a style = "color:#FAF9F6"href="${pageContext.request.contextPath}/views/Main/Top.jsp"">Alpha Male</a>
         </h1>
 
         <!-- ナビゲーションメニュー -->
