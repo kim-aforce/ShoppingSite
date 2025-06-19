@@ -6,8 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>商品一覧</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="../style/common.css">
+    <link rel="stylesheet" href="../style/product.css">
+    </head>
 <body>
 
     <!-- ヘッダー挿入 -->
@@ -35,7 +36,7 @@
             </c:forEach>
         </div>
     </main>
-	<jsp:include page="../common/footer2.jsp" />
+	<jsp:include page="../common/footer.jsp" />
 
 </body>
 </html>

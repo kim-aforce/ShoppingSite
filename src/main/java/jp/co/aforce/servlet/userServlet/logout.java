@@ -27,6 +27,7 @@ public class logout extends HttpServlet {
 				session.invalidate(); //セッション無効化
 			}
 			response.sendRedirect(request.getContextPath() + "/views/login-in.jsp");
+			response.sendRedirect(request.getContextPath() + "/views/Main/Top.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

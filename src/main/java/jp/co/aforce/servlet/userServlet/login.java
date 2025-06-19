@@ -31,28 +31,51 @@ public class login extends HttpServlet {
 		String pw = request.getParameter("pw");
 
 		userBean user = null;
-
+		
+		//ECサイト演習でログイン非同期処理のためAJAX使用
+		boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"))
+				|| "true".equals(request.getParameter("ajax"));
+		
 		try {
 			userDAO dao = new userDAO();
 			user = dao.login(id, pw);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		
-		
 		//ログイン処理　ロジック
-		if (user != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user); //ユーザーにセッション付与
-			//成功
-			RequestDispatcher rdSucess = request.getRequestDispatcher("/views/user-menu.jsp");
-			rdSucess.forward(request, response);
-			//失敗
-		} else {
-			RequestDispatcher rdFailed = request.getRequestDispatcher("/views/Error.jsp");
-			rdFailed.forward(request, response);
-		}
+        if (user != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user); //ユーザーにセッション付与
+
+                if (isAjax) {
+                        response.setContentType("application/json");
+                        response.getWriter().write("{\"status\":\"success\"}");
+                } else {
+                        RequestDispatcher rdSucess = request.getRequestDispatcher("/views/user-menu.jsp");
+                        rdSucess.forward(request, response);
+                }
+        } else {
+                if (isAjax) {
+                        response.setContentType("application/json");
+                        response.getWriter().write("{\"status\":\"fail\"}");
+                } else {
+                        RequestDispatcher rdFailed = request.getRequestDispatcher("/views/Error.jsp");
+                        rdFailed.forward(request, response);
+                }
+        }
+//		//ログイン処理　ロジック
+//		if (user != null) {
+//			HttpSession session = request.getSession();
+//			session.setAttribute("user", user); //ユーザーにセッション付与
+//			//成功
+//			RequestDispatcher rdSucess = request.getRequestDispatcher("/views/user-menu.jsp");
+//			rdSucess.forward(request, response);
+//			//失敗
+//		} else {
+//			RequestDispatcher rdFailed = request.getRequestDispatcher("/views/Error.jsp");
+//			rdFailed.forward(request, response);
+//		}
+		
 		//ID / PW 入力チェック　コンソール用
 		System.out.println(" ID: " + id);
 		System.out.println(" PW: " + pw);
