@@ -17,6 +17,17 @@
     <main>
         <h2>商品一覧 </h2>
 
+        <!-- カテゴリフィルターのみ -->
+        <form action="ProductList" method="get" class="search-filter-form">
+            <select name="category">
+                <option value="">全てのカテゴリ</option>
+                <c:forEach var="c" items="${categories}">
+                    <option value="${c.category_id}" ${c.category_id == param.category ? 'selected' : ''}>${c.category_name}</option>
+                </c:forEach>
+            </select>
+            <button type="submit">絞り込み</button>
+        </form>
+
         <!-- 商品グリッド表示 -->
         <div class="product-grid">
             <c:forEach var="product" items="${products}">

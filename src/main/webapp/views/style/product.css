@@ -5,6 +5,12 @@ body {
     padding-top: 5rem;
 	background-color: #212121;
 }
+.search-filter-form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
 
 .product-grid {
     display: grid;
@@ -16,7 +22,13 @@ body {
 .product-card {
     text-align: center;
     padding: 1rem;
-}
+	}
+
+	@media (max-width: 768px) {
+	    .product-grid {
+	        grid-template-columns: repeat(2, 1fr);
+	    }
+	}
 
 .product-img {
     width: 100%;
