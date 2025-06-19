@@ -3,9 +3,9 @@
     background: rgba(255,255,255,0.1);      /* 半透明 */
     backdrop-filter: blur(10px);             /* BLUR*/
     display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 2rem;
     position: fixed; top: 0; width: 100%; z-index: 1000;
-	padding: 1rem 1.5rem;
+	padding: 1rem 0rem;
+	gap: 30px;
 }
 
 /* ロゴ */

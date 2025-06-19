@@ -25,10 +25,10 @@
                     <img src="${product.image_url}" alt="${product.product_name}" class="product-img">
 
                     <!-- 商品名 -->
-                    <h3>${product.product_name}</h3>
+                    <h3 style="color: #FAF9F6">${product.product_name}</h3>
 
                     <!-- 商品価格 -->
-                    <p>￥${product.price}</p>
+                    <p style="color: #FAF9F6">￥${product.price}</p>
 
                     <!-- 詳細リンク（未実装可） -->
                     <a href="ProductDetail?id=${product.product_id}">詳細</a>

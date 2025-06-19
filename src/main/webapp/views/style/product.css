@@ -3,6 +3,7 @@
 /* Product list page */
 body {
     padding-top: 5rem;
+	background-color: #212121;
 }
 
 .product-grid {
