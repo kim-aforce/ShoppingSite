@@ -20,7 +20,7 @@
         <!-- 商品グリッド表示 -->
         <div class="product-grid">
             <c:forEach var="product" items="${products}">
-                <div class="product-card">
+                <div class="product-card glass">
                     <!-- 商品画像 -->
                     <img src="${product.image_url}" alt="${product.product_name}" class="product-img">
 
