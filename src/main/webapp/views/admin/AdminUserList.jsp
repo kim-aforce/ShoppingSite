@@ -94,7 +94,7 @@
                 </c:forEach>
             ];
         </script>
-        <script src="${pageContext.request.contextPath}/views/js/adminUser.js"></script>
+        <script src="${pageContext.request.contextPath}/views/js/AdminUser.js"></script>
     </main>
 
 <jsp:include page="../common/footer.jsp"/>
