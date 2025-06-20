@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- 共通ヘッダー読み込み -->
-    <jsp:include page="../header2.jsp"/>
+    <jsp:include page="../common/header2.jsp"/>
 
     <main class="admin-main">
         <!--  ページタイトル -->
@@ -109,6 +109,6 @@
         <script src="${pageContext.request.contextPath}/js/admin.js"></script>     <!--管理者用JS -->
     </main>
 
-    <jsp:include page="../footer2.jsp"/>                                             <!-- 共通フッター読み込み -->
+<jsp:include page="../common/footer.jsp"/>                                             <!-- 共通フッター読み込み -->
 </body>
 </html>

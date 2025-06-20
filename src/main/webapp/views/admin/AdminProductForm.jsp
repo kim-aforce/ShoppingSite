@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- 共通ヘッダー読み込み -->
-    <jsp:include page="../header2.jsp"/>
+    <jsp:include page="../common/header2.jsp"/>
 
     <!-- フォームコンテナ -->
     <main class="admin-form-container glass">
@@ -92,6 +92,6 @@
     </main>
 
     <!-- 共通フッター読み込み -->
-    <jsp:include page="../footer2.jsp"/>
+    <jsp:include page="../footer.jsp"/>
 </body>
 </html>
