@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>会員管理</title>
     <!-- 管理者用CSS -->
+    <script src="${pageContext.request.contextPath}/views/js/admin.js"></script>
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
 </head>
 <body>
@@ -94,7 +96,6 @@
                 </c:forEach>
             ];
         </script>
-<script src="${pageContext.request.contextPath}/views/js/admin.js"></script>
     </main>
 
 <jsp:include page="../common/footer.jsp"/>
