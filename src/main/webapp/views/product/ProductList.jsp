@@ -15,12 +15,12 @@
 	<jsp:include page="../common/header2.jsp" />
 
     <main>
-        <h2>商品一覧 </h2>
+        <h2 style="color: #FAF9F6">商品一覧 </h2>
 
         <!-- カテゴリフィルターのみ -->
         <form action="ProductList" method="get" class="search-filter-form">
             <select name="category">
-                <option value="">全てのカテゴリ</option>
+                <option value="">全ての商品を見る</option>
                 <c:forEach var="c" items="${categories}">
                     <option value="${c.category_id}" ${c.category_id == param.category ? 'selected' : ''}>${c.category_name}</option>
                 </c:forEach>
@@ -46,7 +46,8 @@
                 </div>
             </c:forEach>
         </div>
-    </main>
+
+	</main>
 	<jsp:include page="../common/footer.jsp" />
 
 </body>
