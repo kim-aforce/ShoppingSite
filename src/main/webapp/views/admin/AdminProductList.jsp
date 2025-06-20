@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <title>商品管理</title>
 	<!-- 管理者用CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
-    <script src="${pageContext.request.contextPath}/js/admin.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
+    <script src="${pageContext.request.contextPath}/views/js/admin.js"></script>
 </head>
 <body>
     <!-- 共通ヘッダー読み込み -->
@@ -106,7 +106,7 @@
                 </c:forEach>
             ];
         </script>
-        <script src="${pageContext.request.contextPath}/js/admin.js"></script>     <!--管理者用JS -->
+        <script src="${pageContext.request.contextPath}/views/js/admin.js"></script>     <!--管理者用JS -->
     </main>
 
 <jsp:include page="../common/footer.jsp"/>                                             <!-- 共通フッター読み込み -->

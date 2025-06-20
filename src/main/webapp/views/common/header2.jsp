@@ -12,7 +12,7 @@
     </h1>
     <nav class="header-nav">
       <a class="glass"
-         href="${pageContext.request.contextPath}/views/product/ProductList.jsp">
+         href="${pageContext.request.contextPath}/views/product/ProductList">
         商品一覧
       </a>
 

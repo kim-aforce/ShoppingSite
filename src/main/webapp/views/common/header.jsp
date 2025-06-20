@@ -15,8 +15,8 @@
 		<!-- ナビゲーションメニュー -->
 		<nav>
 			<!-- 商品一覧リンク -->
-			<a class="glass"　href="${pageContext.request.contextPath}/views/product/ProductList.jsp">ProductList</a>
-
+			<a class="glass" href="${pageContext.request.contextPath}
+			/views/product/ProductList">ProductList</a>
 			<!-- ログイン状態分岐 -->
 			<c:choose>
 				<c:when test="${not empty sessionScope.user}">

@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <title>商品管理フォーム</title>
     <!-- 共有Glassmorphismスタイル -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Top.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/Top.css">
     <!-- 管理者用スタイル -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
 </head>
 <body>
     <!-- 共通ヘッダー読み込み -->
