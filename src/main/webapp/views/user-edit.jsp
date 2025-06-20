@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>編集ページ</title>
+<link rel="stylesheet" href="style/site.css">
 </head>
 <body>
 	<h2>会員情報編集</h2>

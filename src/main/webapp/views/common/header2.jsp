@@ -21,11 +21,13 @@
            href="${pageContext.request.contextPath}/admin/products">
           商品管理
         </a>
+        <a class="glass" href="${pageContext.request.contextPath}/admin/users">
+          会員管理
+        </a>
       </c:if>
 
-      <%-- 로그인 상태에 따른 분기 --%>
       <c:choose>
-        <%-- 로그인된 경우 --%>
+        <%-- ログインの場合 --%>
         <c:when test="${not empty sessionScope.user}">
           <a class="glass"
              href="${pageContext.request.contextPath}/views/order/OrderHistory.jsp">
@@ -42,7 +44,7 @@
             </button>
           </form>
         </c:when>
-        <%-- 미로그인된 경우 --%>
+        <%-- 非ログイン --%>
         <c:otherwise>
           <form action="${pageContext.request.contextPath}/views/login"
                 method="post"
