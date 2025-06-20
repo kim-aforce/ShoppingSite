@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>エラー</title>
+<link rel="stylesheet" href="style/site.css">
 </head>
 <div class="error-container">
     <h3>エラーが発生しました</h3>

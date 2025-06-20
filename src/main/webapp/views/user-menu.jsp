@@ -13,6 +13,7 @@ String last_name = (user != null ) ? user.getLastname() : "Guest";
 <head>
 <meta charset="UTF-8">
 <title>会員情報登録ホーム</title>
+<link rel="stylesheet" href="style/site.css">
 </head>
 <body>
 
