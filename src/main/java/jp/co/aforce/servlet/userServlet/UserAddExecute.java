@@ -84,7 +84,7 @@ public class UserAddExecute extends HttpServlet {
 
             // セッション破棄
             session.invalidate();
-            response.sendRedirect("userComplete.jsp");
+            response.sendRedirect(request.getContextPath() + "/views/userComplete.jsp");
             
             // 成功ログ
             System.out.println("会員登録成功: " + user.getMemberId());

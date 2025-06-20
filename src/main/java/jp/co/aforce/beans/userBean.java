@@ -10,12 +10,16 @@ public class userBean implements Serializable {
 	private String firstname;
 	private String address;
 	private String mailAddress;
+	private String userType;
 
 
 	/*================================================
 	 *----------------------------------- GET------------------------------------------
 	 *================================================*/
 
+	public String getUserType() {
+		return userType;
+	}
 	public String getMemberId() {
 		return member_Id;
 	}
@@ -56,6 +60,9 @@ public class userBean implements Serializable {
 	}
 	public void setMailAddress(String mailAddress) {
 		this.mailAddress = mailAddress;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 
 }

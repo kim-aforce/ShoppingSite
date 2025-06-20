@@ -1,23 +1,23 @@
 package jp.co.aforce.dao;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DAO {
-	static DataSource ds;
-
-	public Connection getConnection() throws Exception {
-		if (ds == null) {
-			try {
-				InitialContext ic = new InitialContext();
-				ds = (DataSource) ic.lookup("java:/comp/env/jdbc/ShoppingSite");
-			} catch (Exception e) {
-                                throw new Exception("データソース取得失敗");
-				
-			}
-		}
-		return ds.getConnection();
-	}
+ // DB接続メソッド 
+ protected Connection getConnection() throws SQLException {
+     try {
+         Context initCtx = new InitialContext();
+         Context envCtx  = (Context) initCtx.lookup("java:comp/env");
+         DataSource ds   = (DataSource) envCtx.lookup("jdbc/ShoppingSite");
+         return ds.getConnection();
+     } catch (NamingException e) {
+         throw new SQLException("JNDI lookup failed", e);
+     }
+ }
 }

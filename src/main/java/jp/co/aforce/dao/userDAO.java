@@ -19,9 +19,9 @@ public class userDAO extends DAO {
 
 		//		ユーザー入力値でSQL文準備
 		String sql = "SELECT * FROM users WHERE member_id=? AND password=?";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, id);
-		ps.setString(2, pw);
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, id);
+        ps.setString(2, pw);
 
 		//		結果をrsに格納
 		ResultSet rs = ps.executeQuery();
@@ -35,8 +35,8 @@ public class userDAO extends DAO {
 			users.setFirstname(rs.getString("first_name"));
 			users.setAddress(rs.getString("address"));
 			users.setMailAddress(rs.getString("mail_address"));
-			
-			
+            // 管理者判定に使用するユーザー種別を取得
+            users.setUserType(rs.getString("user_type"));
 		}
 
 		rs.close();

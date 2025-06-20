@@ -22,6 +22,7 @@
 </form>
 
 
-<br><br><a href = "login-in.jsp">戻る</a>
+<br><br><a href = "login-in.jsp">戻る</a><br>
+<a href="${pageContext.request.contextPath}/views/Main/Top.jsp">Top画面</a>
 </body>
 </html>
