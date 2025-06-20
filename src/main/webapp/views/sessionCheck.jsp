@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Session Check page</title>
+<link rel="stylesheet" href="style/site.css">
 </head>
 <body>
 <% if (user != null) { %>

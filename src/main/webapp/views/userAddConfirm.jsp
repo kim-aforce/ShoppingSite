@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザー登録確認ページ</title>
+<link rel="stylesheet" href="style/site.css">
 </head>
 <body>
 <p>ユーザーID：</p>${user.memberId}

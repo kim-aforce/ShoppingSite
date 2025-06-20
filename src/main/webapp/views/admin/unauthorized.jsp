@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>アクセス拒否</title>
+<link rel="stylesheet" href="../style/site.css">
 </head>
 <body>
     <h2>このページにアクセスする権限がありません</h2>

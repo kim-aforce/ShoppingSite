@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>削除完了</title>
+<link rel="stylesheet" href="style/site.css">
 </head>
 <body>
 <h2>削除完了</h2>

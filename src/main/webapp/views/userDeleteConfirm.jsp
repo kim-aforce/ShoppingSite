@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>削除確認</title>
+<link rel="stylesheet" href="style/site.css">
 
 <script type="text/javascript">
 function confirmDelete() {

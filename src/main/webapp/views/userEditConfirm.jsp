@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>修正確認ページ</title>
+<link rel="stylesheet" href="style/site.css">
 </head>
 <body>
 <h2>登録する内容はよろしいですか？</h2>

@@ -7,6 +7,7 @@
     <title>商品管理</title>
 	<!-- 管理者用CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
     <script src="${pageContext.request.contextPath}/views/js/admin.js"></script>
 </head>
 <body>

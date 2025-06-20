@@ -7,6 +7,7 @@
     <title>会員管理</title>
     <!-- 管理者用CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
 </head>
 <body>
     <!-- 共通ヘッダー読み込み -->
@@ -94,7 +95,7 @@
                 </c:forEach>
             ];
         </script>
-<script src="${pageContext.request.contextPath}/views/js/admin.js"></script>
+<script src="${pageContext.request.contextPath}/views/js/AdminUser.js"></script>
     </main>
 
 <jsp:include page="../common/footer.jsp"/>
