@@ -16,7 +16,10 @@
 
     <main>
         <h2 style="color: #FAF9F6">商品一覧 </h2>
-
+        <form action="ProductList" method="get" class="search-form">
+			<input type="text" name="search" placeholder="検索">
+			<button type="submit">検索</button>
+		</form>
         <!-- カテゴリフィルターのみ -->
         <form action="ProductList" method="get" class="search-filter-form">
             <select name="category">

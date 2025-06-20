@@ -1,45 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <header class="glass header2">
-	<div class="header-inner">
-		<!-- ロゴとホーム移動リンク -->
-		<h1 class="logo">
-			<a style="color: #FAF9F6"
-				href="${pageContext.request.contextPath}/views/Main/Top.jsp"">AlphaMale</a>
-		</h1>
-		<nav class="header-nav">
-			<c:choose>
-				<c:when test="${not empty sessionScope.user}">
-					<a class="glass"
-						href="${pageContext.request.contextPath}/views/order/OrderHistory.jsp">注文履歴</a>
+  <div class="header-inner">
+    <h1 class="logo">
+      <a style="color: #FAF9F6;"
+         href="${pageContext.request.contextPath}/views/Main/Top.jsp">
+        AlphaMale
+      </a>
+    </h1>
+    <nav class="header-nav">
+      <a class="glass"
+         href="${pageContext.request.contextPath}/views/ProductList.jsp">
+        商品一覧
+      </a>
 
-					<a class="glass"
-						href="${pageContext.request.contextPath}/views/user-menu.jsp">会員情報</a>
+      <c:if test="${not empty sessionScope.user and sessionScope.user.user_type == 'ADMIN'}">
+        <a class="glass"
+           href="${pageContext.request.contextPath}/admin/products">
+          商品管理
+        </a>
+      </c:if>
 
-					<form action="${pageContext.request.contextPath}/logout"
-						method="post" style="display: inline;">
-						<button type="submit" class="glass logout-btn">Logout</button>
-					</form>
-				</c:when>
-				<c:otherwise>
-					<form action="${pageContext.request.contextPath}/views/login"
-						method="post" class="login-form">
-						<input type="text" name="id" placeholder="ID"> <input
-							type="password" name="pw" placeholder="PW">
-						<button type="submit" class="glass">Login</button>
-					</form>
-					<a class="glass"
-						href="${pageContext.request.contextPath}/views/user-add.jsp">Register</a>
-				</c:otherwise>
-			</c:choose>
-		</nav>
-		<form action="ProductList" method="get" class="search-form">
-			<input type="text" name="search" placeholder="検索">
-			<button type="submit">検索</button>
-		</form>
-	</div>
+      <%-- 로그인 상태에 따른 분기 --%>
+      <c:choose>
+        <%-- 로그인된 경우 --%>
+        <c:when test="${not empty sessionScope.user}">
+          <a class="glass"
+             href="${pageContext.request.contextPath}/views/order/OrderHistory.jsp">
+            注文履歴
+          </a>
+          <a class="glass"
+             href="${pageContext.request.contextPath}/views/user-menu.jsp">
+            会員情報
+          </a>
+          <form action="${pageContext.request.contextPath}/logout"
+                method="post" style="display:inline;">
+            <button type="submit" class="glass logout-btn">
+              ログアウト
+            </button>
+          </form>
+        </c:when>
+        <%-- 미로그인된 경우 --%>
+        <c:otherwise>
+          <form action="${pageContext.request.contextPath}/views/login"
+                method="post"
+                class="login-form">
+            <input type="text" name="id" placeholder="ID"/>
+            <input type="password" name="pw" placeholder="PW"/>
+            <button type="submit" class="glass">
+              ログイン
+            </button>
+          </form>
+          <a class="glass"
+             href="${pageContext.request.contextPath}/views/user-add.jsp">
+            会員登録
+          </a>
+        </c:otherwise>
+      </c:choose>
+    </nav>
+  </div>
 </header>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.login-form');

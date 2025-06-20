@@ -1,4 +1,4 @@
-// AdminFliter.java
+// AdminFilter.java
 package jp.co.aforce.servlet.AdminServlet;
 
 import java.io.IOException;
@@ -17,15 +17,15 @@ import jakarta.servlet.http.HttpSession;
 import jp.co.aforce.beans.userBean;
 
 /**
- * 管理者専用フィルタ / 관리자 전용 필터
- * user_typeが'ADMIN' のみ通過 / user_type이 'ADMIN'인 경우만 통과
+ * 管理者専用フィルタ
+ * user_typeが'ADMIN' のみ通過
  */
 @WebFilter(urlPatterns = "/admin/*")
-public class AdminFliter implements Filter {
+public class AdminFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // 初期化処理不要 / 초기화 로직 없음
+        // 初期化処理不要
     }
 
     @Override
@@ -35,18 +35,32 @@ public class AdminFliter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;     // HttpServletResponse にキャスト
         HttpSession session     = req.getSession(false);              // 既存セッションを取得 
 
+        boolean isAjax = "XMLHttpRequest".equals(req.getHeader("X-Requested-With"))
+                || "true".equals(req.getParameter("ajax"));
+        
         // セッションがない、またはユーザ情報がなければログインへ
         if (session == null || session.getAttribute("user") == null) {
-            res.sendRedirect(req.getContextPath() + "/login-in.jsp");    // ログインページへリダイレクト 
-            return;
+        	if (isAjax) {
+                res.setContentType("application/json");
+                res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                res.getWriter().write("{\"status\":\"unauthenticated\"}");
+            } else {
+                res.sendRedirect(req.getContextPath() + "/views/login-in.jsp");    // ログインページへリダイレクト
+            }            return;
         }
 
         userBean user = (userBean) session.getAttribute("user");      // セッションからUserBeanを取得
-        // user_typeが'ADMIN'かチェック / user_type이 ADMIN인지 검사
+        // user_typeが'ADMIN'かチェック
         if ("ADMIN".equals(user.getUserType())) {
-            chain.doFilter(request, response);                        // 通過 
+            chain.doFilter(request, response);                        // 通過
         } else {
-            res.sendRedirect(req.getContextPath() + "/unauthorized.jsp"); // アクセス拒否ページへ 
+        	if (isAjax) {
+                res.setContentType("application/json");
+                res.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                res.getWriter().write("{\"status\":\"forbidden\"}");
+            } else {
+                res.sendRedirect(req.getContextPath() + "/views/admin/unauthorized.jsp"); // アクセス拒否ページへ
+            }
         }
     }
 
