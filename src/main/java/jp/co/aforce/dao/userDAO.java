@@ -3,6 +3,8 @@ package jp.co.aforce.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import jp.co.aforce.beans.userBean;
 
@@ -131,6 +133,70 @@ public class userDAO extends DAO {
 	    
 	    return result > 0;
 
+	}
+	
+	//>>>>>>>>>>>>>>>>>>管理者DAO<<<<<<<<<<<<<<
+	/*===================================================================
+	 --------------------------------------------全会員取得 （sql select）-------------------------------------------------------- 
+	 *================================================================== */
+	public List<userBean> getAllUsers() throws Exception {
+		Connection con = getConnection();
+		String sql = "SELECT * FROM users";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		
+		List<userBean> list = new ArrayList<>();
+		
+		while (rs.next()) {
+			userBean user = new userBean();
+			user.setMemberId(rs.getString("member_id"));
+			user.setPassword(rs.getString("password"));
+			user.setLastname(rs.getString("last_name"));
+			user.setFirstname(rs.getString("first_name"));
+			user.setAddress(rs.getString("address"));
+			user.setMailAddress(rs.getString("mail_address"));
+			user.setUserType(rs.getString("user_type"));
+			list.add(user);
+		}
+		
+		rs.close();
+		ps.close();
+		con.close();
+		
+		return list;
+	}
+
+	/*===================================================================
+	 --------------------------------------------会員権限変更 （sql update）-------------------------------------------------------- 
+	 *================================================================== */
+	public boolean updateUserType(String memberId, String userType) throws Exception {
+		Connection con = getConnection();
+		String sql = "UPDATE users SET user_type = ? WHERE member_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, userType);
+		ps.setString(2, memberId);
+		
+		int result = ps.executeUpdate();
+		ps.close();
+		con.close();
+		
+		return result > 0;
+	}
+
+	/*===================================================================
+	 --------------------------------------------会員削除（ID指定） （sql delete）-------------------------------------------------------- 
+	 *================================================================== */
+	public boolean deleteById(String memberId) throws Exception {
+		Connection con = getConnection();
+		String sql = "DELETE FROM users WHERE member_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, memberId);
+		
+		int result = ps.executeUpdate();
+		ps.close();
+		con.close();
+		
+		return result > 0;
 	}
 
 }
