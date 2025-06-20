@@ -16,7 +16,7 @@
         商品一覧
       </a>
 
-      <c:if test="${not empty sessionScope.user and sessionScope.user.user_type == 'ADMIN'}">
+      <c:if test="${not empty sessionScope.user and sessionScope.user.userType == 'ADMIN'}">
         <a class="glass"
            href="${pageContext.request.contextPath}/admin/products">
           商品管理
@@ -71,9 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const formData = new FormData(form);
             formData.append('ajax', 'true');
+            const params = new URLSearchParams(formData);
             const res = await fetch(form.action, {
                 method: 'POST',
-                body: formData,
+                body: params,
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
             });
             if (res.ok) {

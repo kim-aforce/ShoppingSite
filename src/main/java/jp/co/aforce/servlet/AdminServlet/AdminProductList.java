@@ -16,7 +16,7 @@ import jp.co.aforce.dao.AdminProductDAO;
 /**
  * Servlet implementation class AdminProductList
  */
-@WebServlet("/views/admin/product")
+@WebServlet("/admin/products")
 public class AdminProductList extends HttpServlet {
 	   
 
