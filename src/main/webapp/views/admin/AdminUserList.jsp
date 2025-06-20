@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>会員管理</title>
     <!-- 管理者用CSS -->
+    <script src="${pageContext.request.contextPath}/views/js/admin.js"></script>
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
 </head>
