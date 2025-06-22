@@ -10,6 +10,8 @@
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/common.css">
+    
 </head>
 <body>
     <!-- 共通ヘッダー読み込み -->
