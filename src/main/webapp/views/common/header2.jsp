@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <header class="glass header2">
   <div class="header-inner">
     <h1 class="logo">
-      <a style="color: #FAF9F6;"
+      <a style="color: #FAF9F6"
          href="${pageContext.request.contextPath}/views/Main/Top.jsp">
         AlphaMale
       </a>

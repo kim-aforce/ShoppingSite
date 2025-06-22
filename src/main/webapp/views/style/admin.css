@@ -49,7 +49,7 @@
 }
 .action-btn {
   padding: 0.5rem 1rem; border:none; border-radius:6px;
-  background: rgba(255,255,255,0.2); color:#000;
+  background: rgba(255,255,255,0.9); color:#000;
   cursor: pointer; transition: background 0.3s;
 }
 .action-btn:hover {
