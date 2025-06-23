@@ -89,6 +89,24 @@ public class ProductDAO extends DAO{
         
         return p;
     }
+    /*===================================================================
+	 --------------------------------------------単一商品取得 ProductDetail----------------------------------- 
+	 *================================================================== */
+    public ProductBean getProductById(int productId) throws SQLException {
+		String sql = "SELECT * FROM products WHERE product_id = ?";
+		
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setInt(1, productId);
+			try(ResultSet rs = ps.executeQuery()){
+				if (rs.next()) {
+					return mapRow(rs);
+				}
+				return null; // 商品が存在しない場合null return
+			}
+		} 
+	}
+    
 }
 	
 	

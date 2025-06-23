@@ -92,22 +92,24 @@
             </div>
         </div>
 
-        <script>
+		<script>
             // サーバから渡されたproductsリストをJS配列に変換
             const products = [
                 <c:forEach var="p" items="${products}" varStatus="sts">
-                    { id:'${p.product_id}', 
-                        name:'${p.product_name}', 
-                        desc:'${p.description}', 
-                        price:${p.price}, 
-                        cat:'${p.category_id}', 
-                        stock:${p.stock_qty}, 
+                <fmt:formatNumber value="${p.price}" type="number"
+maxFractionDigits="0" groupingUsed="false" var="priceInt" />
+                { id:'${p.product_id}',
+                    name:'${p.product_name}',
+                    desc:'${p.description}',
+                    price:${priceInt},
+                    cat:'${p.category_id}',
+                    stock:${p.stock_qty},
                         img:'${p.image_url}' }
                     <c:if test="${!sts.last}">,</c:if>
                 </c:forEach>
             ];
         </script>
-        <script src="${pageContext.request.contextPath}/views/js/admin.js"></script>     <!--管理者用JS -->
+		<script src="${pageContext.request.contextPath}/views/js/admin.js"></script>     <!--管理者用JS -->
     </main>
 
 <jsp:include page="../common/footer.jsp"/>                                             <!-- 共通フッター読み込み -->

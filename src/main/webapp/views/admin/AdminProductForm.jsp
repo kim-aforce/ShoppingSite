@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,9 +49,11 @@
             </div>
 
             <!-- 価格入力フィールド -->
+             <fmt:formatNumber value="${product.price}" type="number" 
+             maxFractionDigits="0" groupingUsed="false" var="priceInt" />
             <div class="form-field">
                 <label>価格:
-                    <input type="number" name="price" value="${product.price}" required/>
+                    <input type="number" name="price" value="${priceInt}" required/>
                 </label>
             </div>
 
