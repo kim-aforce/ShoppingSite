@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../style/common.css">
 <link rel="stylesheet" href="../style/site.css">
 </head>
-<body>a
+<body>
     
     <main>
         <h2>カート</h2>
