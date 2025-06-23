@@ -2,6 +2,8 @@ package jp.co.aforce.servlet.ProductServlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
@@ -28,8 +30,10 @@ public class ProductList extends HttpServlet {
 
 		//Query Parameter 「category」を取得
 		String category = request.getParameter("category");
-		//Query Parameter 「search」を取得
-		String search = request.getParameter("search");
+		///Query Parameter 「search」を取得
+        String search = request.getParameter("search");
+        //Query Parameter 「sort」を取得
+        String sort = request.getParameter("sort");
 
 		ProductDAO dao = new ProductDAO();
 		CategoryDAO cDao = new CategoryDAO();
@@ -38,12 +42,12 @@ public class ProductList extends HttpServlet {
 		List<CategoryBean> categoryList = null;
 
 		try {
-			// カテゴリ一覧取得
-			categoryList = cDao.getAllCategories();
-			//検索キーワードが指定された場合
-			if (search != null && !search.trim().isEmpty()) {
-				//キーワード検索実行
-				productList = dao.searchProducts(search);
+            // カテゴリ一覧取得
+            categoryList = cDao.getAllCategories();
+            //検索キーワードが指定された場合
+            if (search != null && !search.trim().isEmpty()) {
+                    //キーワード検索実行
+                    productList = dao.searchProducts(search);
 
 				//カテゴリが指定された場合			
 			} else if (category != null && !category.trim().isEmpty()) {
@@ -54,11 +58,31 @@ public class ProductList extends HttpServlet {
 			} else {
 				//全商品取得
 				productList = dao.getAllProducts();
-			}
-			// SQLエラー発生時にServlet例外として投げる
-		} catch (SQLException e) {
-			throw new ServletException(e);
-		}
+            }
+
+            // 並び替え処理
+            if (sort != null && productList != null) {
+                    switch (sort) {
+                    case "price_asc":
+                            Collections.sort(productList, Comparator.comparing(ProductBean::getPrice));
+                            break;
+                    case "price_desc":
+                            Collections.sort(productList, Comparator.comparing(ProductBean::getPrice).reversed());
+                            break;
+                    case "name_asc":
+                            Collections.sort(productList, Comparator.comparing(ProductBean::getProduct_name));
+                            break;
+                    case "category_asc":
+                            Collections.sort(productList, Comparator.comparing(ProductBean::getCategory_id));
+                            break;
+                    default:
+                            // nothing
+                    }
+            }
+            // SQLエラー発生時にServlet例外として投げる
+    } catch (SQLException e) {
+            throw new ServletException(e);
+    }
 
 		request.setAttribute("products", productList);
 		request.setAttribute("categories", categoryList);

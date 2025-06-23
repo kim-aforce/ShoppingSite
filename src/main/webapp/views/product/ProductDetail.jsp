@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@
 						<c:out value="${product.price}" />
 					</div>
 					<div class="price-tax">
-						消費税10％込み ¥
+						税込 ¥
 						<c:out value="${priceWithTax}" />
 					</div>
 				</div>
@@ -57,7 +58,7 @@
 					<c:choose>
 						<c:when test="${product.stock_qty > 0}">
 							<!-- 将来的にカート機能実装時に有効化 -->
-							<button class="btn btn-disabled" disabled>カートに追加 (近日対応)
+							<button class="btn btn-disabled" disabled>カートに追加
 							</button>
 						</c:when>
 						<c:otherwise>
@@ -70,12 +71,6 @@
 						class="btn btn-secondary"> 商品一覧に戻る </a>
 				</div>
 
-				<!-- 商品情報詳細 -->
-				<div class="product-details"
-					style="color: #FAF9F6; font-size: 0.9rem; opacity: 0.8;">
-					<p>商品ID: ${product.product_id}</p>
-					<p>カテゴリ: ${product.category_id}</p>
-				</div>
 			</div>
 		</div>
 	</main>
