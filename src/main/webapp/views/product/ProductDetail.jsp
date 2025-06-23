@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +30,16 @@
 				<div class="product-description">${product.description}</div>
 
 				<!-- 価格セクション -->
-				<div class="price-section">
-					<div class="price-main">
-						¥
-						<c:out value="${product.price}" />
-					</div>
-					<div class="price-tax">
-						税込 ¥
-						<c:out value="${priceWithTax}" />
-					</div>
+				<fmt:formatNumber value="${product.price}" type="number"
+					maxFractionDigits="0" groupingUsed="false" var="priceInt" />	
+				
+				<div class="price-main">¥ ${priceInt}</div>
+				
+				<fmt:formatNumber value="${priceWithTax}" type="number"
+					maxFractionDigits="0" groupingUsed="false" var="priceTaxInt" />
+					
+				<div class="price-tax">税込 ¥ ${priceTaxInt}</div>
+			</div>
 				</div>
 
 				<!-- 在庫情報 -->

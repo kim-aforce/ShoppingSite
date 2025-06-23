@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, jp.co.aforce.beans.ProductBean" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +35,6 @@
 					${param.sort == 'price_desc' ? 'selected' : ''}>価格が高い順</option>
 				<option value="name_asc"
 					${param.sort == 'name_asc' ? 'selected' : ''}>商品名順</option>
-				<option value="category_asc"
-					${param.sort == 'category_asc' ? 'selected' : ''}>カテゴリ順</option>
 			</select>
 			<button type="submit">検索</button>
 		</form>
@@ -51,9 +51,11 @@
                     <h3 style="color: #FAF9F6">${product.product_name}</h3>
 
                     <!-- 商品価格 -->
-                    <p style="color: #FAF9F6">￥${product.price}</p>
-
-                    <!-- 詳細リンク（未実装可） -->
+					<fmt:formatNumber value="${product.price}" type="number"
+						maxFractionDigits="0" groupingUsed="false" var="priceInt" />
+						
+					<p style="color: #FAF9F6">￥${priceInt}</p>
+					<!-- 詳細リンク（未実装可） -->
                     <a href="ProductDetail?id=${product.product_id}">詳細</a>
                 </div>
             </c:forEach>
