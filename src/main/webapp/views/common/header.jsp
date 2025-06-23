@@ -21,7 +21,7 @@
 			<c:choose>
 				<c:when test="${not empty sessionScope.user}">
 					<!--ログイン時表示 -->
-					<a class="glass" href="${pageContext.request.contextPath}/Cart">Cart</a>
+					<a class="glass" href="${pageContext.request.contextPath}/cart">Cart</a>
 					<a class="glass" id="logout-link"
 						href="${pageContext.request.contextPath}/logout">Logout</a>
 				</c:when>
