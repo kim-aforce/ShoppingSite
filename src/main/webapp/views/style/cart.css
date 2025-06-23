@@ -13,7 +13,7 @@
 
 .step-bar {
     text-align: center;
-    color: #FAF9F6;
+	color: var(--text-color);
     margin-bottom: 2rem;
     font-size: 1.1rem;
     padding-bottom: 1rem;
@@ -29,7 +29,7 @@
     border-radius: 10px;
     margin-bottom: 1rem;
     font-weight: bold;
-    color: #FAF9F6;
+	color: var(--text-color);
     text-align: center;
 }
 
@@ -44,7 +44,9 @@
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
+.cart-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
 .cart-item input[type="checkbox"] {
     width: 20px;
     height: 20px;
@@ -67,13 +69,13 @@
 
 .item-info h3 {
     margin: 0;
-    color: #FAF9F6;
+	color: var(--text-color);
     font-size: 1rem;
 }
 
 .item-info p {
     margin: 0;
-    color: #FAF9F6;
+	color: var(--text-color);
     opacity: 0.8;
     font-size: 0.9rem;
 }
@@ -91,7 +93,7 @@
     border: none;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 4px;
-    color: #FAF9F6;
+	color: var(--text-color);
     cursor: pointer;
     font-size: 1.2rem;
     display: flex;
@@ -110,13 +112,13 @@
     border: none;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
-    color: #FAF9F6;
+	color: var(--text-color);
 }
 
 .item-total {
     text-align: center;
     font-weight: bold;
-    color: #FAF9F6;
+	color: var(--text-color);
     font-size: 1.1rem;
 }
 
@@ -128,7 +130,7 @@
     background: rgba(255, 0, 0, 0.3);
     border: 1px solid rgba(255, 0, 0, 0.5);
     border-radius: 4px;
-    color: #FAF9F6;
+	color: var(--text-color);
     padding: 0.25rem 0.5rem;
     cursor: pointer;
     font-size: 0.8rem;
@@ -153,7 +155,7 @@
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
-    color: #FAF9F6;
+	color: var(--text-color);
     text-decoration: none;
     font-size: 1.1rem;
     transition: all 0.3s;
@@ -165,23 +167,23 @@
 
 .order-btn {
     padding: 1rem 2rem;
-    background: rgba(76, 175, 80, 0.7);
-    border: 1px solid rgba(76, 175, 80, 0.8);
+	background: var(--accent-color);
+	   border: 1px solid var(--accent-color);
     border-radius: 8px;
     color: white;
     text-decoration: none;
     font-size: 1.1rem;
-    transition: all 0.3s;
+	transition: background 0.3s;
 }
 
 .order-btn:hover {
-    background: rgba(76, 175, 80, 0.9);
+	filter: brightness(1.1);
 }
 
 .empty-cart {
     text-align: center;
     padding: 3rem;
-    color: #FAF9F6;
+	color: var(--text-color);
 }
 
 .empty-cart .btn {
@@ -189,7 +191,7 @@
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
-    color: #FAF9F6;
+	color: var(--text-color);
     text-decoration: none;
     margin-top: 1rem;
     display: inline-block;
