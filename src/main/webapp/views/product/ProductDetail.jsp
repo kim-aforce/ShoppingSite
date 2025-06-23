@@ -19,8 +19,10 @@
 		<div class="product-detail-grid">
 			<!-- 商品画像 -->
 			<div class="image-section">
-				<img src="${product.image_url}" alt="${product.product_name}"
+				<a href="${product.image_url}" target="_blank"> <img
+					src="${product.image_url}" alt="${product.product_name}"
 					class="product-image">
+				</a>
 			</div>
 
 			<!-- 商品情報 -->
@@ -61,10 +63,11 @@
 								<c:when test="${not empty sessionScope.user}">
 									<form action="${pageContext.request.contextPath}/cart"
 										method="post" style="display: inline;">
-										<input type="hidden" name="action" value="add"> 
-										<input type="hidden" name="productId" value="${product.product_id}">
+										<input type="hidden" name="action" value="add"> <input
+											type="hidden" name="productId" value="${product.product_id}">
 										<input type="number" name="quantity" value="1" min="1"
-											max="${product.stock_qty}" style="width: 60px; margin-right: 10px;">
+											max="${product.stock_qty}"
+											style="width: 60px; margin-right: 10px;">
 										<button type="submit" class="btn btn-primary">カートに追加</button>
 									</form>
 								</c:when>
