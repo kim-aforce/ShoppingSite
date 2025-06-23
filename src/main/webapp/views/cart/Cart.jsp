@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>カート</title>
-<link rel="stylesheet" href="../style/common.css">
-<link rel="stylesheet" href="../style/site.css">
-<link rel="stylesheet" href="../style/cart.css">
+<!-- CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/cart.css">
 </head>
 <body>
     <jsp:include page="../common/header2.jsp" />
@@ -23,14 +24,19 @@
         
         <c:if test="${not empty cartItems}">
             <div class="cart-container">
-                <div class="step-bar">Step1. Cart ▶ Step2. Order ▶ Step3. Order Confirmed</div>
+                <!-- Step indicator -->
+                <div class="step-bar">
+                    <span class="step-active">Step1. Cart</span> ▶ 
+                    <span class="step-inactive">Step2. Order</span> ▶ 
+                    <span class="step-inactive">Step3. Order Confirmed</span>
+                </div>
                 
                 <div class="cart-header">
-                    <div></div>
+                    <div>選択</div>
                     <div>商品情報</div>
                     <div>数量</div>
                     <div>注文金額</div>
-                    <div></div>
+                    <div>削除</div>
                 </div>
                 
                 <c:forEach var="cart" items="${cartItems}">
@@ -39,27 +45,30 @@
                         <input type="checkbox" name="cartCheck" value="${cart.cart_id}" />
                         
                         <div class="item-info">
-                            <img src="${product.image_url}" alt="${product.product_name}">
-                            <div>
+                            <!-- イメージ表示修正 -->
+                            <img src="${not empty product.image_url ? product.image_url : '/views/img/default-product.png'}" 
+                                 alt="${product.product_name}" 
+                                 onerror="this.src='${pageContext.request.contextPath}/views/img/default-product.png'">
+                            <div class="item-details">
                                 <h3>${product.product_name}</h3>
                                 <fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="0" groupingUsed="false" var="priceInt" />
                                 <p>価格: ¥${priceInt}</p>
                             </div>
                         </div>
                         
-                        <div class="quantity-buttons">
+                        <div class="quantity-controls">
                             <form action="${pageContext.request.contextPath}/cart" method="post" style="display:inline;">
                                 <input type="hidden" name="action" value="update">
                                 <input type="hidden" name="cartId" value="${cart.cart_id}">
                                 <input type="hidden" name="quantity" value="${cart.quantity - 1}">
-                                <button type="submit" ${cart.quantity <= 1 ? 'disabled' : ''}>−</button>
+                                <button type="submit" class="qty-btn" ${cart.quantity <= 1 ? 'disabled' : ''}>−</button>
                             </form>
-                            <input type="text" value="${cart.quantity}" readonly>
+                            <span class="quantity">${cart.quantity}</span>
                             <form action="${pageContext.request.contextPath}/cart" method="post" style="display:inline;">
                                 <input type="hidden" name="action" value="update">
                                 <input type="hidden" name="cartId" value="${cart.cart_id}">
                                 <input type="hidden" name="quantity" value="${cart.quantity + 1}">
-                                <button type="submit">＋</button>
+                                <button type="submit" class="qty-btn">＋</button>
                             </form>
                         </div>
                         
@@ -72,14 +81,14 @@
                             <form action="${pageContext.request.contextPath}/cart" method="post">
                                 <input type="hidden" name="action" value="remove">
                                 <input type="hidden" name="cartId" value="${cart.cart_id}">
-                                <button type="submit" onclick="return confirm('削除しますか？')">削除</button>
+                                <button type="submit" onclick="return confirm('削除しますか？')">×</button>
                             </form>
                         </div>
                     </div>
                 </c:forEach>
                 
                 <div class="cart-actions">
-                    <a href="${pageContext.request.contextPath}/views/product/ProductList" class="continue">買い物を続く</a>
+                    <a href="${pageContext.request.contextPath}/views/product/ProductList" class="continue-shopping">買い物を続く</a>
                     <a href="${pageContext.request.contextPath}/order" class="order-btn">注文する</a>
                 </div>
             </div>

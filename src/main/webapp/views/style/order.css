@@ -1,10 +1,11 @@
 @charset "UTF-8";
 
-/* Order page styles */
+/* Order & Cart */
 .order-container,
-.order-complete-container {
+.order-complete-container,
+.cart-container {
     max-width: 1000px;
-    margin: 1rem auto;
+    margin: 2rem auto;
     padding: 2rem;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(15px);
@@ -15,6 +16,7 @@
     color: #FAF9F6;
 }
 
+/* Step Bar */
 .step-bar {
     text-align: center;
     margin: 1rem 0 2rem 0;
@@ -26,6 +28,18 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.step-active {
+    color: #4CAF50;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.step-inactive {
+    color: rgba(250, 249, 246, 0.4);
+    font-weight: normal;
+}
+
+/* Order Layout */
 .order-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -121,6 +135,7 @@
     gap: 1.5rem;
     padding: 1.5rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    align-items: center;
 }
 
 .order-item:last-child {
@@ -191,7 +206,7 @@
     box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
 
-/* Order Complete Styles */
+/* Order Complete */
 .complete-message {
     text-align: center;
     margin: 2rem 0 3rem 0;
@@ -277,5 +292,11 @@
     .order-confirm-btn {
         padding: 1rem 2rem;
         font-size: 1rem;
+    }
+    
+    .order-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
     }
 }

@@ -7,19 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <title>商品管理フォーム</title>
-    <!-- 共有Glassmorphismスタイル -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/Top.css">
-    <!-- 管理者用スタイル -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
 </head>
 <body>
-    <!-- 共通ヘッダー読み込み -->
     <jsp:include page="../common/header2.jsp"/>
 
-    <!-- フォームコンテナ -->
     <main class="admin-form-container glass">
-        <!-- フォームタイトル表示 -->
         <h2>
             <c:choose>
                 <c:when test="${mode == 'new'}">商品情報登録</c:when>
@@ -27,40 +22,48 @@
             </c:choose>
         </h2>
 
-        <!-- 新規登録/編集送信フォーム -->
+        <
+        <c:if test="${mode == 'edit'}">
+            <p>編集中の商品 ID: ${product.product_id}</p>
+        </c:if>
+
         <form action="${pageContext.request.contextPath}/admin/products/${mode}" method="post">
-            <!-- 編集時のみIDを送信 -->
             <c:if test="${mode == 'edit'}">
                 <input type="hidden" name="product_id" value="${product.product_id}"/>
             </c:if>
 
-            <!-- 商品名入力フィールド -->
             <div class="form-field">
                 <label>商品名:
                     <input type="text" name="product_name" value="${product.product_name}" required/>
                 </label>
             </div>
 
-            <!-- 説明入力フィールド -->
             <div class="form-field">
                 <label>説明:
-                    <input type="text" name="description" value="${product.description}"/>
+                    <textarea name="description" rows="3">${product.description}</textarea>
                 </label>
             </div>
 
-            <!-- 価格入力フィールド -->
-             <fmt:formatNumber value="${product.price}" type="number" 
-             maxFractionDigits="0" groupingUsed="false" var="priceInt" />
+            <!-- 価格表示 -->
             <div class="form-field">
                 <label>価格:
-                    <input type="number" name="price" value="${priceInt}" required/>
+                    <c:choose>
+                        <c:when test="${product.price != null && product.price > 0}">
+                            <fmt:formatNumber value="${product.price}" type="number" 
+                                            maxFractionDigits="0" groupingUsed="false" var="priceInt" />
+                            <input type="number" name="price" value="${priceInt}" required/>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="number" name="price" value="" required/>
+                        </c:otherwise>
+                    </c:choose>
                 </label>
             </div>
 
-            <!-- カテゴリ選択フィールド -->
             <div class="form-field">
                 <label>カテゴリ:
-                    <select name="category_id">
+                    <select name="category_id" required>
+                        <option value="">カテゴリ選択</option>
                         <option value="01" <c:if test="${product.category_id=='01'}">selected</c:if>>衣類</option>
                         <option value="02" <c:if test="${product.category_id=='02'}">selected</c:if>>靴</option>
                         <option value="03" <c:if test="${product.category_id=='03'}">selected</c:if>>香水</option>
@@ -70,21 +73,25 @@
                 </label>
             </div>
 
-            <!-- 在庫数入力フィールド -->
             <div class="form-field">
                 <label>在庫数:
-                    <input type="number" name="stock_qty" value="${product.stock_qty}" required/>
+                    <input type="number" name="stock_qty" value="${product.stock_qty}" min="0" required/>
                 </label>
             </div>
 
-            <!-- 画像URL入力フィールド -->
             <div class="form-field">
                 <label>画像URL:
-                    <input type="text" name="image_url" value="${product.image_url}" required/>
+                    <input type="url" name="image_url" value="${product.image_url}" 
+                           placeholder="https://example.com/image.jpg" required/>
                 </label>
+                <!-- Image Preview -->
+                <c:if test="${not empty product.image_url}">
+                    <div class="image-preview">
+                        <img src="${product.image_url}" alt="Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+                    </div>
+                </c:if>
             </div>
 
-            <!-- 送信ボタン -->
             <div class="form-actions">
                 <button type="submit">
                     <c:choose>
@@ -92,11 +99,11 @@
                         <c:otherwise>更新</c:otherwise>
                     </c:choose>
                 </button>
+                <a href="${pageContext.request.contextPath}/admin/products" class="btn-cancel">戻る</a>
             </div>
         </form>
     </main>
 
-    <!-- 共通フッター読み込み -->
-    <jsp:include page="../footer.jsp"/>
+    <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
