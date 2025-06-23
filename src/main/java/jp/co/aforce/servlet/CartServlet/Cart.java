@@ -184,7 +184,7 @@ public class Cart extends HttpServlet {
 	private double calculateTotal(List<CartBean> cartItems, ProductDAO productDAO)
 			throws SQLException {
 
-		int total = 0;
+		double total = 0.0;
 		for (CartBean cart : cartItems) {
 			ProductBean product = productDAO.getProductById(cart.getProduct_id());
 			if (product != null) {
