@@ -1,4 +1,4 @@
-package jp.co.aforce.servlet.CartServlet;
+package jp.co.aforce.servlet.OrderServlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,23 +13,24 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import jp.co.aforce.beans.CartBean;
+import jp.co.aforce.beans.OrderBean;
 import jp.co.aforce.beans.ProductBean;
 import jp.co.aforce.beans.userBean;
 import jp.co.aforce.dao.CartDAO;
+import jp.co.aforce.dao.OrderDAO;
 import jp.co.aforce.dao.ProductDAO;
 
-@WebServlet("/cart")
-public class Cart extends HttpServlet {
+@WebServlet("/order")
+public class Order extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * カート表示処理
+	 * 注文フォーム表示
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// セッション確認
 		HttpSession session = request.getSession(false);
 		if (session == null) {
 			redirectToLogin(request, response);
@@ -49,25 +50,28 @@ public class Cart extends HttpServlet {
 			// カート項目取得
 			List<CartBean> cartItems = cartDAO.getCartByMemberId(user.getMemberId());
 
-			// 各カート項目に商品情報追加
+			if (cartItems.isEmpty()) {
+				response.sendRedirect(request.getContextPath() + "/cart");
+				return;
+			}
+
+			// 商品情報追加・合計計算
+			double totalAmount = 0.0;
 			for (CartBean cart : cartItems) {
 				ProductBean product = productDAO.getProductById(cart.getProduct_id());
 				if (product != null) {
-					// カートBean拡張情報設定（JSPで使用）
 					request.setAttribute("product_" + cart.getCart_id(), product);
+					totalAmount += product.getPrice() * cart.getQuantity();
 				}
 			}
-
-			// 合計金額計算
-			double totalAmount = calculateTotal(cartItems, productDAO);
 
 			// リクエスト属性設定
 			request.setAttribute("cartItems", cartItems);
 			request.setAttribute("totalAmount", totalAmount);
-			request.setAttribute("itemCount", cartItems.size());
+			request.setAttribute("user", user);
 
-			// カート画面へフォワード
-			RequestDispatcher rd = request.getRequestDispatcher("/views/cart/Cart.jsp");
+			// 注文フォームへフォワード
+			RequestDispatcher rd = request.getRequestDispatcher("/views/order/OrderForm.jsp");
 			rd.forward(request, response);
 
 		} catch (SQLException e) {
@@ -76,13 +80,12 @@ public class Cart extends HttpServlet {
 	}
 
 	/**
-	 * カート操作処理
+	 * 注文処理実行
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// セッション確認
 		HttpSession session = request.getSession(false);
 		if (session == null) {
 			redirectToLogin(request, response);
@@ -95,87 +98,52 @@ public class Cart extends HttpServlet {
 			return;
 		}
 
-		String action = request.getParameter("action");
-
 		try {
 			CartDAO cartDAO = new CartDAO();
+			OrderDAO orderDAO = new OrderDAO();
+			ProductDAO productDAO = new ProductDAO();
 
-			switch (action) {
-			case "add":
-				addToCart(request, cartDAO, user.getMemberId());
-				break;
-			case "update":
-				updateCartQuantity(request, cartDAO);
-				break;
-			case "remove":
-				removeFromCart(request, cartDAO);
-				break;
-			case "clear":
-				clearCart(cartDAO, user.getMemberId());
-				break;
-			default:
-				handleError(request, response, "無効な操作です。", null);
+			// カート項目取得
+			List<CartBean> cartItems = cartDAO.getCartByMemberId(user.getMemberId());
+
+			if (cartItems.isEmpty()) {
+				response.sendRedirect(request.getContextPath() + "/cart");
 				return;
 			}
 
-			// カート画面へリダイレクト
-			response.sendRedirect(request.getContextPath() + "/cart");
+			// 合計金額計算
+			double totalAmount = calculateTotal(cartItems, productDAO);
+
+			// 注文Bean作成
+			OrderBean order = new OrderBean();
+			order.setMember_id(user.getMemberId()); // 会員ID設定
+			order.setTotal_amount(totalAmount); // 合計金額設定
+			order.setOrder_status("PENDING"); // 注文状態設定
+
+			String shippingAddress = request.getParameter("shippingAddress");
+			if (shippingAddress == null || shippingAddress.trim().isEmpty()) {
+				shippingAddress = user.getAddress(); // デフォルト住所使用
+			}
+			order.setDelivery_address(shippingAddress); // 配送先設定
+
+			// 注文作成
+			int orderId = orderDAO.createOrder(order); // 注文INSERT
+			orderDAO.addOrderItems(orderId, cartItems, productDAO); // 注文商品INSERT
+
+			// 在庫減算
+			for (CartBean cart : cartItems) {
+				orderDAO.updateProductStock(cart.getProduct_id(), cart.getQuantity());
+			}
+
+			// カート削除
+			cartDAO.clearCart(user.getMemberId()); // カート空にする
+
+			// 注文完了画面へリダイレクト
+			response.sendRedirect(request.getContextPath() + "/views/order/OrderComplete.jsp?orderId=" + orderId);
 
 		} catch (SQLException e) {
-			handleError(request, response, "データベースエラーが発生しました。", e);
-		} catch (NumberFormatException e) {
-			handleError(request, response, "入力値が正しくありません。", e);
+			handleError(request, response, "注文処理中にエラーが発生しました。", e);
 		}
-	}
-
-	/**
-	 * カート追加処理
-	 */
-	private void addToCart(HttpServletRequest request, CartDAO cartDAO, String memberId)
-			throws SQLException, NumberFormatException {
-
-		int productId = Integer.parseInt(request.getParameter("productId"));
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-
-		if (quantity <= 0) {
-			throw new IllegalArgumentException("数量は1以上である必要があります。");
-		}
-
-		CartBean cart = new CartBean();
-		cart.setMember_id(memberId); // 会員ID設定
-		cart.setProduct_id(productId); // 商品ID設定
-		cart.setQuantity(quantity); // 数量設定
-
-		cartDAO.addToCart(cart); // カート追加実行
-	}
-
-	/**
-	 * カート数量更新処理
-	 */
-	private void updateCartQuantity(HttpServletRequest request, CartDAO cartDAO)
-			throws SQLException, NumberFormatException {
-
-		int cartId = Integer.parseInt(request.getParameter("cartId"));
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-
-		cartDAO.updateQuantity(cartId, quantity); // 数量更新実行
-	}
-
-	/**
-	 * カート項目削除処理
-	 */
-	private void removeFromCart(HttpServletRequest request, CartDAO cartDAO)
-			throws SQLException, NumberFormatException {
-
-		int cartId = Integer.parseInt(request.getParameter("cartId"));
-		cartDAO.removeFromCart(cartId); // カート項目削除実行
-	}
-
-	/**
-	 * カート全削除処理
-	 */
-	private void clearCart(CartDAO cartDAO, String memberId) throws SQLException {
-		cartDAO.clearCart(memberId); // カート全削除実行
 	}
 
 	/**
@@ -183,7 +151,6 @@ public class Cart extends HttpServlet {
 	 */
 	private double calculateTotal(List<CartBean> cartItems, ProductDAO productDAO)
 			throws SQLException {
-
 		double total = 0.0;
 		for (CartBean cart : cartItems) {
 			ProductBean product = productDAO.getProductById(cart.getProduct_id());
@@ -195,7 +162,7 @@ public class Cart extends HttpServlet {
 	}
 
 	/**
-	 * ログインページリダイレクト
+	 * ログインリダイレクト
 	 */
 	private void redirectToLogin(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -207,11 +174,9 @@ public class Cart extends HttpServlet {
 	 */
 	private void handleError(HttpServletRequest request, HttpServletResponse response,
 			String message, Exception e) throws ServletException, IOException {
-
 		if (e != null) {
 			e.printStackTrace(); // コンソールログ出力
 		}
-
 		request.setAttribute("errorMessage", message);
 		request.setAttribute("returnUrl", "/cart");
 		RequestDispatcher rd = request.getRequestDispatcher("/views/Error.jsp");
