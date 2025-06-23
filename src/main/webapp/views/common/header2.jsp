@@ -38,6 +38,7 @@
              href="${pageContext.request.contextPath}/views/user-menu.jsp">
             会員情報
           </a>
+          
           <form action="${pageContext.request.contextPath}/logout"
                 method="post" style="display:inline;">
             <button type="submit" class="glass logout-btn">
