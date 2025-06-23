@@ -30,11 +30,9 @@
 			<div class="cart-container">
 				<c:forEach var="cart" items="${cartItems}">
 					<c:set var="product"
-						value="${requestScope['product_'.concat(cart.cart_id)]}" />
-					<div class="cart-item">
-						<img src="${product.image_url}" alt="${product.product_name}">
+						value="${requestScope[fn:concat('product_', cart.cart_id)]}" />
 
-						<div class="item-info">
+					<div class="item-info">
 							<h3>${product.product_name}</h3>
 							<fmt:formatNumber value="${product.price}" type="number"
 								maxFractionDigits="0" groupingUsed="false" var="priceInt" />
