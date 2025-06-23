@@ -18,7 +18,7 @@ import jp.co.aforce.beans.userBean;
 import jp.co.aforce.dao.CartDAO;
 import jp.co.aforce.dao.ProductDAO;
 
-@WebServlet("/views/cart/Cart")
+@WebServlet("/cart")
 public class Cart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
