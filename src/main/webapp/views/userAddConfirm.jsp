@@ -7,18 +7,24 @@
 <meta charset="UTF-8">
 <title>ユーザー登録確認ページ</title>
 <link rel="stylesheet" href="style/site.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/auth.css">
 </head>
 <body>
-<p>ユーザーID：</p>${user.memberId}
-<p>パスワード：</p>${user.password}
-<p>名前（姓）：</p>${user.lastname}
-<p>名前（名）：</p>${user.firstname}
-<p>メールアドレス：</p>${user.mailAddress}
-<p>住所：</p>${user.address}
-
-<form action="useradd-excute" method = "post">
-	<input type = "submit" value = "登録" >
-</form>
-<a href = "user-add.jsp">登録画面に戻る</a>
+    <div class="auth-container confirm-container">
+        <div class="confirm-info">
+            <p>ユーザーID：${user.memberId}</p>
+            <p>パスワード：${user.password}</p>
+            <p>名前（姓）：${user.lastname}</p>
+            <p>名前（名）：${user.firstname}</p>
+            <p>メールアドレス：${user.mailAddress}</p>
+            <p>住所：${user.address}</p>
+        </div>
+        <div class="button-group">
+            <form action="useradd-excute" method="post">
+                <button type="submit" class="auth-btn btn-primary">登録</button>
+            </form>
+            <a href="user-add.jsp" class="auth-btn btn-secondary">登録画面に戻る</a>
+        </div>
+    </div>
 </body>
 </html>
