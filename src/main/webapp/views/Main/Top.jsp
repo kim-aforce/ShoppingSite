@@ -9,11 +9,11 @@
 <link rel="stylesheet" href="../style/common.css">
 <style>
 @font-face {
-    font-family: 'mogihaPen';
-    src: url('../style/mogihaPen.otf') format('opentype');
+    font-family: 'TsukuhouShogoMin';
+    src: url('../style/TsukuhouShogoMin-OFL.otf') format('opentype');
 }
 body {
-    font-family: 'mogihaPen', serif;
+    font-family: 'TsukuhouShogoMin', serif;
 }
 </style>
 <!-- 必要に応じてCSS適用 -->
