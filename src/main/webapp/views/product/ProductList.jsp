@@ -19,17 +19,17 @@
 	<jsp:include page="../common/header2.jsp" />
 
 	<main>
-		<h2 style="color: #FAF9F6">商品一覧</h2>
+		<h2 class = "h2-layout" style="color: #FAF9F6">商品一覧</h2>
 		<form action="ProductList" method="get" class="search-form">
 			<input type="text" name="search" placeholder="検索"
 				value="${param.search}"> <select name="category">
-				<option value="">全て</option>
+				<option style = "color : #FAF9F6" value="">全て</option>
 				<c:forEach var="c" items="${categories}">
 					<option value="${c.category_id}"
 						${c.category_id == param.category ? 'selected' : ''}>${c.category_name}</option>
 				</c:forEach>
 			</select> <select name="sort">
-				<option value="">並び替え</option>
+				<option style = "color : #FAF9F6" value="">並び替え</option>
 				<option value="price_asc"
 					${param.sort == 'price_asc' ? 'selected' : ''}>価格が安い順</option>
 				<option value="price_desc"

@@ -7,10 +7,15 @@
 <title>ECサイト</title>
 <link rel="stylesheet" href="../style/Top.css">
 <link rel="stylesheet" href="../style/common.css">
-<link
-	href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
-	rel="stylesheet">
-
+<style>
+@font-face {
+    font-family: 'mogihaPen';
+    src: url('../style/mogihaPen.otf') format('opentype');
+}
+body {
+    font-family: 'mogihaPen', serif;
+}
+</style>
 <!-- 必要に応じてCSS適用 -->
 </head>
 <body>
