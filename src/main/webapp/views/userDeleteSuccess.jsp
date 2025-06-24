@@ -5,10 +5,14 @@
 <meta charset="UTF-8">
 <title>削除完了</title>
 <link rel="stylesheet" href="style/site.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/auth.css">
 </head>
 <body>
-<h2>削除完了</h2>
-
-<a href="login-in.jsp">ログイン画面へ戻る</a>
+    <div class="auth-container success-container">
+        <div class="success-message">
+            <h2>削除完了</h2>
+        </div>
+        <a href="${pageContext.request.contextPath}/views/Main/Top.jsp" class="auth-link">Top画面へ</a>
+    </div>
 </body>
 </html>
