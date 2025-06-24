@@ -8,7 +8,10 @@
 	<div class="header-container">
 		<!-- ロゴとホーム移動リンク -->
 		<h1 class="logo">
-			<a style = "color : #212121" href="${pageContext.request.contextPath}/views/Main/Top.jsp"">AlphaMale</a>
+			<a href="${pageContext.request.contextPath}/views/Main/Top.jsp">
+				<img src="${pageContext.request.contextPath}/views/img/logo.png"
+				alt="AlphaMale" class="logo-image" />
+			</a>
 		</h1>
 
 		<!-- ナビゲーションメニュー -->

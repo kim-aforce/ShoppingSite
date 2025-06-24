@@ -6,11 +6,11 @@
 <header class="glass header2">
   <div class="header-inner">
     <h1 class="logo">
-      <a style="color: #FAF9F6"
-         href="${pageContext.request.contextPath}/views/Main/Top.jsp">
-        AlphaMale
-      </a>
-    </h1>
+			<a href="${pageContext.request.contextPath}/views/Main/Top.jsp">
+				<img src="${pageContext.request.contextPath}/views/img/logo.png"
+				alt="AlphaMale" class="logo-image" />
+			</a>
+		</h1>
     <nav class="header-nav">
       <a class="glass"
            href="${pageContext.request.contextPath}/views/product/ProductList">
