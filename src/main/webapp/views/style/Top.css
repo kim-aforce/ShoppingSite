@@ -70,7 +70,7 @@ html {
 	height: 100%;
 	object-fit: cover;
 	z-index: 0;
-	background-image: url('../img/main-banner.jpg');
+       background-image: var(--banner-image, url('../img/godfather.jpg'));
 
 }
 #main-banner button:hover {

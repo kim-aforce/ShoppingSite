@@ -24,17 +24,18 @@ body {
 
 	<!-- メインバナー -->
 	<section id="main-banner">
-		<h2 style="color: #212121">男になりたいあなたの為に</h2>
+		<h2 style="color: #d4af37;">男になりたいあなたの為に</h2>
 		<!-- 商品一覧へ遷移 -->
 		<button class="glass"
 			onclick="location.href='../product/ProductList'">Shop Now</button>
-		<img src="../img/main-banner" alt="background" class="banner-img">
+               <img src="../img/godfather.jpg" alt="background" class="banner-img">
 
 	</section>
 
 
 	<!-- フッター  -->
-	<jsp:include page="../common/footer.jsp" />
+       <jsp:include page="../common/footer.jsp" />
+       <script src="../js/randomBanner.js"></script>
 
 </body>
 </html>
