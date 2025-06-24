@@ -28,7 +28,7 @@ body {
 		<!-- 商品一覧へ遷移 -->
 		<button class="glass"
 			onclick="location.href='../product/ProductList'">Shop Now</button>
-		<img src="../img/main-banner2.png" alt="background" class="banner-img">
+		<img src="../img/main-banner" alt="background" class="banner-img">
 
 	</section>
 
