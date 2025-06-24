@@ -8,21 +8,20 @@
 	<div class="header-container">
 		<!-- ロゴとホーム移動リンク -->
 		<h1 class="logo">
-			<a style="color: #FAF9F6"
-				href="${pageContext.request.contextPath}/views/Main/Top.jsp"">AlphaMale</a>
+			<a style = "color : #212121" href="${pageContext.request.contextPath}/views/Main/Top.jsp"">AlphaMale</a>
 		</h1>
 
 		<!-- ナビゲーションメニュー -->
 		<nav>
 			<!-- 商品一覧リンク -->
-			<a class="glass" href="${pageContext.request.contextPath}
+			<a class="glass" style = "color : #212121"  href="${pageContext.request.contextPath}
 			/views/product/ProductList">ProductList</a>
 			<!-- ログイン状態分岐 -->
 			<c:choose>
 				<c:when test="${not empty sessionScope.user}">
 					<!--ログイン時表示 -->
-					<a class="glass" href="${pageContext.request.contextPath}/cart">Cart</a>
-					<a class="glass" id="logout-link"
+					<a style = "color : #212121" class="glass" href="${pageContext.request.contextPath}/cart">Cart</a>
+					<a style = "color : #212121" class="glass" id="logout-link"
 						href="${pageContext.request.contextPath}/logout">Logout</a>
 				</c:when>
 
@@ -32,9 +31,9 @@
 						method="post" class="login-form">
 						<input type="text" name="id" placeholder="ID"> <input
 							type="password" name="pw" placeholder="PW">
-						<button type="submit" class="glass">Login</button>
+						<button style = "color : #212121" type="submit" class="glass">Login</button>
 					</form>
-					<a class="glass"
+					<a class="glass"style = "color : #212121" 
 						href="${pageContext.request.contextPath}/views/user-add.jsp">Register</a>
 				</c:otherwise>
 			</c:choose>
