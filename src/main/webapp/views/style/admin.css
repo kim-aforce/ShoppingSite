@@ -1,5 +1,12 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'TsukuhouShogoMin';
+    src: url('../style/TsukuhouShogoMin-OFL.otf') format('opentype');
+}
 
+html {
+    font-size: var(--base-font-size);
+}
 /* admin.css */
 
 /* modal bg */

@@ -8,7 +8,11 @@ html, body {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
-    font-family: 'Playfair Display', serif;
+        font-family: 'TsukuhouShogoMin', sans-serif;
+}
+
+html {
+        font-size: var(--base-font-size);
 }
 
 #main-banner {
@@ -66,6 +70,8 @@ html, body {
 	height: 100%;
 	object-fit: cover;
 	z-index: 0;
+	background-image: url('../img/main-banner.jpg');
+
 }
 #main-banner button:hover {
     transform: translateY(-2px) scale(1.05);
