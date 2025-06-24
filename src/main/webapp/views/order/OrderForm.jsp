@@ -65,7 +65,10 @@
 					<c:set var="product"
 						value="${requestScope['product_'.concat(cart.cart_id)]}" />
 					<div class="order-item">
-						<img src="${product.image_url}" alt="${product.product_name}">
+						<img
+							src="${not empty product.image_url ? product.image_url : '/views/img/default-product.png'}"
+							alt="${product.product_name}"
+							onerror="this.src='${pageContext.request.contextPath}/views/img/default-product.png'">
 						<div class="item-details">
 							<h4>${product.product_name}</h4>
 							<p>数量: ${cart.quantity}</p>
