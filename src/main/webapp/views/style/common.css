@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
-    font-family: 'mogihaPen';
-    src: url('../style/mogihaPen.ttf') format('truetype');
+    font-family: 'TsukuhouShogoMin';
+    src: url('../style/TsukuhouShogoMin-OFL.otf') format('opentype');
 }
 
 /* グローバルサイトスタイル - 高級感のある男性向けテーマ */
@@ -13,7 +13,9 @@
 	--medium-gray: #666666;
 	--light-gray: #cccccc;
 	--off-white: #f8f8f8;
-	--pure-white: #ffffff;
+        --pure-white: #ffffff;
+        /* ベースフォントサイズ */
+        --base-font-size: 16px;
 	
 	/* アクセントカラー */
 	--accent-gold: #d4af37;
@@ -45,7 +47,11 @@
 
 /* ベーススタイル */
 * {
-	box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+html {
+        font-size: var(--base-font-size);
 }
 
 body {
@@ -54,7 +60,7 @@ body {
 	padding-top: 5rem;
 	background: var(--bg-gradient);
 	color: var(--text-primary);
-	font-family: 'mogihaPen', 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'TsukuhouShogoMin', 'Helvetica Neue', Arial, sans-serif;
 	line-height: 1.6;
 	min-height: 100vh;
 	
@@ -91,7 +97,7 @@ main {
 	min-height: calc(100vh - 10rem);
 }
 .header-container {
-    font-family: 'mogihaPen', sans-serif;
+    font-family: 'TsukuhouShogoMin', sans-serif;
 }
 
 /* リンクスタイル */

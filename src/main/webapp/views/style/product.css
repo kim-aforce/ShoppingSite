@@ -1,14 +1,18 @@
 @charset "UTF-8";
 @font-face {
-    font-family: 'mogihaPen';
-    src: url('../style/mogihaPen.ttf') format('truetype');
+    font-family: 'TsukuhouShogoMin';
+    src: url('../style/TsukuhouShogoMin-OFL.otf') format('opentype');
+}
+
+html {
+        font-size: var(--base-font-size);
 }
 
 /* 商品ページスタイル - 高級感モノクロテーマ */
 body {
 	padding-top: 5rem;
 	background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
-	font-family: 'mogihaPen', sans-serif;
+        font-family: 'TsukuhouShogoMin', sans-serif;
 	color: #ffffff;
 	background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
 
