@@ -6,6 +6,8 @@
 </head>
 <body>
 <h2>会員登録が完了しました。</h2>
-<p><a href="login-in.jsp">ログイン画面へ</a></p>
+<p>
+<a style="color: #FAF9F6"　href="../views/Main/Top.jsp"">AlphaMale</a>
+</p>
 </body>
 </html>
