@@ -1,5 +1,8 @@
 @charset "UTF-8";
-
+@font-face {
+    font-family: 'mogihaPen';
+    src: url('../style/mogihaPen.ttf') format('truetype');
+}
 /* admin.css */
 
 /* modal bg */
