@@ -6,15 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>注文完了</title>
-<link rel="stylesheet" href="../style/common.css">
-<link rel="stylesheet" href="../style/site.css">
-<link rel="stylesheet" href="../style/order.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/order.css">
 </head>
 <body>
     <jsp:include page="../common/header2.jsp" />
     
     <main class="order-complete-container">
-        <div class="step-bar">Step1. Cart ▶ Step2. Order ▶ Step3. Order Confirmed</div>
+        <div class="step-bar">
+            <span class="step-inactive">Step1. Cart</span> ▶ 
+            <span class="step-inactive">Step2. Order</span> ▶ 
+            <span class="step-active">Step3. Order Confirmed</span>
+        </div>
         
         <div class="complete-message">
             <h2>注文を完了しました。</h2>

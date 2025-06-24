@@ -13,9 +13,13 @@
     </h1>
     <nav class="header-nav">
       <a class="glass"
-         href="${pageContext.request.contextPath}/views/product/ProductList">
-        商品一覧
-      </a>
+           href="${pageContext.request.contextPath}/views/product/ProductList">
+          商品一覧
+        </a>
+        <a class="glass"
+           href="${pageContext.request.contextPath}/cart">
+          カート
+        </a>
 
       <c:if test="${not empty sessionScope.user and sessionScope.user.userType == 'ADMIN'}">
         <a class="glass"
@@ -31,9 +35,9 @@
         <%-- ログインの場合 --%>
         <c:when test="${not empty sessionScope.user}">
           <a class="glass"
-             href="${pageContext.request.contextPath}/views/order/OrderHistory.jsp">
-            注文履歴
-          </a>
+               href="${pageContext.request.contextPath}/views/order/OrderHistory">
+              注文履歴
+            </a>
           <a class="glass"
              href="${pageContext.request.contextPath}/views/user-menu.jsp">
             会員情報
