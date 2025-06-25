@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/order.css">
 </head>
 <body>
-    <jsp:include page="../common/header2.jsp" />
+    <jsp:include page="../common/header.jsp" />
     
     <main class="order-complete-container">
         <div class="step-bar">
@@ -30,7 +30,7 @@
         
         <div class="complete-actions">
             <a href="${pageContext.request.contextPath}/views/Main/Top.jsp" class="btn top-btn">TOPページへ</a>
-            <a href="${pageContext.request.contextPath}/views/order/OrderHistory.jsp" class="btn history-btn">注文履歴</a>
+            <a href="${pageContext.request.contextPath}/views/order/OrderHistory" class="btn history-btn">注文履歴</a>
         </div>
     </main>
     

@@ -16,7 +16,7 @@
 <body>
 
 	<!-- ヘッダー挿入 -->
-	<jsp:include page="../common/header2.jsp" />
+	<jsp:include page="../common/header.jsp" />
 
 	<main>
 		<h2 class = "h2-layout" style="color: #FAF9F6">商品一覧</h2>
