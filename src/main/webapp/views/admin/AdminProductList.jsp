@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,7 @@
 
     <main class="admin-main">
         <!--  ページタイトル -->
-        <h2 class="page-title">商品管理</h2>
+        <h2 style="color: #d4af37;" class="page-title">商品管理</h2>
 
         <div class="admin-actions">
             <button id="btn-create" class="action-btn">商品情報登録</button>          <!-- 登録modal trigger -->

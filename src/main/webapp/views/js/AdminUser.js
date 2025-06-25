@@ -13,7 +13,7 @@ function closeModal(id) {
 // イベントリスナー登録
 document.querySelectorAll('.action-btn').forEach(btn => {
     const map = {
-		'btn-eidt-user' : 'modal-edit-user', 
+		'btn-editt-user' : 'modal-edit-user', 
 		'btn-delete-user':'modal-delete-user', 
 		'btn-change-type':'modal-change-type' 
 	};

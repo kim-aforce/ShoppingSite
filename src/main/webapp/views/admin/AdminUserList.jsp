@@ -19,7 +19,7 @@
 
     <main class="admin-main">
         <!-- ページタイトル -->
-        <h2 class="page-title">会員管理</h2>
+        <h2 style="color: #d4af37;" class="page-title">会員管理</h2>
 
         <div class="admin-actions">
             <button id="btn-edit-user" class="action-btn">会員修正</button>          <!-- 編集modal trigger  -->

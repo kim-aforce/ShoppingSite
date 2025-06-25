@@ -6,7 +6,7 @@
     <!-- ロゴ -->
     <h1 class="logo">
 			<a href="${pageContext.request.contextPath}/views/Main/Top.jsp">
-				<img src="${pageContext.request.contextPath}/views/img/logo.png"
+				<img  src="${pageContext.request.contextPath}/views/img/logo.png"
 				alt="AlphaMale" class="logo-image" />
 			</a>
 		</h1>
