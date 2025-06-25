@@ -41,17 +41,17 @@
 					
 					<div class="form-group">
 						<label>都道府県</label> 
-						<input type="text" id="prefecture" readonly style="background: rgba(255,255,255,0.1);">
+						<input type="text" id="prefecture" style="background: rgba(255,255,255,0.1);">
 					</div>
 					
 					<div class="form-group">
 						<label>市区町村</label> 
-						<input type="text" id="city" readonly style="background: rgba(255,255,255,0.1);">
+						<input type="text" id="city" style="background: rgba(255,255,255,0.1);">
 					</div>
 					
 					<div class="form-group">
 						<label>町域番地</label> 
-						<input type="text" id="town" readonly style="background: rgba(255,255,255,0.1);">
+						<input type="text" id="town" style="background: rgba(255,255,255,0.1);">
 					</div>
 					
 					<div class="form-group">
