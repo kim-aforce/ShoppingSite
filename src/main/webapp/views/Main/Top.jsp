@@ -29,7 +29,6 @@ body {
 		<button class="glass"
 			onclick="location.href='../product/ProductList'">Shop Now</button>
                <img src="../img/godfather.jpg" alt="background" class="banner-img">
-
 	</section>
 
 
