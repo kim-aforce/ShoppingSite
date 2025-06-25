@@ -30,16 +30,38 @@
 				<div class="shipping-section">
 					<h3>配送情報</h3>
 					<div class="form-group">
-						<label>宛名</label> <input type="text"
-							value="${user.lastname} ${user.firstname}" readonly>
+						<label>宛名</label> 
+						<input type="text" value="${user.lastname} ${user.firstname}" readonly>
 					</div>
+					
 					<div class="form-group">
-						<label>配送先住所</label> <input type="text" name="shippingAddress"
-							value="${user.address}" required>
+						<label>郵便番号</label> 
+						<input type="text" id="zipcode" placeholder="1234567" maxlength="7" style="width: 150px;">
 					</div>
+					
 					<div class="form-group">
-						<label>連絡先</label> <input type="email" value="${user.mailAddress}"
-							readonly>
+						<label>都道府県</label> 
+						<input type="text" id="prefecture" readonly style="background: rgba(255,255,255,0.1);">
+					</div>
+					
+					<div class="form-group">
+						<label>市区町村</label> 
+						<input type="text" id="city" readonly style="background: rgba(255,255,255,0.1);">
+					</div>
+					
+					<div class="form-group">
+						<label>町域番地</label> 
+						<input type="text" id="town" readonly style="background: rgba(255,255,255,0.1);">
+					</div>
+					
+					<div class="form-group">
+						<label>建物名・部屋番号</label> 
+						<input type="text" id="detail" name="shippingAddress" placeholder="マンション名、部屋番号など" required>
+					</div>
+					
+					<div class="form-group">
+						<label>連絡先</label> 
+						<input type="email" value="${user.mailAddress}" readonly>
 					</div>
 				</div>
 
@@ -47,13 +69,9 @@
 				<div class="payment-section">
 					<h3>お支払方法</h3>
 					<div class="payment-options">
-						<label> <input type="radio" name="payment" value="credit"
-							checked> クレジットカード
-						</label> <label> <input type="radio" name="payment" value="bank">
-							口座振込
-						</label> <label> <input type="radio" name="payment" value="later">
-							後払い
-						</label>
+						<label> <input type="radio" name="payment" value="credit" checked> クレジットカード</label> 
+						<label> <input type="radio" name="payment" value="bank"> 口座振込</label> 
+						<label> <input type="radio" name="payment" value="later"> 後払い</label>
 					</div>
 				</div>
 			</div>
@@ -62,8 +80,7 @@
 			<div class="order-items">
 				<h3>注文商品</h3>
 				<c:forEach var="cart" items="${cartItems}">
-					<c:set var="product"
-						value="${requestScope['product_'.concat(cart.cart_id)]}" />
+					<c:set var="product" value="${requestScope['product_'.concat(cart.cart_id)]}" />
 					<div class="order-item">
 						<img
 							src="${not empty product.image_url ? product.image_url : '/views/img/default-product.png'}"
@@ -72,20 +89,16 @@
 						<div class="item-details">
 							<h4>${product.product_name}</h4>
 							<p>数量: ${cart.quantity}</p>
-							<fmt:formatNumber value="${product.price}" type="number"
-								maxFractionDigits="0" groupingUsed="false" var="priceInt" />
+							<fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="0" groupingUsed="false" var="priceInt" />
 							<p>価格: ¥${priceInt}</p>
-							<fmt:formatNumber value="${product.price * cart.quantity}"
-								type="number" maxFractionDigits="0" groupingUsed="false"
-								var="itemTotal" />
+							<fmt:formatNumber value="${product.price * cart.quantity}" type="number" maxFractionDigits="0" groupingUsed="false" var="itemTotal" />
 							<p class="item-subtotal">小計: ¥${itemTotal}</p>
 						</div>
 					</div>
 				</c:forEach>
 
 				<div class="order-total">
-					<fmt:formatNumber value="${totalAmount}" type="number"
-						maxFractionDigits="0" groupingUsed="false" var="totalInt" />
+					<fmt:formatNumber value="${totalAmount}" type="number" maxFractionDigits="0" groupingUsed="false" var="totalInt" />
 					<h3>合計金額: ¥${totalInt}</h3>
 				</div>
 			</div>
@@ -97,5 +110,8 @@
 	</main>
 
 	<jsp:include page="../common/footer.jsp" />
+	
+	<script src="${pageContext.request.contextPath}/views/js/zipcode.js"></script>
+	
 </body>
 </html>
