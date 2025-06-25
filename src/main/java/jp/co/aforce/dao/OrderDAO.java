@@ -10,7 +10,6 @@ import java.util.List;
 
 import jp.co.aforce.beans.CartBean;
 import jp.co.aforce.beans.OrderBean;
-import jp.co.aforce.beans.ProductBean;
 
 /**
  * 注文管理DAO
@@ -47,26 +46,20 @@ public class OrderDAO extends DAO {
     /**
      * 注文商品追加
      */
-    public void addOrderItems(int orderId, List<CartBean> cartItems, ProductDAO productDAO) 
-            throws SQLException {
-        String sql = "INSERT INTO order_items (order_id, product_id, quantity, unit_price) " +
-                    "VALUES (?, ?, ?, ?)";
+    public void addOrderItems(int orderId, List<CartBean> cartItems) throws SQLException {
+        String sql = "INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)";
         
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             
             for (CartBean cart : cartItems) {
-                // 商品情報取得
-                ProductBean product = productDAO.getProductById(cart.getProduct_id());
-                if (product != null) {
-                    ps.setInt(1, orderId);                   // 注文ID設定
-                    ps.setInt(2, cart.getProduct_id());      // 商品ID設定
-                    ps.setInt(3, cart.getQuantity());        // 数量設定
-                    ps.setDouble(4, product.getPrice());     // 単価設定
-                    ps.addBatch();                           // バッチ追加
-                }
+                ps.setInt(1, orderId);
+                ps.setInt(2, cart.getProduct_id());
+                ps.setInt(3, cart.getQuantity());
+                ps.setDouble(4, cart.getPrice());
+                ps.addBatch();
             }
-            ps.executeBatch();                               // バッチ実行
+            ps.executeBatch();
         }
     }
     

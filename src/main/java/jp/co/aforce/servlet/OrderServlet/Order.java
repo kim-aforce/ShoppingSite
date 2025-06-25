@@ -45,25 +45,29 @@ public class Order extends HttpServlet {
 
 		try {
 			CartDAO cartDAO = new CartDAO();
-			ProductDAO productDAO = new ProductDAO();
 
-			// カート項目取得
-			List<CartBean> cartItems = cartDAO.getCartByMemberId(user.getMemberId());
-
+			 // カート項目取得
+            List<CartBean> cartItems = cartDAO.getCartByMemberId(user.getMemberId());
+            
 			if (cartItems.isEmpty()) {
 				response.sendRedirect(request.getContextPath() + "/cart");
 				return;
 			}
 
 			// 商品情報追加・合計計算
-			double totalAmount = 0.0;
-			for (CartBean cart : cartItems) {
-				ProductBean product = productDAO.getProductById(cart.getProduct_id());
-				if (product != null) {
-					request.setAttribute("product_" + cart.getCart_id(), product);
-					totalAmount += product.getPrice() * cart.getQuantity();
-				}
-			}
+			// 商品情報追加・合計計算
+            double totalAmount = 0.0;
+            for (CartBean cart : cartItems) {
+                    ProductBean product = new ProductBean();
+                    product.setProduct_id(cart.getProduct_id());
+                    product.setProduct_name(cart.getProduct_name());
+                    product.setPrice(cart.getPrice());
+                    product.setImage_url(cart.getImage_url());
+                    request.setAttribute("product_" + cart.getCart_id(), product);
+                    if (cart.getPrice() != null) {
+                            totalAmount += cart.getPrice() * cart.getQuantity();
+                    }
+            }
 
 			// リクエスト属性設定
 			request.setAttribute("cartItems", cartItems);
@@ -101,7 +105,7 @@ public class Order extends HttpServlet {
 		try {
 			CartDAO cartDAO = new CartDAO();
 			OrderDAO orderDAO = new OrderDAO();
-			ProductDAO productDAO = new ProductDAO();
+			
 
 			// カート項目取得
 			List<CartBean> cartItems = cartDAO.getCartByMemberId(user.getMemberId());
@@ -112,7 +116,7 @@ public class Order extends HttpServlet {
 			}
 
 			// 合計金額計算
-			double totalAmount = calculateTotal(cartItems, productDAO);
+            double totalAmount = calculateTotal(cartItems);
 
 			// 注文Bean作成
 			OrderBean order = new OrderBean();
@@ -127,8 +131,8 @@ public class Order extends HttpServlet {
 			order.setDelivery_address(shippingAddress); // 配送先設定
 
 			// 注文作成
-			int orderId = orderDAO.createOrder(order); // 注文INSERT
-			orderDAO.addOrderItems(orderId, cartItems, productDAO); // 注文商品INSERT
+			int orderId = orderDAO.createOrder(order); // 注, productDAO文INSERT
+			orderDAO.addOrderItems(orderId, cartItems); // 注文商品INSERT
 
 			// 在庫減算
 			for (CartBean cart : cartItems) {
@@ -149,16 +153,14 @@ public class Order extends HttpServlet {
 	/**
 	 * 合計金額計算
 	 */
-	private double calculateTotal(List<CartBean> cartItems, ProductDAO productDAO)
-			throws SQLException {
-		double total = 0.0;
-		for (CartBean cart : cartItems) {
-			ProductBean product = productDAO.getProductById(cart.getProduct_id());
-			if (product != null) {
-				total += product.getPrice() * cart.getQuantity(); // 小計加算
-			}
-		}
-		return total;
+	private double calculateTotal(List<CartBean> cartItems) {
+        double total = 0.0;
+        for (CartBean cart : cartItems) {
+                if (cart.getPrice() != null) {
+                        total += cart.getPrice() * cart.getQuantity();
+                }
+        }
+        return total;
 	}
 
 	/**
