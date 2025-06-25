@@ -35,7 +35,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label>郵便番号</label> 
+						<label>郵便番号 (-なしで入力)</label> 
 						<input type="text" id="zipcode" placeholder="1234567" maxlength="7" style="width: 150px;">
 					</div>
 					
@@ -85,8 +85,8 @@
 						<img
 							src="${not empty product.image_url ? product.image_url : '/views/img/default-product.png'}"
 							alt="${product.product_name}"
-							onerror="this.src='${pageContext.request.contextPath}/views/img/default-product.png'">
-						<div class="item-details">
+<img src="${cart.image_url}" 
+     onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNjY2MiLz48L3N2Zz4='">						<div class="item-details">
 							<h4>${product.product_name}</h4>
 							<p>数量: ${cart.quantity}</p>
 							<fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="0" groupingUsed="false" var="priceInt" />

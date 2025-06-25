@@ -54,8 +54,8 @@
 							<img
 								src="${not empty cart.image_url ? cart.image_url : '/views/img/default-product.png'}"
 								alt="${cart.product_name}"
-								onerror="this.src='${pageContext.request.contextPath}/views/img/default-product.png'">
-							<div class="item-details">
+<img src="${cart.image_url}" 
+     onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNjY2MiLz48L3N2Zz4='">							<div class="item-details">
 								<h3>${cart.product_name}</h3>
 								<fmt:formatNumber value="${cart.price}" type="number"
 									maxFractionDigits="0" groupingUsed="false" var="priceInt" />
