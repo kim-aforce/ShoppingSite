@@ -10,7 +10,7 @@ html {
 
 /* 商品ページスタイル - 高級感モノクロテーマ */
 body {
-	padding-top: 5rem;
+	padding-top: 0rem;
 	background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
         font-family: 'TsukuhouShogoMin', sans-serif;
 	color: #ffffff;
