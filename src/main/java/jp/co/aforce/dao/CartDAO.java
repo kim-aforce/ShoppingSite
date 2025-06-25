@@ -153,11 +153,14 @@ public class CartDAO extends DAO {
      */
     private CartBean mapRow(ResultSet rs) throws SQLException {
         CartBean cart = new CartBean();
-        cart.setCart_id(rs.getInt("cart_id"));            // カートID
-        cart.setMember_id(rs.getString("member_id"));     // 会員ID
-        cart.setProduct_id(rs.getInt("product_id"));      // 商品ID
-        cart.setQuantity(rs.getInt("quantity"));          // 数量
-        cart.setCreated_at(rs.getString("created_at"));   // 作成日時
-        return cart;                                       // Bean返却
+        cart.setCart_id(rs.getInt("cart_id"));
+        cart.setMember_id(rs.getString("member_id"));
+        cart.setProduct_id(rs.getInt("product_id"));
+        cart.setQuantity(rs.getInt("quantity"));
+        cart.setCreated_at(rs.getString("created_at"));
+        cart.setProduct_name(rs.getString("product_name"));
+        cart.setPrice(rs.getDouble("price"));
+        cart.setImage_url(rs.getString("image_url"));
+        return cart;
     }
 }

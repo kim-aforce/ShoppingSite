@@ -13,10 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import jp.co.aforce.beans.CartBean;
-import jp.co.aforce.beans.ProductBean;
 import jp.co.aforce.beans.userBean;
 import jp.co.aforce.dao.CartDAO;
-import jp.co.aforce.dao.ProductDAO;
 
 @WebServlet("/cart")
 public class Cart extends HttpServlet {
@@ -44,22 +42,15 @@ public class Cart extends HttpServlet {
 
 		try {
 			CartDAO cartDAO = new CartDAO();
-			ProductDAO productDAO = new ProductDAO();
 
-			// カート項目取得
+			// カート項目取得（商品情報JOIN済み）
 			List<CartBean> cartItems = cartDAO.getCartByMemberId(user.getMemberId());
+			double totalAmount = 0.0;
 
-			// 各カート項目に商品情報追加
+			// 合計金額計算（JOIN結果活用）
 			for (CartBean cart : cartItems) {
-				ProductBean product = productDAO.getProductById(cart.getProduct_id());
-				if (product != null) {
-					// カートBean拡張情報設定（JSPで使用）
-					request.setAttribute("product_" + cart.getCart_id(), product);
-				}
+				totalAmount += cart.getPrice() * cart.getQuantity();
 			}
-
-			// 合計金額計算
-			double totalAmount = calculateTotal(cartItems, productDAO);
 
 			// リクエスト属性設定
 			request.setAttribute("cartItems", cartItems);
@@ -142,11 +133,11 @@ public class Cart extends HttpServlet {
 		}
 
 		CartBean cart = new CartBean();
-		cart.setMember_id(memberId); // 会員ID設定
-		cart.setProduct_id(productId); // 商品ID設定
-		cart.setQuantity(quantity); // 数量設定
+		cart.setMember_id(memberId);     // 会員ID設定
+		cart.setProduct_id(productId);   // 商品ID設定
+		cart.setQuantity(quantity);      // 数量設定
 
-		cartDAO.addToCart(cart); // カート追加実行
+		cartDAO.addToCart(cart);         // カート追加実行
 	}
 
 	/**
@@ -158,7 +149,7 @@ public class Cart extends HttpServlet {
 		int cartId = Integer.parseInt(request.getParameter("cartId"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-		cartDAO.updateQuantity(cartId, quantity); // 数量更新実行
+		cartDAO.updateQuantity(cartId, quantity);    // 数量更新実行
 	}
 
 	/**
@@ -168,30 +159,14 @@ public class Cart extends HttpServlet {
 			throws SQLException, NumberFormatException {
 
 		int cartId = Integer.parseInt(request.getParameter("cartId"));
-		cartDAO.removeFromCart(cartId); // カート項目削除実行
+		cartDAO.removeFromCart(cartId);              // カート項目削除実行
 	}
 
 	/**
 	 * カート全削除処理
 	 */
 	private void clearCart(CartDAO cartDAO, String memberId) throws SQLException {
-		cartDAO.clearCart(memberId); // カート全削除実行
-	}
-
-	/**
-	 * 合計金額計算
-	 */
-	private double calculateTotal(List<CartBean> cartItems, ProductDAO productDAO)
-			throws SQLException {
-
-		double total = 0.0;
-		for (CartBean cart : cartItems) {
-			ProductBean product = productDAO.getProductById(cart.getProduct_id());
-			if (product != null) {
-				total += product.getPrice() * cart.getQuantity(); // 小計加算
-			}
-		}
-		return total;
+		cartDAO.clearCart(memberId);                 // カート全削除実行
 	}
 
 	/**
@@ -209,7 +184,7 @@ public class Cart extends HttpServlet {
 			String message, Exception e) throws ServletException, IOException {
 
 		if (e != null) {
-			e.printStackTrace(); // コンソールログ出力
+			e.printStackTrace();                      // コンソールログ出力
 		}
 
 		request.setAttribute("errorMessage", message);
