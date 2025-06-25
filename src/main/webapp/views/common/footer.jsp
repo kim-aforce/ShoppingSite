@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<style>
+body {
+	display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+	
+}
+</style>
 <!-- footer.jsp -->
 <footer>
     <!-- 半透明ガラス風フッター -->

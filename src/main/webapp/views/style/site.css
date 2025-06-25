@@ -89,7 +89,7 @@ main {
 	padding: 2rem 1rem;
 	margin: 0 auto;
 	max-width: 1400px;
-	min-height: calc(100vh - 10rem);
+	min-height: calc(100vh - 200px);
 }
 
 /* リンクスタイル */
