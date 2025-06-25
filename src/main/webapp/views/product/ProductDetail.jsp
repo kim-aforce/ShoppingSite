@@ -13,7 +13,7 @@
 </head>
 <body>
 	<!-- ヘッダー挿入 -->
-	<jsp:include page="../common/header2.jsp" />
+	<jsp:include page="../common/header.jsp" />
 
 	<main class="product-detail-container">
 		<div class="product-detail-grid">

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/cart.css">
 </head>
 <body>
-    <jsp:include page="../common/header2.jsp" />
+    <jsp:include page="../common/header.jsp" />
     
     <main>
         <c:if test="${empty cartItems}">

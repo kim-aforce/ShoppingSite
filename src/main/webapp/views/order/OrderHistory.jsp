@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../style/order-history.css">
 </head>
 <body>
-    <jsp:include page="../common/header2.jsp" />
+    <jsp:include page="../common/header.jsp" />
     
     <main class="order-history-container">
         <h2>注文履歴</h2>

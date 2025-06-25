@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- 共通ヘッダー読み込み -->
-    <jsp:include page="../common/header2.jsp"/>
+    <jsp:include page="../common/header.jsp"/>
 
     <main class="admin-main">
         <!--  ページタイトル -->
