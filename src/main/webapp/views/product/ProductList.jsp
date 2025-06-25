@@ -9,9 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>商品一覧</title>
+<link rel="stylesheet" href="../style/site.css">
 <link rel="stylesheet" href="../style/common.css">
 <link rel="stylesheet" href="../style/product.css">
-<link rel="stylesheet" href="../style/site.css">
 </head>
 <body>
 

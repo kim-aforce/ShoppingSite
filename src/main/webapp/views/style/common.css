@@ -15,6 +15,7 @@
 	backdrop-filter: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	padding: 0.75rem 0;
+	overflow: visible;
 }
 
 .header-container {
@@ -25,6 +26,7 @@
 	align-items: center;
 	padding: 0 1rem;
 	gap: 2rem;
+	overflow: visible;
 }
 
 /* ロゴ */
@@ -48,7 +50,7 @@
 }
 
 .logo-image {
-	height: 64px;
+	height: 100px;
 	width: auto;
 }
 
@@ -118,8 +120,8 @@
 	visibility: hidden;
 	transform: translateY(-10px);
 	transition: all 0.3s ease;
-	z-index: 10001;
-	/* 1001 → 10001 */
+	z-index: 10001;/* 1001 → 10001 */
+	overflow: visible;
 }
 
 .dropdown-menu.show {
