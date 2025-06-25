@@ -242,7 +242,7 @@ input::placeholder {
 	border-radius: 0;
 	padding: 2rem;
 	margin-bottom: 2rem;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(5px);
 	transition: all 0.3s ease;
 }
 
@@ -256,13 +256,16 @@ input::placeholder {
 /* グラス効果 */
 .glass {
 	background: rgba(255, 255, 255, 0.03);
-	backdrop-filter: blur(15px);
-	-webkit-backdrop-filter: blur(15px);
-	border: var(--border-subtle);
-	border-radius: 0;
-	box-shadow: var(--shadow-subtle);
-	position: relative;
-	overflow: hidden;
+		backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
+		border: var(--border-subtle);
+		border-radius: 0;
+		box-shadow: var(--shadow-subtle);
+		position: relative;
+		overflow: hidden;
+	}
+	.glass.header-unified {
+	        overflow: visible;
 }
 
 .glass::before {

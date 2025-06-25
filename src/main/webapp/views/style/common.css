@@ -1,231 +1,251 @@
 :root {
-  --text-primary: #000000;
-  --accent-gold: #d4af37;
-  --error-red: #dc3545;
+	--text-primary: #000000;
+	--accent-gold: #d4af37;
+	--error-red: #dc3545;
 }
 
 /* integrate header */
 .header-unified {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0.75rem 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+/*	background: rgba(255, 255, 255, 0.1);*/
+	background: transparent;
+	backdrop-filter: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 0.75rem 0;
 }
 
 .header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-    gap: 2rem;
+	max-width: 1400px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 1rem;
+	gap: 2rem;
 }
 
 /* ロゴ */
 .logo {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
+	margin: 0;
+	font-size: 2.2rem;
+	font-weight: 700;
 }
 
 .logo-text {
-    background: linear-gradient(45deg, #000000, #d4af37);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 1px;
+	background: linear-gradient(45deg, #000000, #d4af37);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	letter-spacing: 1px;
+	text-shadow: 
+	    -2px -2px 0 #d4af37,
+	    2px -2px 0 #d4af37,
+	    -2px 2px 0 #d4af37,
+	    2px 2px 0 #d4af37;
 }
+
 .logo-image {
-    height: 48px;
-    width: auto;
+	height: 64px;
+	width: auto;
 }
+
 .header-unified {
-    z-index: 9999; /* 1000 → 9999 */
+	z-index: 9999;
+	/* 1000 → 9999 */
 	top: 0 !important;
-	    position: fixed !important;
+	position: fixed !important;
 }
+
 /* ナビゲーション */
 .header-nav {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
 }
 
 .nav-link {
 	color: var(--text-dark);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
+	text-decoration: none;
+	padding: 0.5rem 1rem;
+	border-radius: 6px;
+	transition: all 0.3s ease;
+	font-size: 0.9rem;
+	font-weight: 500;
+	cursor: pointer;
+}
+.nav-link{	
+	font-size: 1.2rem;
+	text-shadow:
+	-1px -1px 0 #d4af37,
+		1px -1px 0 #d4af37,
+		-1px 1px 0 #d4af37,
+		1px 1px 0 #d4af37;
+		color: #212121;
 }
 
 .nav-link:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--accent-gold);
+	background: rgba(212, 175, 55, 0.1);
+	color: var(--accent-gold);
 }
 
 /* ドロップダウン */
 .dropdown {
-    position: relative;
+	position: relative;
 	z-index: 10000;
 
 }
 
 .dropdown-toggle::after {
-    content: ' ▼';
-    font-size: 0.7rem;
-    margin-left: 0.3rem;
+	content: ' ▼';
+	font-size: 0.7rem;
+	margin-left: 0.3rem;
 }
 
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    min-width: 160px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-	z-index: 10001; /* 1001 → 10001 */
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background: rgba(255, 255, 255, 0.98);
+	backdrop-filter: blur(15px);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	min-width: 160px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-10px);
+	transition: all 0.3s ease;
+	z-index: 10001;
+	/* 1001 → 10001 */
 }
 
 .dropdown-menu.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
 }
 
 .dropdown-menu a,
 .dropdown-menu button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 1rem;
+	display: block;
+	width: 100%;
+	padding: 0.75rem 1rem;
 	color: var(--text-dark);
-    text-decoration: none;
-    border: none;
-    background: none;
-    text-align: left;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
+	text-decoration: none;
+	border: none;
+	background: none;
+	text-align: left;
+	font-size: 0.9rem;
+	cursor: pointer;
+	transition: background 0.2s ease;
 }
 
 .dropdown-menu a:hover,
 .dropdown-menu button:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--accent-gold);
+	background: rgba(212, 175, 55, 0.1);
+	color: var(--accent-gold);
 }
 
 /* 認証セクション */
 .auth-section {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
 .login-form {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }
 
 .login-input {
-    padding: 0.4rem 0.8rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    font-size: 0.85rem;
-    width: 80px;
-    background: rgba(255, 255, 255, 0.9);
+	padding: 0.4rem 0.8rem;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	font-size: 0.85rem;
+	width: 80px;
+	background: rgba(255, 255, 255, 0.9);
 }
 
 .login-input:focus {
-    outline: none;
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+	outline: none;
+	border-color: var(--accent-gold);
+	box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
 }
 
 .btn-login {
-    padding: 0.4rem 1rem;
-    background: var(--accent-gold);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
+	padding: 0.4rem 1rem;
+	background: var(--accent-gold);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 0.85rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
 
 .btn-login:hover {
-    background: #b8941f;
-    transform: translateY(-1px);
+	background: #b8941f;
+	transform: translateY(-1px);
 }
 
 .logout-btn {
-    color: var(--error-red);
-    font-weight: 500;
+	color: var(--error-red);
+	font-weight: 500;
 }
 
 .logout-btn:hover {
-    background: rgba(220, 53, 69, 0.1);
-    color: var(--error-red);
+	background: rgba(220, 53, 69, 0.1);
+	color: var(--error-red);
 }
 
 /* レスポンシブ */
 @media (max-width: 768px) {
-    .header-container {
-        padding: 0 0.5rem;
-        gap: 1rem;
-    }
-    
-    .header-nav {
-        gap: 0.75rem;
-    }
-    
-    .nav-link {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.8rem;
-    }
-    
-    .login-input {
-        width: 60px;
-        font-size: 0.8rem;
-    }
-    
-    .dropdown-menu {
-        right: -20px;
-        min-width: 140px;
-    }
+	.header-container {
+		padding: 0 0.5rem;
+		gap: 1rem;
+	}
+
+	.header-nav {
+		gap: 0.75rem;
+	}
+
+	.nav-link {
+		padding: 0.4rem 0.6rem;
+		font-size: 0.8rem;
+	}
+
+	.login-input {
+		width: 60px;
+		font-size: 0.8rem;
+	}
+
+	.dropdown-menu {
+		right: -20px;
+		min-width: 140px;
+	}
 }
 
 @media (max-width: 480px) {
-    .auth-section {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .login-form {
-        gap: 0.3rem;
-    }
-    
-    .login-input {
-        width: 50px;
-    }
-    
-    .logo {
-        font-size: 1.4rem;
-    }
+	.auth-section {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.login-form {
+		gap: 0.3rem;
+	}
+
+	.login-input {
+		width: 50px;
+	}
+
+	.logo {
+		font-size: 1.4rem;
+	}
 }
