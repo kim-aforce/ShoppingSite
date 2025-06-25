@@ -198,5 +198,31 @@ public class userDAO extends DAO {
 		
 		return result > 0;
 	}
+	
+	
+	public userBean getUserById(String memberId) throws Exception {
+	    Connection con = getConnection();
+	    String sql = "SELECT * FROM users WHERE member_id = ?";
+	    PreparedStatement ps = con.prepareStatement(sql);
+	    ps.setString(1, memberId);
+	    ResultSet rs = ps.executeQuery();
+	    
+	    userBean user = null;
+	    if (rs.next()) {
+	        user = new userBean();
+	        user.setMemberId(rs.getString("member_id"));
+	        user.setPassword(rs.getString("password"));
+	        user.setLastname(rs.getString("last_name"));
+	        user.setFirstname(rs.getString("first_name"));
+	        user.setAddress(rs.getString("address"));
+	        user.setMailAddress(rs.getString("mail_address"));
+	        user.setUserType(rs.getString("user_type"));
+	    }
+	    
+	    rs.close();
+	    ps.close();
+	    con.close();
+	    return user;
+	}
 
 }

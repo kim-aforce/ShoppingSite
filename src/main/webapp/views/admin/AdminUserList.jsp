@@ -8,9 +8,9 @@
     <!-- 管理者用CSS -->
     <script src="${pageContext.request.contextPath}/views/js/admin.js"></script>
     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/common.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/common.css">
     
 </head>
 <body>
@@ -22,11 +22,36 @@
         <h2 class="page-title">会員管理</h2>
 
         <div class="admin-actions">
+            <button id="btn-edit-user" class="action-btn">会員修正</button>          <!-- 編集modal trigger  -->
             <button id="btn-delete-user" class="action-btn">会員削除</button>          <!-- 削除modal trigger -->
             <button id="btn-change-type" class="action-btn">権限変更</button>          <!-- 権限変更modal trigger -->
         </div>
+        <!-- 会員情報変更モーダル-->
+		<div id="modal-edit-user" class="modal">
+			<div class="modal-content glass">
+				<span class="close" data-target="modal-edit-user">&times;</span>
+				<h3>会員情報修正</h3>
+				<label>会員選択 : <select id="edit-user-select"></select>
+				</label>
+				<form id="form-edit-user"
+					action="${pageContext.request.contextPath}/admin/users"
+					method="post">
+					<input type="hidden" name="action" value="update"> <input
+						type="hidden" name="memberId" id="edit-user-id"> <label>名前（姓）
+						:<input name="lastname" id="edit-lastname" required>
+					</label> <label>名前（名） :<input name="firstname" id="edit-firstname"
+						required></label> <label>メールアドレス :<input
+						name="mailAddress" id="edit-email" type="email" required></label>
+					<label>住所 :<input name="address" id="edit-address"></label>
+					<label>パスワード :<input name="password" id="edit-password"
+						type="password" placeholder="変更しない場合は空白"></label>
 
-        <!-- 会員削除モーダル -->
+					<button type="submit" class="modal-btn">更新</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- 会員削除モーダル -->
         <div id="modal-delete-user" class="modal">
             <div class="modal-content glass">
                 <span class="close" data-target="modal-delete-user">&times;</span>
@@ -90,13 +115,18 @@
         <script>
             // サーバから渡されたusersリストをJS配列に変換
             const users = [
-                <c:forEach var="u" items="${users}" varStatus="sts">
-                    { id:'${u.memberId}', 
-                        name:'${u.lastname} ${u.firstname}', 
-                        email:'${u.mailAddress}', 
-                        type:'${u.userType}' }
-                    <c:if test="${!sts.last}">,</c:if>
-                </c:forEach>
+            	<c:forEach var="u" items="${users}" varStatus="sts">
+                { 
+                    id:'${u.memberId}', 
+                    lastname:'${u.lastname}',
+                    firstname:'${u.firstname}',
+                    name:'${u.lastname} ${u.firstname}', 
+                    email:'${u.mailAddress}', 
+                    address:'${u.address}',
+                    type:'${u.userType}' 
+                }
+                <c:if test="${!sts.last}">,</c:if>
+            </c:forEach>
             ];
         </script>
 <script src="${pageContext.request.contextPath}/views/js/AdminUser.js"></script>

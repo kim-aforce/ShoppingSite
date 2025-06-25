@@ -41,25 +41,42 @@ public class AdminUserList extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String action = request.getParameter("action");
-		String memberId = request.getParameter("memberId");
-		userDAO dao = new userDAO();
+	        throws ServletException, IOException {
+	    String action = request.getParameter("action");
+	    String memberId = request.getParameter("memberId");
+	    userDAO dao = new userDAO();
 
-		try {
-			if ("delete".equals(action)) {
-				// 会員削除
-				dao.deleteById(memberId);
-			} else if ("updateType".equals(action)) {
-				// 権限変更
-				String userType = request.getParameter("userType");
-				dao.updateUserType(memberId, userType);
-			}
-		} catch (Exception e) {
-			throw new ServletException(e);
-		}
+	    try {
+	        if ("delete".equals(action)) {
+	            // 会員削除
+	            dao.deleteById(memberId);
+	        } else if ("updateType".equals(action)) {
+	            // 権限変更
+	            String userType = request.getParameter("userType");
+	            dao.updateUserType(memberId, userType);
+	        } else if ("update".equals(action)) {
+	            // 会員情報修正処理追加
+	            userBean user = new userBean();
+	            user.setMemberId(memberId);
+	            user.setLastname(request.getParameter("lastname"));
+	            user.setFirstname(request.getParameter("firstname"));
+	            user.setMailAddress(request.getParameter("mailAddress"));
+	            user.setAddress(request.getParameter("address"));
+	            
+	            // パスワード処理（入力された場合のみ）
+	            String password = request.getParameter("password");
+	            if (password != null && !password.trim().isEmpty()) {
+	                user.setPassword(password.trim());
+	            } 
+	            
+	            dao.update(user);
+	        }
+	    } catch (Exception e) {
+	        throw new ServletException(e);
+	    }
 
-		// 処理後一覧へリダイレクト
-		response.sendRedirect(request.getContextPath() + "/admin/users");
+	    // 処理後一覧へリダイレクト
+	    response.sendRedirect(request.getContextPath() + "/admin/users");
+	    
 	}
 }
