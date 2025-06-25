@@ -1,17 +1,24 @@
+:root {
+  --text-primary: #000000;
+  --accent-gold: #d4af37;
+  --error-red: #dc3545;
+}
+
 /* integrate header */
 .header-unified {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0.75rem 0;
+    padding: 1rem 0;
 }
 
 .header-container {
     max-width: 1400px;
+	min-height: 60px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -34,7 +41,13 @@
     background-clip: text;
     letter-spacing: 1px;
 }
-
+.logo-image {
+    height: 48px;
+    width: auto;
+}
+.header-unified {
+    z-index: 9999; /* 1000 → 9999 */
+}
 /* ナビゲーション */
 .header-nav {
     display: flex;
@@ -43,7 +56,7 @@
 }
 
 .nav-link {
-    color: var(--text-primary);
+	color: var(--text-dark);
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -84,6 +97,7 @@
     transform: translateY(-10px);
     transition: all 0.3s ease;
     z-index: 1001;
+	margin-top: 5px;
 }
 
 .dropdown-menu.show {
@@ -97,7 +111,7 @@
     display: block;
     width: 100%;
     padding: 0.75rem 1rem;
-    color: var(--text-primary);
+	color: var(--text-dark);
     text-decoration: none;
     border: none;
     background: none;

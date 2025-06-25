@@ -5,10 +5,11 @@
   <div class="header-container">
     <!-- ロゴ -->
     <h1 class="logo">
-      <a href="${pageContext.request.contextPath}/views/Main/Top.jsp">
-        <span class="logo-text">AlphaMale</span>
-      </a>
-    </h1>
+			<a href="${pageContext.request.contextPath}/views/Main/Top.jsp">
+				<img src="${pageContext.request.contextPath}/views/img/logo.png"
+				alt="AlphaMale" class="logo-image" />
+			</a>
+		</h1>
 
     <!-- ナビゲーション -->
     <nav class="header-nav">
