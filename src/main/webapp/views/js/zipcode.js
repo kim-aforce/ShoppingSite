@@ -15,9 +15,22 @@ class AddressForm {
     }
 
     // API呼び出し
+	async timeoutFetch(url, timeout = 5000) {
+	        const controller = new AbortController();
+	        const id = setTimeout(() => controller.abort(), timeout);
+	        try {
+	            const response = await fetch(url, { signal: controller.signal });
+	            clearTimeout(id);
+	            return response;
+	        } catch (error) {
+	            clearTimeout(id);
+	            throw error;
+	        }
+	    }
     async fetchAddress(zipcode) {
         try {
-            const response = await fetch(`${this.API_URL}?zipcode=${zipcode}`);
+			const response = await this.timeoutFetch(
+				`${this.API_URL}?zipcode=${zipcode}`);
             const data = await response.json();
             return data.results?.[0] || null;
         } catch (error) {
@@ -100,4 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // グローバル関数（後方互換性）
-window.AddressForm = AddressForm;ㄴ
+window.AddressForm = AddressForm;
