@@ -57,7 +57,7 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	padding-top: 5rem;
+	padding-top: 120px;
 	background: var(--bg-gradient);
 	color: var(--text-primary);
         font-family: 'TsukuhouShogoMin', sans-serif;
@@ -87,7 +87,8 @@ body {
 /* メインコンテンツ */
 main {
 	padding: 2rem 1rem;
-	margin: 0 auto;
+	margin: 100px auto;
+	margin-top: 80px;
 	max-width: 1400px;
 	min-height: calc(100vh - 200px);
 }

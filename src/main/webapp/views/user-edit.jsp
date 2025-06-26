@@ -14,7 +14,7 @@
 	
 <!--name new complete	-->
 	
-<form class="auth-form" action="useredit-confirm" method="post">
+<form class="auth-form" action="${pageContext.request.contextPath}/views/useredit-confirm" method="post">
     <div class="form-field">
         <label>名前（姓）</label>
         <input type="text" name="lastname" value="${user.lastname != null ? user.lastname : ''}" />
