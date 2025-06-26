@@ -7,18 +7,19 @@
 html {
     font-size: var(--base-font-size);
 }
-/* admin.css */
 
-/* modal bg */
+/* admin.css - 管理者画面専用スタイル（色彩修正版） */
+
+/* モーダル背景 */
 .modal {
   display: none;                                   /* 初期非表示 */
   position: fixed; top:0; left:0; width:100%; height:110%;
-  background: rgba(0,0,0,0.5);                     /* 半透明黒 */
+  background: rgba(0,0,0,0.5);                     /* 半透明黒背景 */
   justify-content: center; align-items: center;
   z-index: 1000;
 }
 
-/* モーダル表示 */
+/* モーダル表示状態 */
 .modal.active {
   display: flex;
 }
@@ -26,11 +27,11 @@ html {
 /* モーダルコンテンツ */
 .modal-content {
   background: rgba(255,255,255,0.25);              /* Glassmorphism 背景 */
-  backdrop-filter: blur(15px);                     /*  背景ぼかし */
+  backdrop-filter: blur(15px);                     /* 背景ぼかし効果 */
   -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(255,255,255,0.3);         /* 薄いボーダー */
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);           /*  ソフトシャドウ */
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);          /* ソフトシャドウ */
   padding: 1.5rem;
   position: relative;
   width: 90%; max-width: 600px;
@@ -40,76 +41,242 @@ html {
 .close {
   position: absolute; top:0.5rem; right:1rem;
   font-size: 1.5rem; cursor: pointer;
+  color: #ffffff;
+  transition: color 0.3s ease;
 }
 
-/* 管理アクションボタン */
+.close:hover {
+  color: #d4af37;
+}
+
+/* ページタイトル */
 .page-title {
   text-align: center;
   margin-top: 2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #d4af37 !important;                       /* ゴールド色固定 */
 }
+
+/* 管理アクション（ボタン・リンク統一スタイル） */
 .admin-actions {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	align-items: center;
-	margin: 1rem 0;
+	margin: 2rem 0;
 }
+
+/* アクションボタン・リンク共通スタイル */
 .action-btn {
-  padding: 0.5rem 1rem; border:none; border-radius:6px;
-  background: rgba(255,255,255,0.9); color:#000;
-  cursor: pointer; transition: background 0.3s;
+  display: inline-block;                           /* リンクもボタンと同じ表示形式 */
+  padding: 0.75rem 1.5rem; 
+  border: none; 
+  border-radius: 8px;
+  background: rgba(255,255,255,0.15);              /* 透明感のある背景 */
+  backdrop-filter: blur(10px);                     /* ぼかし効果 */
+  border: 1px solid rgba(255,255,255,0.3);         /* 薄いボーダー */
+  color: #ffffff !important;                       /* 白文字固定 */
+  text-decoration: none;                           /* リンク下線除去 */
+  cursor: pointer; 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;                       /* 大文字変換 */
+  text-align: center;
+  min-width: 180px;                               /* 最小幅統一 */
 }
+
 .action-btn:hover {
-  background: rgba(255,255,255,0.3);
+  background: rgba(212, 175, 55, 0.2);            /* ゴールドアクセント */
+  border-color: #d4af37;
+  color: #d4af37 !important;                      /* ホバー時ゴールド */
+  transform: translateY(-2px);                     /* 浮き上がり効果 */
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); /* グロー効果 */
+}
+
+/* 特別なアクションボタン（登録用） */
+.action-btn.btn-create {
+  background: linear-gradient(45deg, #1a1a1a, #000000);
+  border: 1px solid #d4af37;
+  color: #d4af37 !important;
+  font-weight: 600;
+}
+
+.action-btn.btn-create:hover {
+  background: #d4af37;
+  color: #000000 !important;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
 
 /* フォーム要素スタイル */
-.modal-content form, .modal-content label {
-  display: flex; flex-direction: column; margin-bottom:1rem;
+.modal-content form, 
+.modal-content label {
+  display: flex; 
+  flex-direction: column; 
+  margin-bottom: 1rem;
+  color: #ffffff !important;                       /* ラベル文字色固定 */
 }
-.modal-content input, .modal-content select {
-  padding:0.5rem; border:none; border-radius:4px;
-  margin-top:0.25rem;
+
+.modal-content input, 
+.modal-content select {
+  padding: 0.75rem; 
+  border: 1px solid rgba(255,255,255,0.3); 
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  background: rgba(255,255,255,0.1);               /* 透明背景 */
+  color: #000000 !important;                       /* 入力文字は黒色（可読性） */
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
+
+.modal-content input:focus,
+.modal-content select:focus {
+  outline: none;
+  border-color: #d4af37;
+  background: rgba(255,255,255,0.9);               /* フォーカス時は白背景 */
+  color: #000000 !important;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.modal-content input::placeholder {
+  color: rgba(0,0,0,0.5) !important;               /* プレースホルダー色 */
+  font-style: italic;
+}
+
+/* セレクトオプション */
+.modal-content select option {
+  background: #ffffff;                             /* オプション背景白 */
+  color: #000000;                                  /* オプション文字黒 */
+}
+
+/* モーダル内ボタン */
 .modal-btn {
-  padding:0.75rem; border:none; border-radius:6px;
-  background:#fff; color:#000; cursor:pointer;
+  padding: 0.75rem 1.5rem; 
+  border: none; 
+  border-radius: 8px;
+  background: linear-gradient(45deg, #d4af37, #b8941f);
+  color: #000000 !important;                       /* ボタン文字黒 */
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
 }
 
-.admin-main p,
-.admin-main label,
-.admin-main span,
-.admin-main td,
-.admin-main th,
-.admin-main a,
-.admin-main li,
-.admin-form-container p,
-.admin-form-container label,
-.admin-form-container span,
-.admin-form-container td,
-.admin-form-container th,
-.admin-form-container a,
-.admin-form-container li,
-.modal-content p,
-.modal-content label,
-.modal-content span,
-.modal-content td,
-.modal-content th,
-.modal-content a {
-    color: var(--off-white);
+.modal-btn:hover {
+  background: linear-gradient(45deg, #b8941f, #d4af37);
+  color: #000000 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
 }
 
-/* 追加推奨 - より包括的な対応 */
-.admin-main h3,
-.admin-form-container h3,
-.modal-content h3 {
-    color: var(--accent-gold);
+/* 成功・エラーメッセージスタイル */
+.admin-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  color: white !important;                         /* メッセージ文字白 */
+  font-weight: bold;
+  z-index: 10000;
+  animation: slideInRight 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
 }
 
-/* 入力要素は除外確認 */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 重要：色彩統一のための強制指定 */
+/* 管理画面内のすべてのテキスト要素色彩統一 */
+.admin-main,
+.admin-main * {
+    color: #ffffff !important;                      /* 全て白文字に統一 */
+}
+
+/* 例外：入力フィールドは黒文字（可読性） */
 .admin-main input,
 .admin-main select,
-.admin-form-container input,
-.admin-form-container select {
-    color: #000000; /* 入力フィールドは黒文字維持 */
+.admin-main textarea,
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+    color: #000000 !important;                      /* 入力フィールドは黒文字 */
+    background: rgba(255,255,255,0.9) !important;   /* 入力背景は白 */
+}
+
+/* 例外：ボタン内文字は用途別 */
+.action-btn {
+    color: #ffffff !important;                      /* ボタン文字白 */
+}
+
+.action-btn:hover {
+    color: #d4af37 !important;                      /* ホバー時ゴールド */
+}
+
+.modal-btn {
+    color: #000000 !important;                      /* モーダルボタン文字黒 */
+}
+
+/* 例外：タイトル・アクセント要素 */
+.page-title,
+.admin-main h2,
+.admin-main h3,
+.modal-content h3 {
+    color: #d4af37 !important;                      /* タイトルはゴールド */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .admin-actions {
+        margin: 1.5rem 0;
+        gap: 0.75rem;
+    }
+    
+    .action-btn {
+        min-width: 150px;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    .modal-content input,
+    .modal-content select {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .action-btn {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+        margin-top: 1rem;
+    }
 }
