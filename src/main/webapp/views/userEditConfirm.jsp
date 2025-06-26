@@ -20,11 +20,11 @@
         </div>
 
         <div class="button-group">
-            <form action="useredit-execute" method="post">
+            <form action="${pageContext.request.contextPath}/views/useredit-execute" method="post">
     <input type="submit" value="登録" class="auth-btn btn-primary"/>
 </form>
 
-            <form action="useredit" method="post">
+            <form action="${pageContext.request.contextPath}/views/useredit" method="post">
     <input type="submit" value="戻る" class="auth-btn btn-secondary"/>
 </form>
 

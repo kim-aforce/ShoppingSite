@@ -27,7 +27,7 @@ String last_name = (user != null ) ? user.getLastname() : "Guest";
                 <input type="submit" value="ログアウト" class="auth-btn btn-secondary">
             </form>
 
-            <form action="useredit" method="post">
+            <form action="${pageContext.request.contextPath}/views/useredit" method="post">
                 <input type="submit" value="修正" class="auth-btn btn-primary">
             </form>
 
