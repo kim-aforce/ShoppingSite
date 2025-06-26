@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <title>会員管理</title>
     <!-- 管理者用CSS -->
-    <script src="${pageContext.request.contextPath}/views/js/admin.js"></script>
     
    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
@@ -129,9 +128,73 @@
             </c:forEach>
             ];
         </script>
-<script src="${pageContext.request.contextPath}/views/js/AdminUser.js"></script>
     </main>
 
 <jsp:include page="../common/footer.jsp"/>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('モーダル初期化開始');
+    
+    // モーダル制御関数
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.add('active');
+        } else {
+            console.error('モーダル要素未発見:', id);
+        }
+    }
+    
+    function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.remove('active');
+        }
+    }
+    
+    // ボタンイベント登録
+    const btnEdit = document.getElementById('btn-edit-user');
+    const btnDelete = document.getElementById('btn-delete-user');
+    const btnType = document.getElementById('btn-change-type');
+    
+    if (btnEdit) btnEdit.addEventListener('click', () => openModal('modal-edit-user'));
+    if (btnDelete) btnDelete.addEventListener('click', () => openModal('modal-delete-user'));
+    if (btnType) btnType.addEventListener('click', () => openModal('modal-change-type'));
+    
+    // 閉じるボタン
+    document.querySelectorAll('.close').forEach(span => {
+        span.addEventListener('click', () => closeModal(span.dataset.target));
+    });
+    
+    // セレクト初期化
+    if (typeof users !== 'undefined') {
+        const editSel = document.getElementById('edit-user-select');
+        const deleteSel = document.getElementById('delete-user-select');
+        const typeSel = document.getElementById('type-user-select');
+        
+        users.forEach(u => {
+            const optText = u.name + ' (' + u.id + ')';
+            if (editSel) editSel.add(new Option(optText, u.id));
+            if (deleteSel) deleteSel.add(new Option(optText, u.id));
+            if (typeSel) typeSel.add(new Option(optText, u.id));
+        });
+        
+        // 編集セレクト変更
+        if (editSel) {
+            editSel.addEventListener('change', () => {
+                const u = users.find(x => x.id == editSel.value);
+                if (u) {
+                    document.getElementById('edit-user-id').value = u.id;
+                    document.getElementById('edit-lastname').value = u.lastname;
+                    document.getElementById('edit-firstname').value = u.firstname;
+                    document.getElementById('edit-email').value = u.email;
+                    document.getElementById('edit-address').value = u.address || '';
+                    document.getElementById('edit-password').value = '';
+                }
+            });
+        }
+    }
+});
+</script>
 </body>
 </html>
