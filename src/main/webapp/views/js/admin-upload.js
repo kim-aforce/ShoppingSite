@@ -133,26 +133,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData();
         formData.append('imageFile', file);
 
-        fetch(getContextPath() + '/admin/upload-image', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
+		const xhr = new XMLHttpRequest();
+		        xhr.open('POST', getContextPath() + '/admin/upload-image');
+
+		        xhr.upload.addEventListener('progress', (e) => {
+		            if (e.lengthComputable) {
+		                const percent = Math.round((e.loaded / e.total) * 100);
+		                updateProgress(percent);
+		            }
+		        });
+
+		        xhr.onload = () => {
+		            updateProgress(100);
             hideProgress();
-            handleUploadResponse(data);
-        })
-        .catch(error => {
-            hideProgress();
-            console.error('アップロードエラー:', error);
-            showAlert('アップロード中にネットワークエラーが発生しました。');
-            removeImage();
-        })
-        .finally(() => {
-            isUploading = false;
-            updateSubmitButton(true);
-        });
-    }
+			isUploading = false;
+			          updateSubmitButton(true);
+			          if (xhr.status === 200) {
+			              try {
+			                  const data = JSON.parse(xhr.responseText);
+			                  handleUploadResponse(data);
+			              } catch (err) {
+			                  showAlert('サーバーからのレスポンス解析に失敗しました。');
+			                  console.error(err);
+			              }
+			          } else {
+			              showAlert('アップロードエラー: ' + xhr.statusText);
+				removeImage();
+			}
+		};
+
+		xhr.onerror = () => {
+			hideProgress();
+
+			isUploading = false;
+			updateSubmitButton(true);
+		}
+		showAlert('アップロード中にネットワークエラーが発生しました。');
+		removeImage();
+	};
+
+	xhr.send(formData);
 
     function handleUploadResponse(data) {
         if (data.status === 'success') {
@@ -168,19 +188,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showProgress() {
         uploadProgress.style.display = 'block';
-        let progress = 0;
-        const progressInterval = setInterval(() => {
-            progress += 10;
-            progressFill.style.width = progress + '%';
-            if (progress >= 90) {
-                clearInterval(progressInterval);
-            }
-        }, 100);
+		updateProgress(0);
+		    }
+
+		    function updateProgress(percent) {
+		        progressFill.style.width = percent + '%';
+		        progressText.textContent = `アップロード中... ${percent}%`;
     }
 
     function hideProgress() {
         uploadProgress.style.display = 'none';
         progressFill.style.width = '0%';
+		progressText.textContent = 'アップロード中...';
+
     }
 
     function removeImage() {
