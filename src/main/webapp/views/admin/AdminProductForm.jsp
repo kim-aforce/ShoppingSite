@@ -50,7 +50,7 @@
         
         .form-field label {
             display: block;
-            color: #ffffff;
+            color: #000000;
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
@@ -66,7 +66,6 @@
             color: #000000;
         }
         
-        /* 업로드 에리어 컴팩트 */
         .upload-area {
             border: 2px dashed rgba(255, 255, 255, 0.3);
             border-radius: 12px;
@@ -84,7 +83,7 @@
         
         .upload-text {
             font-size: 1rem;
-            color: #ffffff;
+            color: #000000;
             margin: 0.5rem 0;
         }
         
@@ -129,10 +128,10 @@
         .btn-cancel {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #ffffff;
+            color: #000000;
         }
         
-        /* 모바일 대응 */
+        /* mobile */
         @media (max-width: 768px) {
             .form-grid {
                 grid-template-columns: 1fr;
@@ -210,7 +209,7 @@
 
                 <!-- 画像アップロード -->
                 <div class="upload-section">
-                    <label style = "color : #ffffff">商品画像:</label>
+                    <label style = "color : #000000">商品画像:</label>
                     
                     <div class="upload-area" id="uploadArea">
                         <div class="upload-content">
