@@ -18,7 +18,6 @@ import jp.co.aforce.beans.ProductBean;
 import jp.co.aforce.beans.userBean;
 import jp.co.aforce.dao.CartDAO;
 import jp.co.aforce.dao.OrderDAO;
-import jp.co.aforce.dao.ProductDAO;
 
 @WebServlet("/order")
 public class Order extends HttpServlet {

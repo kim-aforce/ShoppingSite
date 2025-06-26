@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,13 +84,14 @@
 				<c:forEach var="cart" items="${cartItems}">
 					<c:set var="product" value="${requestScope['product_'.concat(cart.cart_id)]}" />
 					<div class="order-item">
-						<img
-							src="${not empty product.image_url ? product.image_url : '/views/img/default-product.png'}"
-							alt="${product.product_name}"
-<img src="${cart.image_url}" 
-     onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNjY2MiLz48L3N2Zz4='">						<div class="item-details">
-							<h4>${product.product_name}</h4>
-							<p>数量: ${cart.quantity}</p>
+
+						<c:set var="imagePath"
+							value="${fn:replace(cart.image_url, '../img/', '/views/img/')}" />
+						<img src="${pageContext.request.contextPath}${imagePath}"
+							alt="${cart.product_name}" />
+
+						<h4>${product.product_name}</h4>
+						<p>数量: ${cart.quantity}</p>
 							<fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="0" groupingUsed="false" var="priceInt" />
 							<p>価格: ¥${priceInt}</p>
 							<fmt:formatNumber value="${product.price * cart.quantity}" type="number" maxFractionDigits="0" groupingUsed="false" var="itemTotal" />
