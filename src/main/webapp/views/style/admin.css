@@ -204,7 +204,7 @@ html {
 /* 管理画面内のすべてのテキスト要素色彩統一 */
 .admin-main,
 .admin-main * {
-    color: #000000 !important;                      /* 全て白文字に統一 */
+    color: #ffffff !important;                      /* 全て白文字に統一 */
 }
 
 /* 例外：入力フィールドは黒文字（可読性） */
