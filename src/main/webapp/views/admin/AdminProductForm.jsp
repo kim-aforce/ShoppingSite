@@ -9,6 +9,7 @@
     <title>商品管理フォーム</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/Top.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/admin-upload.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/style/site.css">
 </head>
 <body>
@@ -22,12 +23,11 @@
             </c:choose>
         </h2>
 
-        <
         <c:if test="${mode == 'edit'}">
             <p>編集中の商品 ID: ${product.product_id}</p>
         </c:if>
 
-        <form action="${pageContext.request.contextPath}/admin/products/${mode}" method="post">
+        <form action="${pageContext.request.contextPath}/admin/products/${mode}" method="post" id="productForm">
             <c:if test="${mode == 'edit'}">
                 <input type="hidden" name="product_id" value="${product.product_id}"/>
             </c:if>
@@ -49,8 +49,7 @@
                 <label>価格:
                     <c:choose>
                         <c:when test="${product.price != null && product.price > 0}">
-                            <fmt:formatNumber value="${product.price}" type="number" 
-                                            maxFractionDigits="0" groupingUsed="false" var="priceInt" />
+                            <fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="0" groupingUsed="false" var="priceInt" />
                             <input type="number" name="price" value="${priceInt}" required/>
                         </c:when>
                         <c:otherwise>
@@ -79,21 +78,58 @@
                 </label>
             </div>
 
+            <!-- 新しい画像アップロードセクション -->
             <div class="form-field">
-                <label>画像URL:
-                    <input type="url" name="image_url" value="${product.image_url}" 
-                           placeholder="https://example.com/image.jpg" required/>
-                </label>
-                <!-- Image Preview -->
-                <c:if test="${not empty product.image_url}">
+                <label>商品画像:</label>
+
+                <!-- ドラッグ&ドロップアップロードエリア -->
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <p class="upload-text">画像ファイルをドラッグ&ドロップ</p>
+                        <p class="upload-subtext">または</p>
+                        <button type="button" class="upload-btn" id="selectFileBtn">ファイルを選択</button>
+                        <p class="upload-info">対応形式: JPG, PNG, GIF, WebP (最大10MB)</p>
+                    </div>
+                </div>
+
+                <!-- 非表示ファイル入力 -->
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+
+                <!-- アップロード進行状態 -->
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">アップロード中...</p>
+                </div>
+
+                <!-- 画像プレビュー -->
+                <div class="image-preview-container" id="previewContainer" style="display: none;">
                     <div class="image-preview">
-                        <img src="${product.image_url}" alt="Preview" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+                        <img id="previewImage" src="" alt="Preview">
+                        <div class="image-info">
+                            <p class="file-name" id="previewFileName"></p>
+                            <p class="file-size" id="previewFileSize"></p>
+                        </div>
+                        <button type="button" class="remove-image-btn" id="removeImageBtn">❌ 削除</button>
+                    </div>
+                </div>
+
+                <!-- 既存画像表示（編集モード） -->
+                <c:if test="${mode == 'edit' && not empty product.image_url}">
+                    <div class="current-image">
+                        <p>現在の画像:</p>
+                        <img src="${product.image_url}" alt="Current Image" class="current-image-display">
                     </div>
                 </c:if>
+
+                <!-- 非表示画像URLフィールド -->
+                <input type="hidden" name="image_url" id="imageUrlField" value="${product.image_url}"/>
             </div>
 
             <div class="form-actions">
-                <button type="submit">
+                <button type="submit" id="submitBtn">
                     <c:choose>
                         <c:when test="${mode == 'new'}">登録</c:when>
                         <c:otherwise>更新</c:otherwise>
@@ -105,5 +141,7 @@
     </main>
 
     <jsp:include page="../common/footer.jsp"/>
+
+    <script src="${pageContext.request.contextPath}/views/js/admin-upload.js"></script>
 </body>
 </html>

@@ -28,7 +28,7 @@ public class AdminProductCRUD extends HttpServlet {
         String path = request.getServletPath();                        // リクエストパス取得
         AdminProductDAO dao = new AdminProductDAO();                   // DAOインスタンス生成
 
-        // 削除処理 / 삭제 처리
+        // 削除処理
         if (path.endsWith("/delete")) {
             String idParam = request.getParameter("id");               // 削除対象ID取得
             if (idParam != null && !idParam.isBlank()) {
@@ -87,19 +87,43 @@ public class AdminProductCRUD extends HttpServlet {
         ProductBean p = new ProductBean();
 
         // フォームパラメータからBeanにセット
-        p.setProduct_name(request.getParameter("product_name"));       
-        p.setDescription(request.getParameter("description"));         
-        p.setPrice(Double.parseDouble(request.getParameter("price"))); 
-        p.setCategory_id(request.getParameter("category_id"));         
+        p.setProduct_name(request.getParameter("product_name"));
+        p.setDescription(request.getParameter("description"));
+        p.setPrice(Double.parseDouble(request.getParameter("price")));
+        p.setCategory_id(request.getParameter("category_id"));
         p.setStock_qty(Integer.parseInt(request.getParameter("stock_qty")));
-        p.setImage_url(request.getParameter("image_url"));             
+
+        // 画像URL処理
+        String imageUrl = request.getParameter("image_url");
+        if (imageUrl == null || imageUrl.trim().isEmpty()) {
+            if (path.endsWith("/new")) {
+                request.setAttribute("errorMessage", "商品画像をアップロードしてください");
+                request.setAttribute("product", p);
+                request.setAttribute("mode", "new");
+                request.getRequestDispatcher("/admin/adminProductForm.jsp").forward(request, response);
+                return;
+            } else {
+                try {
+                    int id = Integer.parseInt(request.getParameter("product_id"));
+                    ProductBean existingProduct = dao.getProductById(id);
+                    if (existingProduct != null) {
+                        imageUrl = existingProduct.getImage_url();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        p.setImage_url(imageUrl);
 
         try {
             if (path.endsWith("/new")) {
-                dao.insertProduct(p);									// INSERT実行
+                dao.insertProduct(p);
+                System.out.println("新規商品登録完了: " + p.getProduct_name() + " 画像: " + imageUrl);
             } else {
-                p.setProduct_id(Integer.parseInt(request.getParameter("product_id"))); 
-                dao.updateProduct(p);                                  // UPDATE実行
+                p.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
+                dao.updateProduct(p);
+                System.out.println("商品更新完了: " + p.getProduct_name() + " 画像: " + imageUrl);
             }
         } catch (SQLException e) {
             throw new ServletException(e);
