@@ -44,23 +44,31 @@ public class CartDAO extends DAO {
      */
     public List<CartBean> getCartByMemberId(String memberId) throws SQLException {
         String sql = "SELECT c.cart_id, c.member_id, c.product_id, c.quantity, c.created_at, " +
-                    "p.product_name, p.price, p.image_url " +
-                    "FROM cart c JOIN products p ON c.product_id = p.product_id " +
-                    "WHERE c.member_id = ? ORDER BY c.created_at DESC";
+                "p.product_name, p.price, p.image_url " +
+                "FROM cart c JOIN products p ON c.product_id = p.product_id " +
+                "WHERE c.member_id = ? ORDER BY c.created_at DESC";
         
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             
             ps.setString(1, memberId);                     // 会員IDパラメータ設定
             
-            try (ResultSet rs = ps.executeQuery()) {
-                List<CartBean> cartList = new ArrayList<>();
-                while (rs.next()) {
-                    CartBean cart = mapRow(rs);            // ResultSet→Bean変換
-                    cartList.add(cart);
-                }
-                return cartList;
-            }
+			try (ResultSet rs = ps.executeQuery()) {
+				List<CartBean> cartList = new ArrayList<>();
+				while (rs.next()) {
+					CartBean cart = new CartBean();
+					cart.setCart_id(rs.getInt("cart_id"));
+					cart.setMember_id(rs.getString("member_id"));
+					cart.setProduct_id(rs.getInt("product_id"));
+					cart.setQuantity(rs.getInt("quantity"));
+					cart.setCreated_at(rs.getString("created_at"));
+					cart.setProduct_name(rs.getString("product_name"));
+					cart.setPrice(rs.getDouble("price"));
+					cart.setImage_url(rs.getString("image_url")); // 明示的設定
+					cartList.add(cart);
+				}
+				return cartList;
+			}
         }
     }
     

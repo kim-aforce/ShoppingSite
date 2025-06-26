@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,12 +53,13 @@
 
 						<div class="item-info">
 							<!-- イメージ表示修正 -->
-							<img
-								src="${not empty cart.image_url ? cart.image_url : '/views/img/default-product.png'}"
-								alt="${cart.product_name}"
-<img src="${cart.image_url}" 
-     onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNjY2MiLz48L3N2Zz4='">							<div class="item-details">
-								<h3>${cart.product_name}</h3>
+							
+							<c:set var="imagePath"
+								value="${fn:replace(cart.image_url, '../img/', '/views/img/')}" />
+							<img src="${pageContext.request.contextPath}${imagePath}"
+								alt="${cart.product_name}" class="cart-item-image" />
+								
+							<h3>${cart.product_name}</h3>
 								<fmt:formatNumber value="${cart.price}" type="number"
 									maxFractionDigits="0" groupingUsed="false" var="priceInt" />
 								<p>価格: ¥${priceInt}</p>
