@@ -133,27 +133,28 @@
 .order-item {
     display: flex;
     gap: 1.5rem;
+    align-items: center;
     padding: 1.5rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    align-items: center;
 }
 
 .order-item:last-child {
     border-bottom: none;
 }
 
-.order-item img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
+.order-item img,
+.order-item-image {
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover !important;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-.item-details {
-    flex: 1;
-    color: #FAF9F6;
+.item-details{
+	flex: 1;
+	color: #FAF9F6;
 }
+
 
 .item-details h4 {
     margin: 0 0 0.5rem 0;

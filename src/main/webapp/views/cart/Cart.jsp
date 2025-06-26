@@ -53,18 +53,16 @@
 
 						<div class="item-info">
 							<!-- イメージ表示修正 -->
-							
-							<c:set var="imagePath"
-								value="${fn:replace(cart.image_url, '../img/', '/views/img/')}" />
-							<img src="${pageContext.request.contextPath}${imagePath}"
-								alt="${cart.product_name}" class="cart-item-image" />
-								
+							<c:set var="imagePath" value="${fn:replace(cart.image_url, '../img/', '/views/img/')}" />
+							<img src="${pageContext.request.contextPath}${imagePath}" 
+							alt="${cart.product_name}" class="cart-item-image" />
 							<h3>${cart.product_name}</h3>
 								<fmt:formatNumber value="${cart.price}" type="number"
 									maxFractionDigits="0" groupingUsed="false" var="priceInt" />
-								<p>価格: ¥${priceInt}</p>
+<!--								<p>価格: ¥${priceInt}</p>-->
 							</div>
-						</div>
+							
+						
 
 						<div class="quantity-controls">
 							<form action="${pageContext.request.contextPath}/cart"

@@ -83,13 +83,13 @@
 				<h3>注文商品</h3>
 				<c:forEach var="cart" items="${cartItems}">
 					<c:set var="product" value="${requestScope['product_'.concat(cart.cart_id)]}" />
+					
 					<div class="order-item">
-
 						<c:set var="imagePath"
 							value="${fn:replace(cart.image_url, '../img/', '/views/img/')}" />
 						<img src="${pageContext.request.contextPath}${imagePath}"
 							alt="${cart.product_name}" />
-
+							
 						<h4>${product.product_name}</h4>
 						<p>数量: ${cart.quantity}</p>
 							<fmt:formatNumber value="${product.price}" type="number" maxFractionDigits="0" groupingUsed="false" var="priceInt" />
@@ -97,8 +97,8 @@
 							<fmt:formatNumber value="${product.price * cart.quantity}" type="number" maxFractionDigits="0" groupingUsed="false" var="itemTotal" />
 							<p class="item-subtotal">小計: ¥${itemTotal}</p>
 						</div>
-					</div>
 				</c:forEach>
+					</div>
 
 				<div class="order-total">
 					<fmt:formatNumber value="${totalAmount}" type="number" maxFractionDigits="0" groupingUsed="false" var="totalInt" />

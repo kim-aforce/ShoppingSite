@@ -52,7 +52,7 @@
 
 /* カートアイテム */
 .cart-item {
-    display: grid;
+    display: flex;
     grid-template-columns: 80px 1fr 150px 180px 100px;
     gap: 1.5rem;
     align-items: center;
@@ -101,16 +101,16 @@
     gap: 1.5rem;
 }
 
-.cart-item img {
-    width: 100px;
-    height: 100px;
+.cart-item-image {
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border: 1px solid rgba(255, 255, 255, 0.2);
     filter: grayscale(0.2) contrast(1.1);
     transition: all 0.3s ease;
 }
 
-.cart-item:hover img {
+.cart-item:hover .cart-item-image {
     filter: grayscale(0) contrast(1.2);
     transform: scale(1.05);
 }
