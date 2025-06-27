@@ -43,7 +43,7 @@ public class AdminProductCRUD extends HttpServlet {
                 try {
                     int id = Integer.parseInt(idParam);                // IDを整数に変換
                     
-                    // 🆕 削除前に商品存在確認
+                    //削除前に商品存在確認
                     ProductBean existingProduct = dao.getProductById(id);
                     if (existingProduct == null) {
                         System.err.println("[削除エラー] 商品ID " + id + " が見つかりません");
@@ -72,7 +72,7 @@ public class AdminProductCRUD extends HttpServlet {
             return;
         }
 
-        // 🔧 修正: 登録・編集フォームの表示処理強化
+        // 修正: 登録・編集フォームの表示処理強化
         ProductBean p = new ProductBean();                             // 新規Bean生成
         String mode;
 
@@ -122,7 +122,7 @@ public class AdminProductCRUD extends HttpServlet {
     }
 
     /**
-     * POSTリクエスト処理: 登録または編集実行（修正版）
+     * POSTリクエスト処理: 登録または編集実行
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -163,7 +163,11 @@ public class AdminProductCRUD extends HttpServlet {
             p.setDescription(description != null ? description.trim() : "");
             
             try {
-                p.setPrice(Double.parseDouble(priceParam));
+                double price = Double.parseDouble(priceParam.trim());
+                if (price < 0) {
+                    throw new IllegalArgumentException("価格は0以上である必要があります");
+                }
+                p.setPrice(price);
             } catch (NumberFormatException e) {
                 request.setAttribute("errorMessage", "価格は正しい数値を入力してください");
                 redirectToForm(request, response, path, p);

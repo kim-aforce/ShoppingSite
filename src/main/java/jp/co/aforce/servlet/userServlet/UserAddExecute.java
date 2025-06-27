@@ -63,6 +63,7 @@ public class UserAddExecute extends HttpServlet {
             
             // BL1: ID 重複チェック
             if (dao.exists(user.getMemberId())) {
+                session.removeAttribute("user");  // 0627 - セッション無効にしなくてログインされるバグ発生
                 // エラーメッセージ
                 request.setAttribute("errorMessage", "入力したユーザーIDとパスワードは、すでに登録済みです。");
                 request.setAttribute("returnUrl", "user-add.jsp");
@@ -71,9 +72,10 @@ public class UserAddExecute extends HttpServlet {
                 return;
             }
 
-            // BL2: 
+            // BL2: 登録処理
             boolean registerResult = dao.register(user);
-            
+         // 🔧 0627 - 登録が失敗してもセッション無効
+            session.removeAttribute("user");  // ← 0627追加
             if (!registerResult) {
                 request.setAttribute("errorMessage", "登録エラー");
                 request.setAttribute("returnUrl", "user-add.jsp");
@@ -91,6 +93,9 @@ public class UserAddExecute extends HttpServlet {
 
         } catch (Exception e) {
             // 例外
+        	if (session != null) {
+                session.removeAttribute("user");  // ←　0627
+            }
             System.err.println("会員登録中例外発生: " + e.getMessage());
             e.printStackTrace();
             
