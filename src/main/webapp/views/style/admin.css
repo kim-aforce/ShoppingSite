@@ -204,7 +204,7 @@ html {
 /* 管理画面内のすべてのテキスト要素色彩統一 */
 .admin-main,
 .admin-main * {
-    color: #ffffff !important;                      /* 全て白文字に統一 */
+    color: #000000 ;                      /* 全て白文字に統一 */
 }
 
 /* 例外：入力フィールドは黒文字（可読性） */
@@ -214,8 +214,11 @@ html {
 .modal-content input,
 .modal-content select,
 .modal-content textarea {
-    color: #000000 !important;                      /* 入力フィールドは黒文字 */
-    background: rgba(255,255,255,0.9) !important;   /* 入力背景は白 */
+    color: #000000;                      /* 入力フィールドは黒文字 */
+    background: rgba(255,255,255,0.9)   /* 入力背景は白 */
+}
+.admin-main table{
+	color: #ffffff;
 }
 
 /* 例外：ボタン内文字は用途別 */
