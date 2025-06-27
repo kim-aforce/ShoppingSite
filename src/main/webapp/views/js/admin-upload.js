@@ -145,34 +145,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		        xhr.onload = () => {
 		            updateProgress(100);
+		            hideProgress();
+		            isUploading = false;
+		            updateSubmitButton(true);
+		            if (xhr.status === 200) {
+		                try {
+		                    const data = JSON.parse(xhr.responseText);
+		                    handleUploadResponse(data);
+		                } catch (err) {
+		                    showAlert('サーバーからのレスポンス解析に失敗しました。');
+		                    console.error(err);
+		                }
+		            } else {
+		                showAlert('アップロードエラー: ' + xhr.statusText);
+		                removeImage();
+		            }
+		        };
+
+		        xhr.onerror = () => {
             hideProgress();
 			isUploading = false;
-			          updateSubmitButton(true);
-			          if (xhr.status === 200) {
-			              try {
-			                  const data = JSON.parse(xhr.responseText);
-			                  handleUploadResponse(data);
-			              } catch (err) {
-			                  showAlert('サーバーからのレスポンス解析に失敗しました。');
-			                  console.error(err);
-			              }
-			          } else {
-			              showAlert('アップロードエラー: ' + xhr.statusText);
-				removeImage();
-			}
-		};
+			            updateSubmitButton(true);
+			            showAlert('アップロード中にネットワークエラーが発生しました。');
+			            removeImage();
+			        };
 
-		xhr.onerror = () => {
-			hideProgress();
-
-			isUploading = false;
-			updateSubmitButton(true);
-		}
-		showAlert('アップロード中にネットワークエラーが発生しました。');
-		removeImage();
-	};
-
-	xhr.send(formData);
+			        xhr.send(formData);
+			    }
 
     function handleUploadResponse(data) {
         if (data.status === 'success') {

@@ -21,36 +21,15 @@
         <!--  ページタイトル -->
         <h2 style="color: #d4af37;" class="page-title">商品管理</h2>
 
+        <!-- 🔧 修正: 商品登録をモーダルから新規ページリンクに変更 -->
         <div class="admin-actions">
-            <button id="btn-create" class="action-btn">商品情報登録</button>          <!-- 登録modal trigger -->
+            <a href="${pageContext.request.contextPath}/admin/products/new" class="action-btn">商品情報登録</a>          <!-- 新規ページへ遷移 -->
             <button id="btn-edit" class="action-btn">商品情報修正</button>            <!--  修正modal trigger-->
             <button id="btn-delete" class="action-btn">商品情報削除</button>          <!-- 削除modal trigger -->
         </div>
 
-        <!-- 商品登録モーダル -->
-        <div id="modal-create" class="modal">
-            <div class="modal-content glass">
-                <span class="close" data-target="modal-create">&times;</span>         <!--modal close btn -->
-                <h3>商品情報登録</h3>
-                <form action="${pageContext.request.contextPath}/admin/products/new" method="post">
-                    <label>商品名 :<input name="product_name" required></label>
-                    <label>説明 :<input name="description"></label>
-                    <label>価格 :<input type="number" name="price" required></label>
-                    <label>カテゴリ :
-                        <select name="category_id">
-                            <option value="01">衣類</option>
-                            <option value="02">靴</option>
-                            <option value="03">香水</option>
-                            <option value="04">アクセサリー</option>
-                            <option value="05">インテリア</option>
-                        </select>
-                    </label>
-                    <label>在庫数 :<input type="number" name="stock_qty" value="10" required></label>
-                    <label>画像URL :<input name="image_url" required></label>
-                    <button type="submit" class="modal-btn">登録</button>
-                </form>
-            </div>
-        </div>
+        <!-- 🗑️ 削除: 商品登録モーダルを完全削除（不要になったため） -->
+        <!-- 以前のmodal-createは削除 -->
 
         <!-- 修正モーダル -->
         <div id="modal-edit" class="modal">
@@ -75,6 +54,7 @@
                         </select>
                     </label>
                     <label>在庫数 :<input type="number" name="stock_qty" id="edit-stock" required></label>
+                    <!-- 🔧 修正: 画像URLフィールドは従来通り維持（修正時は既存URL使用） -->
                     <label>画像URL :<input name="image_url" id="edit-img" required></label>
                     <button type="submit" class="modal-btn">更新</button>
                 </form>
