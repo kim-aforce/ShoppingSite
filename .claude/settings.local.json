@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell:*)",
+      "Bash(rm:*)",
+      "Bash(javac:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
