@@ -40,4 +40,21 @@ public class userDaoTest {
             return con;
         }
     }
-}
+    // 誤ったID/PWでログインをしてみる。
+    @Test
+	void testLoginFailed() throws Exception {
+		Connection con = mock(Connection.class);
+		PreparedStatement ps = mock(PreparedStatement.class);
+		ResultSet rs = mock(ResultSet.class);
+		
+		when(con.prepareStatement(anyString())).thenReturn(ps);
+		when(ps.executeQuery()).thenReturn(rs);
+		
+		// 存在しないユーザーID想定: 検索結果0件
+		when(rs.next()).thenReturn(false);
+		userDAO dao = new TestUserDAO(con);
+		userBean user = dao.login("dummy", "wrongPw");
+		assertNull(user, "ログイン失敗するべき");
+        }
+    }
+
