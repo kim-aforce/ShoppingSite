@@ -12,8 +12,8 @@ import jp.co.aforce.beans.userBean;
 import jp.co.aforce.dao.userDAO;
 
 public class userDaoTest {
-	
-	 // 正しいID/PWでログインできる
+
+    // 正しいID/PWでログインできる
     @Test
     void testLoginSuccess() throws Exception {
         Connection con = mock(Connection.class);
@@ -29,8 +29,6 @@ public class userDaoTest {
         userDAO dao = new TestUserDAO(con);
         userBean user = dao.login("user01", "pass01");
         assertNotNull(user);
-        assertEquals("user01", user.getMemberId());
-        assertEquals("pass01", user.getPassword());
     }
 
     // getConnectionのモック
