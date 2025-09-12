@@ -31,15 +31,6 @@ public class userDaoTest {
         assertNotNull(user);
     }
 
-    // getConnectionのモック
-    static class TestUserDAO extends userDAO {
-        private final Connection con;
-        TestUserDAO(Connection con) { this.con = con; }
-        @Override
-        protected Connection getConnection() throws java.sql.SQLException {
-            return con;
-        }
-    }
     // 誤ったID/PWでログインをしてみる。
     @Test
 	void testLoginFailed() throws Exception {
@@ -56,5 +47,14 @@ public class userDaoTest {
 		userBean user = dao.login("dummy", "wrongPw");
 		assertNull(user, "ログイン失敗するべき");
         }
+    // getConnectionのモック
+    static class TestUserDAO extends userDAO {
+    	private final Connection con;
+    	TestUserDAO(Connection con) { this.con = con; }
+    	@Override
+    	protected Connection getConnection() throws java.sql.SQLException {
+    		return con;
+    	}
     }
+}
 

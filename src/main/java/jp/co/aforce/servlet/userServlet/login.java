@@ -42,6 +42,7 @@ public class login extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		//ログイン処理　ロジック
         if (user != null) {
                 HttpSession session = request.getSession();
@@ -63,18 +64,6 @@ public class login extends HttpServlet {
                         rdFailed.forward(request, response);
                 }
         }
-//		//ログイン処理　ロジック
-//		if (user != null) {
-//			HttpSession session = request.getSession();
-//			session.setAttribute("user", user); //ユーザーにセッション付与
-//			//成功
-//			RequestDispatcher rdSucess = request.getRequestDispatcher("/views/user-menu.jsp");
-//			rdSucess.forward(request, response);
-//			//失敗
-//		} else {
-//			RequestDispatcher rdFailed = request.getRequestDispatcher("/views/Error.jsp");
-//			rdFailed.forward(request, response);
-//		}
 		
 		//ID / PW 入力チェック　コンソール用
 		System.out.println(" ID: " + id);
